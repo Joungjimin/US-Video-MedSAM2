@@ -11,3 +11,16 @@ _C.*
 outputs/*
 checkpoints/*.pt
 *.pt
+
+# data & results
+data/
+work_dirs/
+sam2_logs/
+eval_results_*/
+*.npz
+
+# cache
+__pycache__/
+*.pyc
+.vscode/
+

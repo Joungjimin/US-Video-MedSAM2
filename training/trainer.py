@@ -168,7 +168,7 @@ class Trainer:
 
         self._setup_env_variables(env_variables)
         self._setup_timers()
-
+        
         self.data_conf = data
         self.model_conf = model
         self.logging_conf = LoggingConf(**logging)
@@ -701,8 +701,21 @@ class Trainer:
         }
 
     def train_epoch(self, train_loader):
+        # [수정] current_stage 초기값 설정 및 안전한 추출
+        current_stage = "unknown"
+        if hasattr(self, "train_dataset") and len(self.train_dataset.datasets) > 0:
+            # 중첩된 데이터셋 구조에서 stage 정보를 가져옵니다.
+            target_ds = self.train_dataset.datasets[0]
+            # Wrapper(RepeatFactor 등)가 있을 경우 내부로 진입
+            while hasattr(target_ds, "dataset"):
+                target_ds = target_ds.dataset
+            
+            if hasattr(target_ds, "stage"):
+                current_stage = target_ds.stage
 
-        # Init stat meters
+        logging.info(f"🚀 [Epoch {self.epoch}] Current Curriculum Stage: {current_stage.upper()}")
+        
+        # 1. 각종 지표 측정을 위한 미터기 초기화
         batch_time_meter = AverageMeter("Batch Time", self.device, ":.2f")
         data_time_meter = AverageMeter("Data Time", self.device, ":.2f")
         mem_meter = MemMeter("Mem (GB)", self.device, ":.2f")
@@ -711,6 +724,7 @@ class Trainer:
 
         iters_per_epoch = len(train_loader)
 
+        # 2. 메인 손실 함수(Loss) 등록
         loss_names = []
         for batch_key in self.loss.keys():
             loss_names.append(f"Losses/{phase}_{batch_key}_loss")
@@ -720,6 +734,7 @@ class Trainer:
         )
         extra_loss_mts = {}
 
+        # 3. 터미널 진행 상황 표시줄 설정
         progress = ProgressMeter(
             iters_per_epoch,
             [
@@ -733,106 +748,77 @@ class Trainer:
             prefix="Train Epoch: [{}]".format(self.epoch),
         )
 
-        # Model training loop
+        # 4. 모델을 학습 모드로 전환
         self.model.train()
         end = time.time()
-
+        
         for data_iter, batch in enumerate(train_loader):
-            # measure data loading time
             data_time_meter.update(time.time() - end)
             data_times.append(data_time_meter.val)
-            batch = batch.to(
-                self.device, non_blocking=True
-            )  # move tensors in a tensorclass
+            
+            batch = batch.to(self.device, non_blocking=True)
 
             try:
+                # [핵심] 실제 연산 및 역전파 수행
                 self._run_step(batch, phase, loss_mts, extra_loss_mts)
 
-                # Add this block to clear cache every N steps
-                if data_iter % 20 == 0:  # Adjust 20 to your desired frequency
+                # 주기적으로 GPU 캐시 정리 (OOM 방지)
+                if data_iter % 20 == 0:
                     torch.cuda.empty_cache()
+                    import gc
                     gc.collect()
 
-                # compute gradient and do optim step
+                # 스케줄러 업데이트 (Learning Rate 조절)
                 exact_epoch = self.epoch + float(data_iter) / iters_per_epoch
                 self.where = float(exact_epoch) / self.max_epochs
-                assert self.where <= 1 + self.EPSILON
+                
                 if self.where < 1.0:
                     self.optim.step_schedulers(
                         self.where, step=int(exact_epoch * iters_per_epoch)
                     )
-                else:
-                    logging.warning(
-                        f"Skipping scheduler update since the training is at the end, i.e, {self.where} of [0,1]."
-                    )
 
-                # Log schedulers
+                # 학습률 로그 기록
                 if data_iter % self.logging_conf.log_scalar_frequency == 0:
                     for j, param_group in enumerate(self.optim.optimizer.param_groups):
                         for option in self.optim.schedulers[j]:
-                            optim_prefix = (
-                                "" + f"{j}_"
-                                if len(self.optim.optimizer.param_groups) > 1
-                                else ""
-                            )
+                            optim_prefix = f"{j}_" if len(self.optim.optimizer.param_groups) > 1 else ""
                             self.logger.log(
                                 os.path.join("Optim", f"{optim_prefix}", option),
                                 param_group[option],
                                 self.steps[phase],
                             )
 
-                # Clipping gradients and detecting diverging gradients
+                # 그래디언트 클리핑 및 가중치 업데이트
                 if self.gradient_clipper is not None:
                     self.scaler.unscale_(self.optim.optimizer)
                     self.gradient_clipper(model=self.model)
 
-                if self.gradient_logger is not None:
-                    self.gradient_logger(
-                        self.model, rank=self.distributed_rank, where=self.where
-                    )
-
-                # Optimizer step: the scaler will make sure gradients are not
-                # applied if the gradients are infinite
                 self.scaler.step(self.optim.optimizer)
                 self.scaler.update()
 
-                # measure elapsed time
+                # 배치 처리 시간 측정
                 batch_time_meter.update(time.time() - end)
                 end = time.time()
 
                 self.time_elapsed_meter.update(
                     time.time() - self.start_time + self.ckpt_time_elapsed
                 )
-
                 mem_meter.update(reset_peak_usage=True)
+                
                 if data_iter % self.logging_conf.log_freq == 0:
                     progress.display(data_iter)
 
-                if data_iter % self.logging_conf.log_scalar_frequency == 0:
-                    # Log progress meters.
-                    for progress_meter in progress.meters:
-                        self.logger.log(
-                            os.path.join("Step_Stats", phase, progress_meter.name),
-                            progress_meter.val,
-                            self.steps[phase],
-                        )
-
-            # Catching NaN/Inf errors in the loss
             except FloatingPointError as e:
                 raise e
 
+        # 5. 에폭 종료 후 최종 결과 처리
         self.est_epoch_time[Phase.TRAIN] = batch_time_meter.avg * iters_per_epoch
-        self._log_timers(Phase.TRAIN)
-        self._log_sync_data_times(Phase.TRAIN, data_times)
-
         out_dict = self._log_meters_and_save_best_ckpts([Phase.TRAIN])
 
         for k, v in loss_mts.items():
             out_dict[k] = v.avg
-        for k, v in extra_loss_mts.items():
-            out_dict[k] = v.avg
-        out_dict.update(self._get_trainer_state(phase))
-        logging.info(f"Losses and meters: {out_dict}")
+        
+        logging.info(f"✅ Epoch {self.epoch} Fin. | Stage: {current_stage.upper()} | Loss: {out_dict.get(loss_names[0], 0):.4f}")
         self._reset_meters([phase])
         return out_dict
 

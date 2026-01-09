@@ -54,7 +54,75 @@ class VOSRawDataset:
     def get_video(self, idx):
         raise NotImplementedError()
 
+import os
+import logging
+import numpy as np
+import torch
+from torch.utils.data import Dataset # <--- 필수 임포트
 
+import os
+import logging
+import numpy as np
+import torch
+from torch.utils.data import Dataset
+
+######################## jimin ########################
+class MedSAM2CurriculumDataset(Dataset):
+    def __init__(self, folder, milestones, **kwargs):
+        self.base_folder = folder
+        self.milestones = milestones
+        self.stage = "dense"
+        self.temporal_stride = 1  # 신호 샘플링 간격 추가
+        self.samples = []
+        self._load_stage_data("dense")
+
+    def _load_stage_data(self, stage):
+        self.stage = stage
+        self.target_path = os.path.join(self.base_folder, self.stage, "uterine_niche")
+        
+        if not os.path.exists(self.target_path):
+            self.target_path = os.path.join(self.base_folder, self.stage)
+
+        if os.path.exists(self.target_path):
+            self.samples = sorted([f for f in os.listdir(self.target_path) if f.endswith('.npz')])
+        else:
+            self.samples = []
+
+        logging.info(f"✅ [Dataset] Stage: {self.stage.upper()} | Samples: {len(self.samples)}")
+
+    def __getitem__(self, idx):
+        if not self.samples: return None
+            
+        npz_name = self.samples[idx]
+        npz_path = os.path.join(self.target_path, npz_name)
+        
+        try:
+            data = np.load(npz_path, allow_pickle=True)
+            imgs = data['imgs']    # (T, H, W, 3)
+            masks = data['masks']  # (T, H, W)
+            
+            # 🔥 SPL 저널용 핵심 로직: Progressive Signal Sampling
+            # 'expand' 단계에서는 신호를 성기게 추출하여 전역적 움직임을 먼저 학습함
+            if self.stage == "expand" and self.temporal_stride > 1:
+                imgs = imgs[::self.temporal_stride]
+                masks = masks[::self.temporal_stride]
+
+            if imgs.ndim == 4 and imgs.shape[-1] == 3:
+                imgs = imgs.transpose(0, 3, 1, 2)
+            
+            return {
+                "video_id": npz_name.replace(".npz", ""),
+                "images": torch.from_numpy(imgs).float(),
+                "masks": torch.from_numpy(masks).float(),
+                "num_frames": len(imgs)
+            }
+        except Exception as e:
+            logging.error(f"❌ Error loading {npz_path}: {e}")
+            return self.__getitem__((idx + 1) % len(self.samples))
+
+    def __len__(self):
+        return len(self.samples)
+#######################################################
 class PNGRawDataset(VOSRawDataset):
     def __init__(
         self,
@@ -146,7 +214,100 @@ class PNGRawDataset(VOSRawDataset):
     def __len__(self):
         return len(self.video_names)
 
+
 class NPZRawDataset(VOSRawDataset):
+    def __init__(
+        self,
+        folder,
+        file_list_txt=None,
+        excluded_videos_list_txt=None,
+        sample_rate=1,
+        truncate_video=-1,
+    ):
+        self.folder = folder
+        self.sample_rate = sample_rate
+        self.truncate_video = truncate_video
+
+        # 1. 폴더 내 모든 npz 파일 탐색
+        subset = []
+        for root, _, files in os.walk(self.folder):
+            for file in files:
+                if file.endswith('.npz'):
+                    rel_path = os.path.relpath(os.path.join(root, file), self.folder)
+                    subset.append(os.path.splitext(rel_path)[0])
+
+        # 2. file_list_txt가 제공된 경우 필터링
+        if file_list_txt is not None:
+            with open(file_list_txt, "r") as f:
+                subset = [line.strip() for line in f if line.strip() in subset]
+
+        # 3. 제외 목록 처리
+        if excluded_videos_list_txt is not None:
+            with open(excluded_videos_list_txt, "r") as f:
+                excluded_files = [os.path.splitext(line.strip())[0] for line in f]
+        else:
+            excluded_files = []
+
+        # 4. GT 존재 여부 확인 및 최종 비디오 목록 확정 (핵심 수정 부분)
+        print("Filtering videos without Ground Truth (GT)...")
+        final_video_list = []
+        
+        # 제외 목록에 없는 비디오들을 대상으로 검사
+        candidate_videos = [v for v in subset if v not in excluded_files]
+        
+        for video_name in candidate_videos:
+            npz_path = os.path.join(self.folder, f"{video_name}.npz")
+            try:
+                # npz 파일을 로드하여 gts(Ground Truth) 확인
+                npz_data = np.load(npz_path)
+                # gts 내에 1(객체)이 하나라도 존재하는지 확인
+                if 'gts' in npz_data and np.sum(npz_data['gts']) > 0:
+                    final_video_list.append(video_name)
+            except Exception as e:
+                print(f"Error loading {npz_path}: {e}")
+                continue
+
+        self.video_names = sorted(final_video_list)
+        print(f"Filtering complete. Final dataset size: {len(self.video_names)} videos.")
+    def get_video(self, idx):
+        """
+        Given a VOSVideo object, return the mask tensors.
+        """
+        video_name = self.video_names[idx]
+        npz_path = os.path.join(self.folder, f"{video_name}.npz")
+        
+        # Load NPZ file
+        npz_data = np.load(npz_path)
+        
+        # Extract frames and masks
+        frames = npz_data['imgs'] / 255.0
+        # Expand the grayscale images to three channels
+        frames = np.repeat(frames[:, np.newaxis, :, :], 3, axis=1)  # (img_num, 3, H, W)
+        masks = npz_data['gts']
+        
+        if self.truncate_video > 0:
+            frames = frames[:self.truncate_video]
+            masks = masks[:self.truncate_video]
+        
+        # Create VOSFrame objects
+        vos_frames = []
+        for i, frame in enumerate(frames[::self.sample_rate]):
+            frame_idx = i * self.sample_rate
+            vos_frames.append(VOSFrame(frame_idx, image_path=None, data=torch.from_numpy(frame)))
+        
+        # Create VOSVideo object
+        video = VOSVideo(video_name, idx, vos_frames)
+        
+        # Create NPZSegmentLoader
+        segment_loader = NPZSegmentLoader(masks[::self.sample_rate])
+        
+        return video, segment_loader
+
+    def __len__(self):
+        return len(self.video_names)
+
+
+class NPZRawDatasetOri(VOSRawDataset):
     def __init__(
         self,
         folder,

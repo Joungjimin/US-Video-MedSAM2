@@ -1,10 +1,27 @@
-# @package _global_
+dataset_path: /media/sde/zhengzhimin/MedSAM2/data/MedSAM2_Data/preprocessed1/train
+
+data:
+  train:
+    _target_: training.dataset.sam2_datasets.TorchTrainMixedDataset
+    phases_per_epoch: ${scratch.phases_per_epoch}
+    batch_sizes:
+      - ${scratch.train_video_batch_size}
+    datasets:
+      - _target_: training.dataset.sam2_datasets.SignalCurriculumDataset     # MedSAM2CurriculumDataset   SignalCurriculumDataset
+        data_root: "/media/sde/zhengzhimin/MedSAM2/data/MedSAM2_Data/preprocessed1/train"
+        milestones:
+          expand: 20  # 20에포크부터 Expand 단계
+          full: 50    # 50에포크부터 Full 단계
+        # 기존에 사용하던 transform과 sampler 설정 주입
+        transforms: ${vos.train_transforms}
+        num_frames: ${scratch.num_frames}
+        max_num_objects: ${scratch.max_num_objects}
 
 scratch:
   resolution: 512
-  train_video_batch_size: 8
-  num_train_workers: 15
-  num_frames: 8
+  train_video_batch_size: 1
+  num_train_workers: 0
+  num_frames: 4
   max_num_objects: 5
   base_lr: 5.0e-5
   vision_lr: 3.0e-05
@@ -13,7 +30,7 @@ scratch:
 
 dataset:
   # PATHS to Dataset
-  folder:  # PATH to Med NPZ folder
+  folder:  "/media/sde/zhengzhimin/MedSAM2/data/MedSAM2_Data/preprocessed1/train"
   multiplier: 1
 
 # Video transforms
@@ -154,7 +171,7 @@ trainer:
     directly_add_no_mem_embed: true
     no_obj_embed_spatial: true
     # use high-resolution feature map in the SAM mask decoder
-    use_high_res_features_in_sam: true
+    use_high_res_features_in_sam: false
     # output 3 masks on the first click on initial conditioning frames
     multimask_output_in_sam: true
     # SAM heads
@@ -193,7 +210,7 @@ trainer:
     num_init_cond_frames_for_train: 2
     rand_init_cond_frames_for_train: True  # random 1~2
     num_correction_pt_per_frame: 7
-    use_act_ckpt_iterative_pt_sampling: false
+    use_act_ckpt_iterative_pt_sampling: true
     
 
     
@@ -213,65 +230,65 @@ trainer:
             _target_: training.dataset.utils.ConcatDataset
             datasets:
             # CT
-            - _target_: training.dataset.vos_dataset.VOSDataset
-              transforms: ${vos.train_transforms}
-              training: true
-              video_dataset:
-                _target_: training.dataset.vos_raw_dataset.NPZRawDataset
-                folder: CVPR25/3D_train_npz_random_10percent_16G/CT
-              sampler:
-                _target_: training.dataset.vos_sampler.RandomUniformSampler
-                num_frames: ${scratch.num_frames}
-                max_num_objects: ${scratch.max_num_objects}
-              multiplier: 1
-            # MR
-            - _target_: training.dataset.vos_dataset.VOSDataset
-              transforms: ${vos.train_transforms}
-              training: true
-              video_dataset:
-                _target_: training.dataset.vos_raw_dataset.NPZRawDataset
-                folder: CVPR25/3D_train_npz_random_10percent_16G/MR
-              sampler:
-                _target_: training.dataset.vos_sampler.RandomUniformSampler
-                num_frames: ${scratch.num_frames}
-                max_num_objects: ${scratch.max_num_objects}
-              multiplier: 1
-            # PET
-            - _target_: training.dataset.vos_dataset.VOSDataset
-              transforms: ${vos.train_transforms}
-              training: true
-              video_dataset:
-                _target_: training.dataset.vos_raw_dataset.NPZRawDataset
-                folder: CVPR25/3D_train_npz_random_10percent_16G/PET
-              sampler:
-                _target_: training.dataset.vos_sampler.RandomUniformSampler
-                num_frames: ${scratch.num_frames}
-                max_num_objects: ${scratch.max_num_objects}
-              multiplier: 10
+            # - _target_: training.dataset.vos_dataset.VOSDataset
+            #   transforms: ${vos.train_transforms}
+            #   training: true
+            #   video_dataset:
+            #     _target_: training.dataset.vos_raw_dataset.NPZRawDataset
+            #     folder: CVPR25/3D_train_npz_random_10percent_16G/CT
+            #   sampler:
+            #     _target_: training.dataset.vos_sampler.RandomUniformSampler
+            #     num_frames: ${scratch.num_frames}
+            #     max_num_objects: ${scratch.max_num_objects}
+            #   multiplier: 1
+            # # MR
+            # - _target_: training.dataset.vos_dataset.VOSDataset
+            #   transforms: ${vos.train_transforms}
+            #   training: true
+            #   video_dataset:
+            #     _target_: training.dataset.vos_raw_dataset.NPZRawDataset
+            #     folder: CVPR25/3D_train_npz_random_10percent_16G/MR
+            #   sampler:
+            #     _target_: training.dataset.vos_sampler.RandomUniformSampler
+            #     num_frames: ${scratch.num_frames}
+            #     max_num_objects: ${scratch.max_num_objects}
+            #   multiplier: 1
+            # # PET
+            # - _target_: training.dataset.vos_dataset.VOSDataset
+            #   transforms: ${vos.train_transforms}
+            #   training: true
+            #   video_dataset:
+            #     _target_: training.dataset.vos_raw_dataset.NPZRawDataset
+            #     folder: CVPR25/3D_train_npz_random_10percent_16G/PET
+            #   sampler:
+            #     _target_: training.dataset.vos_sampler.RandomUniformSampler
+            #     num_frames: ${scratch.num_frames}
+            #     max_num_objects: ${scratch.max_num_objects}
+            #   multiplier: 10
             # Ultrasound 3D
             - _target_: training.dataset.vos_dataset.VOSDataset
               transforms: ${vos.train_transforms}
               training: true
               video_dataset:
                 _target_: training.dataset.vos_raw_dataset.NPZRawDataset
-                folder: CVPR25/3D_train_npz_random_10percent_16G/US3D
+                folder: /media/sde/zhengzhimin/MedSAM2/data/MedSAM2_Data/preprocessed1/train/uterine_niche
               sampler:
                 _target_: training.dataset.vos_sampler.RandomUniformSampler
                 num_frames: ${scratch.num_frames}
                 max_num_objects: ${scratch.max_num_objects}
               multiplier: 1
-            # Microscopy 3D
-            - _target_: training.dataset.vos_dataset.VOSDataset
-              transforms: ${vos.train_transforms}
-              training: true
-              video_dataset:
-                _target_: training.dataset.vos_raw_dataset.NPZRawDataset
-                folder: CVPR25/3D_train_npz_random_10percent_16G/Microscopy
-              sampler:
-                _target_: training.dataset.vos_sampler.RandomUniformSampler
-                num_frames: ${scratch.num_frames}
-                max_num_objects: ${scratch.max_num_objects}
-              multiplier: 1
+            # # Microscopy 3D
+            # - _target_: training.dataset.vos_dataset.VOSDataset
+            #   transforms: ${vos.train_transforms}
+            #   training: true
+            #   video_dataset:
+            #     _target_: training.dataset.vos_raw_dataset.NPZRawDataset
+            #     folder: CVPR25/3D_train_npz_random_10percent_16G/Microscopy
+            #   sampler:
+            #     _target_: training.dataset.vos_sampler.RandomUniformSampler
+            #     num_frames: ${scratch.num_frames}
+            #     max_num_objects: ${scratch.max_num_objects}
+            #   multiplier: 1
 
       shuffle: True
       num_workers: ${scratch.num_train_workers}
@@ -361,8 +378,12 @@ trainer:
     model_weight_initializer:
       _partial_: True
       _target_: training.utils.checkpoint_utils.load_state_dict_into_model
-      strict: True
-      ignore_unexpected_keys: null
+      strict: False
+      ignore_unexpected_keys:
+        - sam_mask_decoder.conv_s0.weight
+        - sam_mask_decoder.conv_s0.bias
+        - sam_mask_decoder.conv_s1.weight
+        - sam_mask_decoder.conv_s1.bias
       ignore_missing_keys: null
 
       state_dict:
@@ -372,9 +393,8 @@ trainer:
 
 launcher:
   num_nodes: 1
-  gpus_per_node: 4
-  experiment_log_dir: exp_log # Path to log directory, defaults to ./sam2_logs/${config_name}
-
+  gpus_per_node: 1
+  experiment_log_dir: "/media/sde/zhengzhimin/MedSAM2/work_dirs/MedSAM2_Uterine_Niche_DEF_SignalCurriculumDataset"
 # SLURM args if running on a cluster
 submitit:
   partition: gpu_bwanggroup

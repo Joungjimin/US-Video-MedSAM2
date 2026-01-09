@@ -116,13 +116,23 @@ def add_pythonpath_to_sys_path():
         return
     sys.path = os.environ["PYTHONPATH"].split(":") + sys.path
 
+from omegaconf import OmegaConf
+from omegaconf import OmegaConf, DictConfig
+
 
 def main(args, cfg) -> None:
-    
-    if cfg.launcher.experiment_log_dir is None:
+    OmegaConf.set_struct(cfg, False)
+    if "configs" in cfg:
+        cfg.merge_with(cfg.configs)
+    # 🔥 launcher가 없으면 직접 만들어준다
+    if "launcher" not in cfg or cfg.launcher is None:
+        cfg.launcher = DictConfig({})
+
+    if "experiment_log_dir" not in cfg.launcher:
         cfg.launcher.experiment_log_dir = os.path.join(
             os.getcwd(), "sam2_logs", args.config
         )
+
     print("###################### Train App Config ####################")
     print(OmegaConf.to_yaml(cfg))
     print("############################################################")

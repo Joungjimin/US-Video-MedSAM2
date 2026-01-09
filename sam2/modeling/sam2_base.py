@@ -18,7 +18,139 @@ from sam2.modeling.sam2_utils import get_1d_sine_pe, MLP, select_closest_cond_fr
 # a large negative value as a placeholder score for missing objects
 NO_OBJ_SCORE = -1024.0
 
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
 
+######################## jimin ########################
+class safeTemporalContextExchange(torch.nn.Module):
+    def __init__(self, channels, kernel_size=3):
+        super().__init__()
+        self.channels = channels
+        
+        # 3D Depthwise Conv: 시간 축(T) 방향으로 정보를 섞음
+        self.depthwise_conv = torch.nn.Conv3d(
+            channels, channels,
+            kernel_size=(3, 1, 1),
+            padding=(1, 0, 0),
+            groups=channels,
+            bias=False
+        )
+        
+        self.pointwise = torch.nn.Conv3d(channels, channels, 1, bias=False)
+        self.bn1 = torch.nn.BatchNorm3d(channels)
+        self.bn2 = torch.nn.BatchNorm3d(channels)
+        self.alpha = torch.nn.Parameter(torch.tensor(0.1))
+        
+        # 채널별 중요도를 계산하는 어텐션
+        self.attention = torch.nn.Sequential(
+            torch.nn.AdaptiveAvgPool3d(1),
+            torch.nn.Conv3d(channels, max(channels // 16, 8), 1),
+            torch.nn.ReLU(inplace=True),
+            torch.nn.Conv3d(max(channels // 16, 8), channels, 1),
+            torch.nn.Sigmoid()
+        )
+        
+    def forward(self, x, t):
+        """
+        x: [B*T, C, H, W] 형태의 입력
+        t: 비디오 당 프레임 수
+        """
+        bt, c, h, w = x.shape
+        b = bt // t
+        
+        identity = x
+        # 5D 변환: [B, C, T, H, W]
+        x = x.view(b, t, c, h, w).permute(0, 2, 1, 3, 4).contiguous()
+        
+        # Temporal Fusion
+        out = self.depthwise_conv(x)
+        out = self.bn1(out)
+        
+        attn = self.attention(out)
+        out = out * attn
+        
+        out = self.pointwise(out)
+        out = self.bn2(out)
+        
+        # 다시 4D 복원: [B*T, C, H, W]
+        out = out.permute(0, 2, 1, 3, 4).contiguous().view(bt, c, h, w)
+        
+        return identity + self.alpha * out
+    
+    
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+
+class ATGModule(torch.nn.Module):
+    """
+    [SPL Submission Version]
+    Adaptive Temporal Gating Module for Spatio-temporal Feature Alignment.
+    Features: Dynamic Gating, Temporal Depthwise-Separable Conv, Self-Calibrated Attention.
+    """
+    def __init__(self, channels, kernel_size=3):
+        super().__init__()
+        self.channels = channels
+        
+        # 1. Temporal Extraction: 1D-Temporal Kernel (Signal Processing Perspective)
+        self.temporal_conv = nn.Conv3d(
+            channels, channels,
+            kernel_size=(kernel_size, 1, 1),
+            padding=((kernel_size - 1) // 2, 0, 0),
+            groups=channels,
+            bias=False
+        )
+        
+        # 2. Adaptive Gating Mechanism: 신호의 변화량에 따라 Fusion 강도를 동적으로 조절
+        # 논문 기여점: "Dynamic control of temporal information flow"
+        self.gate_generator = nn.Sequential(
+            nn.AdaptiveAvgPool3d(1),
+            nn.Conv3d(channels, channels // 4, 1),
+            nn.ReLU(inplace=True),
+            nn.Conv3d(channels // 4, channels, 1),
+            nn.Sigmoid()
+        )
+        
+        self.pointwise = nn.Conv3d(channels, channels, 1, bias=False)
+        self.bn = nn.BatchNorm3d(channels)
+        
+        # 신호 처리적 안정성을 위한 학습 가능한 스케일 파라미터
+        self.gamma = nn.Parameter(torch.zeros(1)) 
+
+    def forward(self, x, t):
+        """
+        x: [B*T, C, H, W]
+        t: Frames per video
+        """
+        bt, c, h, w = x.shape
+        b = bt // t
+        
+        identity = x
+        
+        # 5D 변환 (B, C, T, H, W)
+        x_5d = x.view(b, t, c, h, w).permute(0, 2, 1, 3, 4).contiguous()
+        
+        # 1. Temporal Feature Extraction
+        # 시간적 인접 신호 간의 교환 수행
+        temporal_feat = self.temporal_conv(x_5d)
+        
+        # 2. Adaptive Gating (핵심!)
+        # 신호가 급변하는 구간과 정적인 구간을 구분하여 게이트를 생성
+        gate = self.gate_generator(temporal_feat)
+        
+        # 3. 신호 정제 및 융합
+        out = temporal_feat * gate
+        out = self.pointwise(out)
+        out = self.bn(out)
+        
+        # 다시 4D로 복원
+        out = out.permute(0, 2, 1, 3, 4).contiguous().view(bt, c, h, w)
+        
+        # Residual Connection with Learnable Gamma
+        # 초기에는 0으로 시작하여 안정성을 확보하고 점진적으로 시간 정보를 학습
+        return identity + self.gamma * out
+################################################
 class SAM2Base(torch.nn.Module):
     def __init__(
         self,
@@ -103,6 +235,17 @@ class SAM2Base(torch.nn.Module):
         self.num_feature_levels = 3 if use_high_res_features_in_sam else 1
         self.use_obj_ptrs_in_encoder = use_obj_ptrs_in_encoder
         self.max_obj_ptrs_in_encoder = max_obj_ptrs_in_encoder
+        ######################## jimin ########################
+        self.hidden_dim = image_encoder.neck.d_model
+        self.temporalVideo = False
+        if self.temporalVideo:
+            # Hiera 백본의 Neck 출력 채널(self.hidden_dim)에 맞춰 레이어 생성
+            # 다중 스케일(P3, P4, P5)을 사용하므로 각 레벨에 대한 리스트 생성
+            self.temporal_fusion = torch.nn.ModuleList([
+                ATGModule(channels=self.hidden_dim) 
+                for _ in range(self.num_feature_levels)
+            ])
+        ################################################
         if use_obj_ptrs_in_encoder:
             # A conv layer to downsample the mask prompt to stride 4 (the same stride as
             # low-res SAM mask logits) and to change its scales from 0~1 to SAM logit scale,
@@ -486,7 +629,28 @@ class SAM2Base(torch.nn.Module):
 
         feature_maps = backbone_out["backbone_fpn"][-self.num_feature_levels :]
         vision_pos_embeds = backbone_out["vision_pos_enc"][-self.num_feature_levels :]
+        ######################## jimin ########################
+        # [수정] num_frames를 정의합니다. 
+        # MedSAM2 학습 시 backbone_out의 텐서 첫 번째 차원은 보통 B*T입니다.
+        # 훈련 설정이나 입력 데이터 구조에 따라 결정되는데, 
+        # 여기서는 feature_map의 batch 차원을 통해 유추하거나 외부에서 주입된 값을 사용합니다.
+        
+        # 만약 backbone_out에 이미 정보가 없다면, 텐서 모양으로 유추 (BT, C, H, W)
+        if self.temporalVideo:
+            bt = feature_maps[0].shape[0]
+            # 현재 배치 사이즈가 1이라고 가정하면 bt가 곧 num_frames(T)가 됩니다.
+            # 일반적인 MedSAM2 비디오 학습 환경에서는 아래와 같이 처리합니다.
+            num_frames = backbone_out.get("num_frames", bt) 
 
+            if num_frames > 1:
+                fused_feature_maps = []
+                for i, f_map in enumerate(feature_maps):
+                    # i번째 레벨 특징 맵에 대해 Temporal Context Exchange 수행
+                    # self.temporal_fusion[i] 모듈에 f_map과 num_frames 전달
+                    fused_f_map = self.temporal_fusion[i](f_map, num_frames)
+                    fused_feature_maps.append(fused_f_map)
+                feature_maps = fused_feature_maps
+        ################################################
         feat_sizes = [(x.shape[-2], x.shape[-1]) for x in vision_pos_embeds]
         # flatten NxCxHxW to HWxNxC
         vision_feats = [x.flatten(2).permute(2, 0, 1) for x in feature_maps]
