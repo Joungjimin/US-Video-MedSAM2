@@ -1,53 +1,70 @@
 import os
-import glob
 import nibabel as nib
 import numpy as np
-from tqdm import tqdm
 
-def preprocess_nifti_to_npz(base_path, output_path):
-    # 1. 경로 설정
-    image_dir = os.path.join(base_path, "images")
-    label_dir = os.path.join(base_path, "labels")
+IMG_DIR = "/media/sde/zhengzhimin/MedSAM2/data/MedSAM2_Data/data2/val/images"
+LBL_DIR = "/media/sde/zhengzhimin/MedSAM2/data/MedSAM2_Data/data2/val/labels"
+OUT_DIR = "/media/sde/zhengzhimin/MedSAM2/data/MedSAM2_Data/preprocessed2/val/uterine_niche"
+
+os.makedirs(OUT_DIR, exist_ok=True)
+img_files = sorted([f for f in os.listdir(IMG_DIR) if f.endswith(".nii.gz")])
+
+for fname in img_files:
+    vid = fname.replace(".nii.gz", "")
+    img_path = os.path.join(IMG_DIR, fname)
+    lbl_path = os.path.join(LBL_DIR, fname)
+
+    if not os.path.exists(lbl_path): continue
+
+    # 1. 원본 로드
+    img_data = nib.load(img_path).get_fdata()
+    mask_data = nib.load(lbl_path).get_fdata()
+
+    # 2. 스마트 축 정렬 (640이 아닌 축을 프레임으로 간주하여 맨 앞으로 이동)
+    # 현재 사용자님의 shape이 (640, 100, 640)이라면 f_axis는 1이 됩니다.
+    current_shape = img_data.shape
+    f_axis = -1
+    for i, dim in enumerate(current_shape):
+        if dim != 640:
+            f_axis = i
+            break
     
-    # 출력 폴더 생성
-    os.makedirs(output_path, exist_ok=True)
+    if f_axis == 1: # (640, 100, 640) -> (100, 640, 640)
+        img = img_data.transpose(1, 0, 2)
+        mask = mask_data.transpose(1, 0, 2)
+    elif f_axis == 2: # (640, 640, 100) -> (100, 640, 640)
+        img = img_data.transpose(2, 0, 1)
+        mask = mask_data.transpose(2, 0, 1)
+    else:
+        img = img_data
+        mask = mask_data
 
-    # 2. 이미지 파일 목록 가져오기
-    image_files = sorted(glob.glob(os.path.join(image_dir, "*.nii.gz")))
+    # 3. 데이터 타입 및 값 고정
+    img = img.astype(np.float64)
+    mask = mask.astype(np.int64)
+
+    # 4. 저장
+    out_path = os.path.join(OUT_DIR, f"{vid}.npz")
+    np.savez_compressed(out_path, imgs=img, gts=mask)
     
-    print(f"총 {len(image_files)}개의 파일을 찾았습니다.")
+    print(f"[FIXED] {vid} | Final Shape: {img.shape}")
 
-    for img_path in tqdm(image_files):
-        # 파일 이름 추출 (예: 1.nii.gz -> 1)
-        file_name = os.path.basename(img_path).replace(".nii.gz", "")
-        
-        # 라벨 경로 매칭
-        lbl_path = os.path.join(label_dir, f"{file_name}.nii.gz")
-        
-        if not os.path.exists(lbl_path):
-            print(f"경고: {file_name}에 해당하는 라벨 파일이 없습니다. 건너뜁니다.")
-            continue
+print("\n✅ 모든 데이터가 (Frames, 640, 640) 형식으로 수정되었습니다.")
+# import numpy as np
 
-        # 3. 데이터 로드
-        img_nii = nib.load(img_path)
-        lbl_nii = nib.load(lbl_path)
-        
-        # numpy 배열로 변환 (float32/int16 권장)
-        img_data = img_nii.get_fdata().astype(np.float32)
-        lbl_data = lbl_nii.get_fdata().astype(np.uint8)  # 라벨은 보통 정수형
+# # 기존 잘 되는 파일
+# old_data = np.load("/media/sde/zhengzhimin/MedSAM2/data/MedSAM2_Data/preprocessed1/train/uterine_niche/1.npz")
+# # 새로 만든 파일
+# new_data = np.load("/media/sde/zhengzhimin/MedSAM2/data/MedSAM2_Data/preprocessed2/train/uterine_niche/2.npz")
 
-        # 4. NPZ로 저장 (압축 모드)
-        save_file_path = os.path.join(output_path, f"{file_name}.npz")
-        np.savez_compressed(
-            save_file_path,
-            image=img_data,
-            label=lbl_data
-        )
+# print("--- [Keys Check] ---")
+# print(f"Old keys: {list(old_data.keys())}")
+# print(f"New keys: {list(new_data.keys())}")
 
-if __name__ == "__main__":
-    # 설정하신 경로
-    input_base = "/media/sde/zhengzhimin/MedSAM2/data/MedSAM2_Data/data2/train"
-    output_base = "/media/sde/zhengzhimin/MedSAM2/data/MedSAM2_Data/data2_preprocessed/preprocessed/train"
-
-    preprocess_nifti_to_npz(input_base, output_base)
-    print("변환이 완료되었습니다.")
+# for key in old_data.keys():
+#     if key in new_data:
+#         print(f"\n--- [Key: {key}] ---")
+#         print(f"Old - shape: {old_data[key].shape}, dtype: {old_data[key].dtype}")
+#         print(f"New - shape: {new_data[key].shape}, dtype: {new_data[key].dtype}")
+#         print(f"Old - Range: [{old_data[key].min()}, {old_data[key].max()}]")
+#         print(f"New - Range: [{new_data[key].min()}, {new_data[key].max()}]")

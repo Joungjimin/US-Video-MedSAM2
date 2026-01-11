@@ -217,8 +217,177 @@ class TemporalGraphConsistencyLoss(nn.Module):
             
         return self.alpha * basic_loss + self.beta * graph_loss + 0.05 * weighted_loss
 
-# --- Main Multi-Step Loss Class ---
 
+class SpectralTemporalRegularizer(nn.Module):
+    """
+    SPECTRAL-OPTIMAL TEMPORAL CONSISTENCY LOSS
+    Backward compatible version with alpha/beta parameters.
+    """
+    def __init__(self,
+                 alpha=0.1,           # Backward compatibility: spectral_weight
+                 beta=0.05,           # Backward compatibility: wasserstein_weight
+                 phase_weight=0.02,   # Phase alignment term
+                 freq_cutoff=0.3,     # High-frequency cutoff ratio
+                 adaptive_temp=0.1,   # Adaptive temperature parameter
+                 use_spectral=True,   # Enable spectral loss
+                 use_wasserstein=True):  # Enable wasserstein loss
+        super().__init__()
+        # Maintain backward compatibility
+        self.spectral_weight = alpha
+        self.wasserstein_weight = beta
+        self.phase_weight = phase_weight
+        self.freq_cutoff = freq_cutoff
+        self.adaptive_temp = adaptive_temp
+        self.use_spectral = use_spectral
+        self.use_wasserstein = use_wasserstein
+        
+        # Learnable spectral filters
+        self.register_buffer('cheby_coeffs', 
+                           torch.tensor([1.0, -2.0, 1.0]))  # 2nd-order Chebyshev
+    
+    def spectral_smoothness_loss(self, probs):
+        """
+        Spectral graph smoothness via Chebyshev polynomial approximation.
+        """
+        B, C, T, H, W = probs.shape
+        
+        if T < 3 or not self.use_spectral:
+            return torch.tensor(0.0, device=probs.device)
+        
+        # Reshape for spectral analysis: [B*H*W, T]
+        spatial_flat = probs.permute(0, 3, 4, 1, 2).reshape(-1, T)
+        
+        # Chebyshev polynomial filtering
+        x0 = spatial_flat
+        x1 = torch.zeros_like(x0)
+        
+        for t in range(1, T-1):
+            x1[:, t] = spatial_flat[:, t+1] + spatial_flat[:, t-1] - 2*spatial_flat[:, t]
+        
+        Lf = self.cheby_coeffs[0] * x0 + self.cheby_coeffs[1] * x1
+        
+        # Spectral energy
+        spectral_energy = torch.mean(Lf ** 2)
+        
+        # Optional: FFT-based high frequency penalty
+        try:
+            fft_vals = torch.fft.rfft(spatial_flat, dim=1)
+            freqs = torch.fft.rfftfreq(T, d=1.0).to(probs.device)
+            high_freq_mask = (freqs > self.freq_cutoff)
+            
+            if torch.any(high_freq_mask):
+                high_freq_energy = torch.mean(torch.abs(fft_vals[:, high_freq_mask]) ** 2)
+                spectral_energy = spectral_energy + 0.5 * high_freq_energy
+        except:
+            # Fallback if FFT fails
+            pass
+        
+        return spectral_energy
+    
+    def temporal_wasserstein_loss(self, probs):
+        """
+        Sliced Wasserstein distance between consecutive frames.
+        """
+        B, C, T, H, W = probs.shape
+        
+        if T < 2 or not self.use_wasserstein:
+            return torch.tensor(0.0, device=probs.device)
+        
+        total_wasserstein = 0.0
+        
+        for t in range(T-1):
+            p_t = probs[:, :, t].reshape(B, -1)  # [B, H*W]
+            p_t1 = probs[:, :, t+1].reshape(B, -1)
+            
+            # Compute 1D Wasserstein distance via sorting
+            p_t_sorted, _ = torch.sort(p_t, dim=1)
+            p_t1_sorted, _ = torch.sort(p_t1, dim=1)
+            
+            wasserstein_dist = torch.mean(torch.abs(p_t_sorted - p_t1_sorted), dim=1)
+            total_wasserstein += torch.mean(wasserstein_dist)
+        
+        return total_wasserstein / (T - 1)
+    
+    def phase_consistency_loss(self, probs):
+        """
+        Phase consistency loss using finite differences.
+        """
+        B, C, T, H, W = probs.shape
+        
+        if T < 3:
+            return torch.tensor(0.0, device=probs.device)
+        
+        # Finite differences for phase approximation
+        probs_center = probs[:, :, 1:-1]
+        probs_grad = (probs[:, :, 2:] - probs[:, :, :-2]) / 2.0
+        
+        # Phase approximation: arctan(gradient / value)
+        phase = torch.atan2(probs_grad, probs_center + 1e-8)
+        
+        # Phase differences
+        phase_diff = torch.abs(phase[:, :, 1:] - phase[:, :, :-1])
+        
+        # Handle phase wrapping
+        phase_diff = torch.where(phase_diff > torch.pi, 
+                                2*torch.pi - phase_diff, 
+                                phase_diff)
+        
+        return torch.mean(phase_diff)
+    
+    def adaptive_confidence_weighting(self, probs):
+        """
+        Jensen-Shannon divergence based confidence weighting.
+        """
+        B, C, T, H, W = probs.shape
+        
+        # Jensen-Shannon divergence
+        uniform = 0.5 * torch.ones_like(probs)
+        
+        kl1 = probs * torch.log((probs + 1e-8) / (uniform + 1e-8))
+        kl2 = (1 - probs) * torch.log((1 - probs + 1e-8) / (0.5 + 1e-8))
+        
+        js_divergence = 0.5 * (torch.mean(kl1 + kl2, dim=[-1, -2]))
+        
+        # Confidence weights
+        confidence = torch.exp(-self.adaptive_temp * js_divergence)
+        
+        # Normalize temporally
+        weights = F.softmax(confidence, dim=-1)
+        return weights.unsqueeze(-1).unsqueeze(-1)
+    
+    def forward(self, logits):
+        """
+        Forward pass with dimension normalization.
+        Maintains identical interface to original.
+        """
+        # Dimension normalization (identical to original)
+        if logits.dim() == 3:  # [T, H, W]
+            logits = logits.unsqueeze(0).unsqueeze(0)
+        elif logits.dim() == 4:  # [B, T, H, W]
+            logits = logits.unsqueeze(1)
+        
+        B, C, T, H, W = logits.shape
+        if T < 2:
+            return torch.tensor(0.0, device=logits.device, dtype=logits.dtype)
+        
+        probs = torch.sigmoid(logits)
+        
+        # Apply confidence weighting
+        weights = self.adaptive_confidence_weighting(probs)
+        weighted_probs = probs * weights
+        
+        # Compute individual loss components
+        spectral_loss = self.spectral_smoothness_loss(weighted_probs)
+        wasserstein_loss = self.temporal_wasserstein_loss(weighted_probs)
+        phase_loss = self.phase_consistency_loss(weighted_probs)
+        
+        # Combined loss
+        total_loss = (self.spectral_weight * spectral_loss +
+                     self.wasserstein_weight * wasserstein_loss +
+                     self.phase_weight * phase_loss)
+        
+        return total_loss
+    
 class MultiStepMultiMasksAndIous(nn.Module):
     def __init__(
         self,
@@ -240,8 +409,8 @@ class MultiStepMultiMasksAndIous(nn.Module):
         for k in ["loss_mask", "loss_dice", "loss_iou"]:
             assert k in self.weight_dict
         
-        # Temporal Loss 초기화 및 가중치 설정
-        self.temporal_loss_fn = TemporalConsistencyLoss(alpha=0.1, beta=0.05)
+        # Temporal Loss 초기화 및 가중치 설정 jimin
+        self.temporal_loss_fn = SpectralTemporalRegularizer(alpha=0.1, beta=0.05)   #SpectralTemporalRegularizer TemporalConsistencyLoss  TemporalGraphConsistencyLoss
         if "loss_temporal" not in self.weight_dict:
             self.weight_dict["loss_temporal"] = 0.5 # 기본값
 
