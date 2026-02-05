@@ -1037,6 +1037,82 @@ class SA1BRawDataset(VOSRawDataset):
         return len(self.video_names)
 
 
+class NPZRawDataset(VOSRawDataset):
+    def __init__(
+        self,
+        folder,
+        file_list_txt=None,
+        excluded_videos_list_txt=None,
+        sample_rate=1,
+        truncate_video=-1,
+    ):
+        self.folder = folder
+        self.sample_rate = sample_rate
+        self.truncate_video = truncate_video
+
+        # Read all npz files from folder and its subfolders
+        subset = []
+        for root, _, files in os.walk(self.folder):
+            for file in files:
+                if file.endswith('.npz'):
+                    # Get the relative path from the root folder
+                    rel_path = os.path.relpath(os.path.join(root, file), self.folder)
+                    # Remove the .npz extension
+                    subset.append(os.path.splitext(rel_path)[0])
+
+        # Read the subset defined in file_list_txt if provided
+        if file_list_txt is not None:
+            with open(file_list_txt, "r") as f:
+                subset = [line.strip() for line in f if line.strip() in subset]
+
+        # Read and process excluded files if provided
+        if excluded_videos_list_txt is not None:
+            with open(excluded_videos_list_txt, "r") as f:
+                excluded_files = [os.path.splitext(line.strip())[0] for line in f]
+        else:
+            excluded_files = []
+
+        # Check if it's not in excluded_files
+        self.video_names = sorted(
+            [video_name for video_name in subset if video_name not in excluded_files]
+        )
+
+    def get_video(self, idx):
+        """
+        Given a VOSVideo object, return the mask tensors.
+        """
+        video_name = self.video_names[idx]
+        npz_path = os.path.join(self.folder, f"{video_name}.npz")
+        
+        # Load NPZ file
+        npz_data = np.load(npz_path)
+        
+        # Extract frames and masks
+        frames = npz_data['imgs'] / 255.0
+        # Expand the grayscale images to three channels
+        frames = np.repeat(frames[:, np.newaxis, :, :], 3, axis=1)  # (img_num, 3, H, W)
+        masks = npz_data['gts']
+        
+        if self.truncate_video > 0:
+            frames = frames[:self.truncate_video]
+            masks = masks[:self.truncate_video]
+        
+        # Create VOSFrame objects
+        vos_frames = []
+        for i, frame in enumerate(frames[::self.sample_rate]):
+            frame_idx = i * self.sample_rate
+            vos_frames.append(VOSFrame(frame_idx, image_path=None, data=torch.from_numpy(frame)))
+        
+        # Create VOSVideo object
+        video = VOSVideo(video_name, idx, vos_frames)
+        
+        # Create NPZSegmentLoader
+        segment_loader = NPZSegmentLoader(masks[::self.sample_rate])
+        
+        return video, segment_loader
+
+    def __len__(self):
+        return len(self.video_names)
 class JSONRawDataset(VOSRawDataset):
     """
     Dataset where the annotation in the format of SA-V json files

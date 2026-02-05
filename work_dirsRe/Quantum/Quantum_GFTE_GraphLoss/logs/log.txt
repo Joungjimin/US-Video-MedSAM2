@@ -668,3 +668,126 @@ INFO 2026-01-11 17:02:37,039 trainer.py: 883: Synchronizing meters
 INFO 2026-01-11 17:02:37,040 trainer.py: 821: ✅ Epoch 49 Fin. | Stage: UNKNOWN | Loss: 2.6214
 INFO 2026-01-11 17:02:38,491 trainer.py: 716: 🚀 [Epoch 50] Current Curriculum Stage: UNKNOWN
 INFO 2026-01-11 17:02:41,918 train_utils.py: 271: Train Epoch: [50][ 0/12] | Batch Time: 3.42 (3.42) | Data Time: 2.14 (2.14) | Mem (GB): 3.00 (3.00/3.00) | Time Elapsed: 00d 00h 40m | Losses/train_all_loss: 7.35e+00 (7.35e+00)
+INFO 2026-01-11 17:03:34,586 train_utils.py: 271: Train Epoch: [50][10/12] | Batch Time: 2.06 (5.10) | Data Time: 1.75 (4.48) | Mem (GB): 2.00 (2.64/3.00) | Time Elapsed: 00d 00h 41m | Losses/train_all_loss: 1.45e-01 (2.18e+00)
+INFO 2026-01-11 17:03:37,461 trainer.py: 883: Synchronizing meters
+INFO 2026-01-11 17:03:37,461 trainer.py: 821: ✅ Epoch 50 Fin. | Stage: UNKNOWN | Loss: 2.3742
+INFO 2026-01-11 17:03:38,536 trainer.py: 716: 🚀 [Epoch 51] Current Curriculum Stage: UNKNOWN
+INFO 2026-01-11 17:03:42,721 train_utils.py: 271: Train Epoch: [51][ 0/12] | Batch Time: 4.18 (4.18) | Data Time: 2.79 (2.79) | Mem (GB): 3.00 (3.00/3.00) | Time Elapsed: 00d 00h 41m | Losses/train_all_loss: 7.33e+00 (7.33e+00)
+INFO 2026-01-11 17:04:16,960 train_utils.py: 271: Train Epoch: [51][10/12] | Batch Time: 3.74 (3.49) | Data Time: 2.68 (2.84) | Mem (GB): 2.00 (2.73/3.00) | Time Elapsed: 00d 00h 41m | Losses/train_all_loss: 2.74e+00 (2.44e+00)
+INFO 2026-01-11 17:04:19,766 trainer.py: 883: Synchronizing meters
+INFO 2026-01-11 17:04:19,766 trainer.py: 821: ✅ Epoch 51 Fin. | Stage: UNKNOWN | Loss: 2.2850
+INFO 2026-01-11 17:04:20,617 trainer.py: 716: 🚀 [Epoch 52] Current Curriculum Stage: UNKNOWN
+INFO 2026-01-11 17:04:23,816 train_utils.py: 271: Train Epoch: [52][ 0/12] | Batch Time: 3.20 (3.20) | Data Time: 2.59 (2.59) | Mem (GB): 2.00 (2.00/2.00) | Time Elapsed: 00d 00h 41m | Losses/train_all_loss: 3.49e-01 (3.49e-01)
+INFO 2026-01-11 17:05:04,401 train_utils.py: 271: Train Epoch: [52][10/12] | Batch Time: 9.22 (3.98) | Data Time: 8.36 (3.37) | Mem (GB): 3.00 (2.73/3.00) | Time Elapsed: 00d 00h 42m | Losses/train_all_loss: 5.36e+00 (2.31e+00)
+INFO 2026-01-11 17:05:08,013 trainer.py: 883: Synchronizing meters
+INFO 2026-01-11 17:05:08,013 trainer.py: 821: ✅ Epoch 52 Fin. | Stage: UNKNOWN | Loss: 2.5135
+INFO 2026-01-11 17:05:09,080 trainer.py: 716: 🚀 [Epoch 53] Current Curriculum Stage: UNKNOWN
+INFO 2026-01-11 17:05:12,984 train_utils.py: 271: Train Epoch: [53][ 0/12] | Batch Time: 3.90 (3.90) | Data Time: 3.30 (3.30) | Mem (GB): 3.00 (3.00/3.00) | Time Elapsed: 00d 00h 42m | Losses/train_all_loss: 2.83e-01 (2.83e-01)
+INFO 2026-01-11 17:05:54,628 train_utils.py: 271: Train Epoch: [53][10/12] | Batch Time: 3.68 (4.14) | Data Time: 2.69 (3.41) | Mem (GB): 3.00 (2.82/3.00) | Time Elapsed: 00d 00h 43m | Losses/train_all_loss: 5.19e+00 (2.70e+00)
+INFO 2026-01-11 17:05:59,044 trainer.py: 883: Synchronizing meters
+INFO 2026-01-11 17:05:59,044 trainer.py: 821: ✅ Epoch 53 Fin. | Stage: UNKNOWN | Loss: 2.6027
+INFO 2026-01-11 17:06:00,011 trainer.py: 716: 🚀 [Epoch 54] Current Curriculum Stage: UNKNOWN
+INFO 2026-01-11 17:06:03,264 train_utils.py: 271: Train Epoch: [54][ 0/12] | Batch Time: 3.25 (3.25) | Data Time: 2.74 (2.74) | Mem (GB): 3.00 (3.00/3.00) | Time Elapsed: 00d 00h 43m | Losses/train_all_loss: 2.73e-01 (2.73e-01)
+INFO 2026-01-11 17:06:35,139 train_utils.py: 271: Train Epoch: [54][10/12] | Batch Time: 2.87 (3.19) | Data Time: 2.55 (2.66) | Mem (GB): 3.00 (3.00/3.00) | Time Elapsed: 00d 00h 44m | Losses/train_all_loss: 2.50e-01 (1.89e+00)
+INFO 2026-01-11 17:06:39,360 trainer.py: 883: Synchronizing meters
+INFO 2026-01-11 17:06:39,360 trainer.py: 821: ✅ Epoch 54 Fin. | Stage: UNKNOWN | Loss: 2.6092
+INFO 2026-01-11 17:06:40,431 trainer.py: 716: 🚀 [Epoch 55] Current Curriculum Stage: UNKNOWN
+INFO 2026-01-11 17:06:42,774 train_utils.py: 271: Train Epoch: [55][ 0/12] | Batch Time: 2.34 (2.34) | Data Time: 1.80 (1.80) | Mem (GB): 3.00 (3.00/3.00) | Time Elapsed: 00d 00h 44m | Losses/train_all_loss: 6.99e-01 (6.99e-01)
+INFO 2026-01-11 17:07:38,897 train_utils.py: 271: Train Epoch: [55][10/12] | Batch Time: 4.36 (5.31) | Data Time: 4.02 (4.76) | Mem (GB): 3.00 (2.82/3.00) | Time Elapsed: 00d 00h 45m | Losses/train_all_loss: 6.17e-01 (2.47e+00)
+INFO 2026-01-11 17:07:41,962 trainer.py: 883: Synchronizing meters
+INFO 2026-01-11 17:07:41,962 trainer.py: 821: ✅ Epoch 55 Fin. | Stage: UNKNOWN | Loss: 2.3038
+INFO 2026-01-11 17:07:42,835 trainer.py: 716: 🚀 [Epoch 56] Current Curriculum Stage: UNKNOWN
+INFO 2026-01-11 17:07:46,614 train_utils.py: 271: Train Epoch: [56][ 0/12] | Batch Time: 3.78 (3.78) | Data Time: 2.59 (2.59) | Mem (GB): 3.00 (3.00/3.00) | Time Elapsed: 00d 00h 45m | Losses/train_all_loss: 8.79e+00 (8.79e+00)
+INFO 2026-01-11 17:08:18,862 train_utils.py: 271: Train Epoch: [56][10/12] | Batch Time: 3.69 (3.28) | Data Time: 3.37 (2.69) | Mem (GB): 2.00 (2.73/3.00) | Time Elapsed: 00d 00h 45m | Losses/train_all_loss: 6.47e-01 (2.46e+00)
+INFO 2026-01-11 17:08:21,926 trainer.py: 883: Synchronizing meters
+INFO 2026-01-11 17:08:21,927 trainer.py: 821: ✅ Epoch 56 Fin. | Stage: UNKNOWN | Loss: 3.1325
+INFO 2026-01-11 17:08:22,774 trainer.py: 716: 🚀 [Epoch 57] Current Curriculum Stage: UNKNOWN
+INFO 2026-01-11 17:08:26,627 train_utils.py: 271: Train Epoch: [57][ 0/12] | Batch Time: 3.85 (3.85) | Data Time: 2.65 (2.65) | Mem (GB): 3.00 (3.00/3.00) | Time Elapsed: 00d 00h 45m | Losses/train_all_loss: 4.56e+00 (4.56e+00)
+INFO 2026-01-11 17:08:59,682 train_utils.py: 271: Train Epoch: [57][10/12] | Batch Time: 3.22 (3.36) | Data Time: 2.98 (2.79) | Mem (GB): 2.00 (2.64/3.00) | Time Elapsed: 00d 00h 46m | Losses/train_all_loss: 1.21e-01 (1.79e+00)
+INFO 2026-01-11 17:09:02,992 trainer.py: 883: Synchronizing meters
+INFO 2026-01-11 17:09:02,993 trainer.py: 821: ✅ Epoch 57 Fin. | Stage: UNKNOWN | Loss: 1.7300
+INFO 2026-01-11 17:09:03,871 trainer.py: 716: 🚀 [Epoch 58] Current Curriculum Stage: UNKNOWN
+INFO 2026-01-11 17:09:08,408 train_utils.py: 271: Train Epoch: [58][ 0/12] | Batch Time: 4.53 (4.53) | Data Time: 3.32 (3.32) | Mem (GB): 3.00 (3.00/3.00) | Time Elapsed: 00d 00h 46m | Losses/train_all_loss: 4.53e+00 (4.53e+00)
+INFO 2026-01-11 17:09:42,760 train_utils.py: 271: Train Epoch: [58][10/12] | Batch Time: 3.85 (3.54) | Data Time: 3.52 (2.89) | Mem (GB): 3.00 (3.00/3.00) | Time Elapsed: 00d 00h 47m | Losses/train_all_loss: 5.26e+00 (3.63e+00)
+INFO 2026-01-11 17:09:46,804 trainer.py: 883: Synchronizing meters
+INFO 2026-01-11 17:09:46,804 trainer.py: 821: ✅ Epoch 58 Fin. | Stage: UNKNOWN | Loss: 3.3533
+INFO 2026-01-11 17:09:47,691 trainer.py: 716: 🚀 [Epoch 59] Current Curriculum Stage: UNKNOWN
+INFO 2026-01-11 17:09:51,605 train_utils.py: 271: Train Epoch: [59][ 0/12] | Batch Time: 3.91 (3.91) | Data Time: 3.33 (3.33) | Mem (GB): 3.00 (3.00/3.00) | Time Elapsed: 00d 00h 47m | Losses/train_all_loss: 2.99e-01 (2.99e-01)
+INFO 2026-01-11 17:10:24,905 train_utils.py: 271: Train Epoch: [59][10/12] | Batch Time: 2.96 (3.38) | Data Time: 2.66 (2.80) | Mem (GB): 3.00 (2.73/3.00) | Time Elapsed: 00d 00h 47m | Losses/train_all_loss: 2.76e-01 (2.31e+00)
+INFO 2026-01-11 17:10:29,256 trainer.py: 883: Synchronizing meters
+INFO 2026-01-11 17:10:29,256 trainer.py: 821: ✅ Epoch 59 Fin. | Stage: UNKNOWN | Loss: 2.6326
+INFO 2026-01-11 17:10:30,866 trainer.py: 716: 🚀 [Epoch 60] Current Curriculum Stage: UNKNOWN
+INFO 2026-01-11 17:10:34,677 train_utils.py: 271: Train Epoch: [60][ 0/12] | Batch Time: 3.81 (3.81) | Data Time: 3.26 (3.26) | Mem (GB): 3.00 (3.00/3.00) | Time Elapsed: 00d 00h 48m | Losses/train_all_loss: 2.58e-01 (2.58e-01)
+INFO 2026-01-11 17:11:08,631 train_utils.py: 271: Train Epoch: [60][10/12] | Batch Time: 2.15 (3.43) | Data Time: 1.85 (2.82) | Mem (GB): 3.00 (2.64/3.00) | Time Elapsed: 00d 00h 48m | Losses/train_all_loss: 4.07e-01 (2.91e+00)
+INFO 2026-01-11 17:11:13,561 trainer.py: 883: Synchronizing meters
+INFO 2026-01-11 17:11:13,562 trainer.py: 821: ✅ Epoch 60 Fin. | Stage: UNKNOWN | Loss: 2.7828
+INFO 2026-01-11 17:11:14,426 trainer.py: 716: 🚀 [Epoch 61] Current Curriculum Stage: UNKNOWN
+INFO 2026-01-11 17:11:17,731 train_utils.py: 271: Train Epoch: [61][ 0/12] | Batch Time: 3.30 (3.30) | Data Time: 2.73 (2.73) | Mem (GB): 3.00 (3.00/3.00) | Time Elapsed: 00d 00h 48m | Losses/train_all_loss: 4.94e-01 (4.94e-01)
+INFO 2026-01-11 17:12:05,830 train_utils.py: 271: Train Epoch: [61][10/12] | Batch Time: 2.58 (4.67) | Data Time: 2.26 (4.02) | Mem (GB): 3.00 (2.55/3.00) | Time Elapsed: 00d 00h 49m | Losses/train_all_loss: 2.81e-01 (1.95e+00)
+INFO 2026-01-11 17:12:08,741 trainer.py: 883: Synchronizing meters
+INFO 2026-01-11 17:12:08,741 trainer.py: 821: ✅ Epoch 61 Fin. | Stage: UNKNOWN | Loss: 2.2342
+INFO 2026-01-11 17:12:09,604 trainer.py: 716: 🚀 [Epoch 62] Current Curriculum Stage: UNKNOWN
+INFO 2026-01-11 17:12:14,024 train_utils.py: 271: Train Epoch: [62][ 0/12] | Batch Time: 4.42 (4.42) | Data Time: 3.84 (3.84) | Mem (GB): 3.00 (3.00/3.00) | Time Elapsed: 00d 00h 49m | Losses/train_all_loss: 2.67e-01 (2.67e-01)
+INFO 2026-01-11 17:12:45,745 train_utils.py: 271: Train Epoch: [62][10/12] | Batch Time: 3.59 (3.29) | Data Time: 3.28 (2.74) | Mem (GB): 3.00 (2.91/3.00) | Time Elapsed: 00d 00h 50m | Losses/train_all_loss: 1.55e-01 (2.61e+00)
+INFO 2026-01-11 17:12:48,714 trainer.py: 883: Synchronizing meters
+INFO 2026-01-11 17:12:48,714 trainer.py: 821: ✅ Epoch 62 Fin. | Stage: UNKNOWN | Loss: 2.4167
+INFO 2026-01-11 17:12:49,543 trainer.py: 716: 🚀 [Epoch 63] Current Curriculum Stage: UNKNOWN
+INFO 2026-01-11 17:12:52,251 train_utils.py: 271: Train Epoch: [63][ 0/12] | Batch Time: 2.71 (2.71) | Data Time: 2.16 (2.16) | Mem (GB): 3.00 (3.00/3.00) | Time Elapsed: 00d 00h 50m | Losses/train_all_loss: 2.64e-01 (2.64e-01)
+INFO 2026-01-11 17:13:24,348 train_utils.py: 271: Train Epoch: [63][10/12] | Batch Time: 2.93 (3.16) | Data Time: 1.97 (2.64) | Mem (GB): 3.00 (2.82/3.00) | Time Elapsed: 00d 00h 50m | Losses/train_all_loss: 4.75e+00 (1.21e+01)
+INFO 2026-01-11 17:13:28,804 trainer.py: 883: Synchronizing meters
+INFO 2026-01-11 17:13:28,805 trainer.py: 821: ✅ Epoch 63 Fin. | Stage: UNKNOWN | Loss: 11.2785
+INFO 2026-01-11 17:13:29,697 trainer.py: 716: 🚀 [Epoch 64] Current Curriculum Stage: UNKNOWN
+INFO 2026-01-11 17:13:32,262 train_utils.py: 271: Train Epoch: [64][ 0/12] | Batch Time: 2.56 (2.56) | Data Time: 2.02 (2.02) | Mem (GB): 3.00 (3.00/3.00) | Time Elapsed: 00d 00h 51m | Losses/train_all_loss: 2.64e-01 (2.64e-01)
+INFO 2026-01-11 17:14:04,642 train_utils.py: 271: Train Epoch: [64][10/12] | Batch Time: 3.78 (3.18) | Data Time: 3.48 (2.66) | Mem (GB): 3.00 (2.55/3.00) | Time Elapsed: 00d 00h 51m | Losses/train_all_loss: 2.68e-01 (1.95e+00)
+INFO 2026-01-11 17:14:08,612 trainer.py: 883: Synchronizing meters
+INFO 2026-01-11 17:14:08,612 trainer.py: 821: ✅ Epoch 64 Fin. | Stage: UNKNOWN | Loss: 1.8037
+INFO 2026-01-11 17:14:10,289 trainer.py: 716: 🚀 [Epoch 65] Current Curriculum Stage: UNKNOWN
+INFO 2026-01-11 17:14:14,664 train_utils.py: 271: Train Epoch: [65][ 0/12] | Batch Time: 4.37 (4.37) | Data Time: 3.19 (3.19) | Mem (GB): 3.00 (3.00/3.00) | Time Elapsed: 00d 00h 51m | Losses/train_all_loss: 5.50e+00 (5.50e+00)
+INFO 2026-01-11 17:14:49,482 train_utils.py: 271: Train Epoch: [65][10/12] | Batch Time: 5.90 (3.56) | Data Time: 4.94 (2.89) | Mem (GB): 3.00 (2.82/3.00) | Time Elapsed: 00d 00h 52m | Losses/train_all_loss: 3.81e+00 (2.56e+00)
+INFO 2026-01-11 17:14:53,209 trainer.py: 883: Synchronizing meters
+INFO 2026-01-11 17:14:53,209 trainer.py: 821: ✅ Epoch 65 Fin. | Stage: UNKNOWN | Loss: 2.4451
+INFO 2026-01-11 17:14:54,300 trainer.py: 716: 🚀 [Epoch 66] Current Curriculum Stage: UNKNOWN
+INFO 2026-01-11 17:14:56,948 train_utils.py: 271: Train Epoch: [66][ 0/12] | Batch Time: 2.65 (2.65) | Data Time: 2.11 (2.11) | Mem (GB): 2.00 (2.00/2.00) | Time Elapsed: 00d 00h 52m | Losses/train_all_loss: 1.85e-01 (1.85e-01)
+INFO 2026-01-11 17:15:30,290 train_utils.py: 271: Train Epoch: [66][10/12] | Batch Time: 2.11 (3.27) | Data Time: 1.81 (2.74) | Mem (GB): 3.00 (2.64/3.00) | Time Elapsed: 00d 00h 53m | Losses/train_all_loss: 2.39e-01 (3.12e+00)
+INFO 2026-01-11 17:15:33,483 trainer.py: 883: Synchronizing meters
+INFO 2026-01-11 17:15:33,483 trainer.py: 821: ✅ Epoch 66 Fin. | Stage: UNKNOWN | Loss: 2.9198
+INFO 2026-01-11 17:15:34,506 trainer.py: 716: 🚀 [Epoch 67] Current Curriculum Stage: UNKNOWN
+INFO 2026-01-11 17:15:38,359 train_utils.py: 271: Train Epoch: [67][ 0/12] | Batch Time: 3.85 (3.85) | Data Time: 3.27 (3.27) | Mem (GB): 3.00 (3.00/3.00) | Time Elapsed: 00d 00h 53m | Losses/train_all_loss: 7.46e-01 (7.46e-01)
+INFO 2026-01-11 17:16:18,149 train_utils.py: 271: Train Epoch: [67][10/12] | Batch Time: 2.30 (3.97) | Data Time: 2.01 (3.21) | Mem (GB): 2.00 (2.73/3.00) | Time Elapsed: 00d 00h 53m | Losses/train_all_loss: 2.27e-01 (8.19e+00)
+INFO 2026-01-11 17:16:20,324 trainer.py: 883: Synchronizing meters
+INFO 2026-01-11 17:16:20,324 trainer.py: 821: ✅ Epoch 67 Fin. | Stage: UNKNOWN | Loss: 7.5451
+INFO 2026-01-11 17:16:21,158 trainer.py: 716: 🚀 [Epoch 68] Current Curriculum Stage: UNKNOWN
+INFO 2026-01-11 17:16:24,315 train_utils.py: 271: Train Epoch: [68][ 0/12] | Batch Time: 3.15 (3.15) | Data Time: 2.60 (2.60) | Mem (GB): 3.00 (3.00/3.00) | Time Elapsed: 00d 00h 53m | Losses/train_all_loss: 4.48e-01 (4.48e-01)
+INFO 2026-01-11 17:16:57,718 train_utils.py: 271: Train Epoch: [68][10/12] | Batch Time: 3.01 (3.32) | Data Time: 2.13 (2.72) | Mem (GB): 2.00 (2.55/3.00) | Time Elapsed: 00d 00h 54m | Losses/train_all_loss: 6.75e+00 (2.52e+00)
+INFO 2026-01-11 17:17:00,753 trainer.py: 883: Synchronizing meters
+INFO 2026-01-11 17:17:00,754 trainer.py: 821: ✅ Epoch 68 Fin. | Stage: UNKNOWN | Loss: 2.3321
+INFO 2026-01-11 17:17:01,788 trainer.py: 716: 🚀 [Epoch 69] Current Curriculum Stage: UNKNOWN
+INFO 2026-01-11 17:17:05,637 train_utils.py: 271: Train Epoch: [69][ 0/12] | Batch Time: 3.85 (3.85) | Data Time: 2.70 (2.70) | Mem (GB): 3.00 (3.00/3.00) | Time Elapsed: 00d 00h 54m | Losses/train_all_loss: 5.12e+00 (5.12e+00)
+INFO 2026-01-11 17:17:37,701 train_utils.py: 271: Train Epoch: [69][10/12] | Batch Time: 3.63 (3.26) | Data Time: 3.30 (2.64) | Mem (GB): 3.00 (2.91/3.00) | Time Elapsed: 00d 00h 55m | Losses/train_all_loss: 1.18e+00 (2.65e+00)
+INFO 2026-01-11 17:17:41,379 trainer.py: 883: Synchronizing meters
+INFO 2026-01-11 17:17:41,379 trainer.py: 821: ✅ Epoch 69 Fin. | Stage: UNKNOWN | Loss: 2.8180
+INFO 2026-01-11 17:17:42,893 trainer.py: 716: 🚀 [Epoch 70] Current Curriculum Stage: UNKNOWN
+INFO 2026-01-11 17:17:46,756 train_utils.py: 271: Train Epoch: [70][ 0/12] | Batch Time: 3.86 (3.86) | Data Time: 2.96 (2.96) | Mem (GB): 3.00 (3.00/3.00) | Time Elapsed: 00d 00h 55m | Losses/train_all_loss: 2.92e+00 (2.92e+00)
+INFO 2026-01-11 17:18:21,528 train_utils.py: 271: Train Epoch: [70][10/12] | Batch Time: 3.75 (3.51) | Data Time: 3.43 (2.78) | Mem (GB): 3.00 (2.82/3.00) | Time Elapsed: 00d 00h 55m | Losses/train_all_loss: 2.60e+00 (2.99e+00)
+INFO 2026-01-11 17:18:23,921 trainer.py: 883: Synchronizing meters
+INFO 2026-01-11 17:18:23,922 trainer.py: 821: ✅ Epoch 70 Fin. | Stage: UNKNOWN | Loss: 2.7604
+INFO 2026-01-11 17:18:24,761 trainer.py: 716: 🚀 [Epoch 71] Current Curriculum Stage: UNKNOWN
+INFO 2026-01-11 17:18:28,135 train_utils.py: 271: Train Epoch: [71][ 0/12] | Batch Time: 3.37 (3.37) | Data Time: 2.83 (2.83) | Mem (GB): 3.00 (3.00/3.00) | Time Elapsed: 00d 00h 56m | Losses/train_all_loss: 2.63e-01 (2.63e-01)
+INFO 2026-01-11 17:18:59,472 train_utils.py: 271: Train Epoch: [71][10/12] | Batch Time: 4.19 (3.16) | Data Time: 3.24 (2.62) | Mem (GB): 2.00 (2.82/3.00) | Time Elapsed: 00d 00h 56m | Losses/train_all_loss: 4.77e+00 (2.00e+00)
+INFO 2026-01-11 17:19:02,673 trainer.py: 883: Synchronizing meters
+INFO 2026-01-11 17:19:02,673 trainer.py: 821: ✅ Epoch 71 Fin. | Stage: UNKNOWN | Loss: 2.0984
+INFO 2026-01-11 17:19:03,525 trainer.py: 716: 🚀 [Epoch 72] Current Curriculum Stage: UNKNOWN
+INFO 2026-01-11 17:19:07,408 train_utils.py: 271: Train Epoch: [72][ 0/12] | Batch Time: 3.88 (3.88) | Data Time: 2.75 (2.75) | Mem (GB): 3.00 (3.00/3.00) | Time Elapsed: 00d 00h 56m | Losses/train_all_loss: 4.80e+00 (4.80e+00)
+INFO 2026-01-11 17:19:39,752 train_utils.py: 271: Train Epoch: [72][10/12] | Batch Time: 3.09 (3.29) | Data Time: 2.79 (2.63) | Mem (GB): 3.00 (2.73/3.00) | Time Elapsed: 00d 00h 57m | Losses/train_all_loss: 3.74e-01 (2.57e+00)
+INFO 2026-01-11 17:19:44,320 trainer.py: 883: Synchronizing meters
+INFO 2026-01-11 17:19:44,320 trainer.py: 821: ✅ Epoch 72 Fin. | Stage: UNKNOWN | Loss: 2.6363
+INFO 2026-01-11 17:19:45,144 trainer.py: 716: 🚀 [Epoch 73] Current Curriculum Stage: UNKNOWN
+INFO 2026-01-11 17:19:48,991 train_utils.py: 271: Train Epoch: [73][ 0/12] | Batch Time: 3.85 (3.85) | Data Time: 2.76 (2.76) | Mem (GB): 3.00 (3.00/3.00) | Time Elapsed: 00d 00h 57m | Losses/train_all_loss: 4.68e+00 (4.68e+00)
+INFO 2026-01-11 17:20:22,324 train_utils.py: 271: Train Epoch: [73][10/12] | Batch Time: 4.01 (3.38) | Data Time: 3.14 (2.64) | Mem (GB): 2.00 (2.73/3.00) | Time Elapsed: 00d 00h 57m | Losses/train_all_loss: 3.97e+00 (3.36e+00)
+INFO 2026-01-11 17:20:24,461 trainer.py: 883: Synchronizing meters
+INFO 2026-01-11 17:20:24,462 trainer.py: 821: ✅ Epoch 73 Fin. | Stage: UNKNOWN | Loss: 3.1065
+INFO 2026-01-11 17:20:25,386 trainer.py: 716: 🚀 [Epoch 74] Current Curriculum Stage: UNKNOWN
+INFO 2026-01-11 17:20:28,638 train_utils.py: 271: Train Epoch: [74][ 0/12] | Batch Time: 3.25 (3.25) | Data Time: 2.74 (2.74) | Mem (GB): 3.00 (3.00/3.00) | Time Elapsed: 00d 00h 58m | Losses/train_all_loss: 2.50e-01 (2.50e-01)
+INFO 2026-01-11 17:20:59,691 train_utils.py: 271: Train Epoch: [74][10/12] | Batch Time: 3.14 (3.12) | Data Time: 2.84 (2.60) | Mem (GB): 2.00 (2.73/3.00) | Time Elapsed: 00d 00h 58m | Losses/train_all_loss: 4.43e-01 (1.96e+00)
+INFO 2026-01-11 17:21:01,751 trainer.py: 883: Synchronizing meters
+INFO 2026-01-11 17:21:01,751 trainer.py: 821: ✅ Epoch 74 Fin. | Stage: UNKNOWN | Loss: 1.8081

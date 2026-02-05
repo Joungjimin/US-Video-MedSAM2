@@ -307,7 +307,9 @@ def save_overlay(img, mask, path, color=(255, 0, 0), alpha=0.5):
 @torch.inference_mode()
 def evaluate_video(predictor, npz_path, out_dir):
     data = np.load(npz_path)
-    imgs, gts = data["imgs"], data["gts"]
+    #imgs, gts = data["imgs"], data["gts"]
+    imgs = data["imgs"]
+    gts = data["gts"] if "gts" in data.files else None
     video_name = os.path.splitext(os.path.basename(npz_path))[0]
 
     tmp_dir = os.path.join(out_dir, "tmp", video_name)
@@ -324,19 +326,23 @@ def evaluate_video(predictor, npz_path, out_dir):
 
     # 🔥 3. FIXED FIRST GT FRAME (earliest, deterministic)
     start = -1
-    for t in range(len(gts)):
-        if np.any(gts[t] > 0):
-            start = t
-            # 🔥 4. SORT OBJECT IDS
-            for oid in sorted(np.unique(gts[t])):
-                if oid > 0:
-                    predictor.add_new_mask(
-                        state,
-                        t,
-                        int(oid),
-                        (gts[t] == oid)
-                    )
-            break
+    if gts is not None:
+        for t in range(len(gts)):
+            if np.any(gts[t] > 0):
+                start = t
+                # 🔥 4. SORT OBJECT IDS
+                for oid in sorted(np.unique(gts[t])):
+                    if oid > 0:
+                        predictor.add_new_mask(
+                            state,
+                            t,
+                            int(oid),
+                            (gts[t] == oid)
+                        )
+                break
+    else:
+        # GT 없는 MRI → metric 계산 스킵
+        pass
 
     if start == -1:
         shutil.rmtree(tmp_dir)
@@ -386,7 +392,7 @@ def main():
     parser.add_argument("--ckpt", required=True)
     parser.add_argument("--cfg", default="configs/sam2.1_hiera_t512.yaml")
     parser.add_argument("--data_root", required=True)
-    parser.add_argument("--out_root", default="./eval_results_fair")
+    parser.add_argument("--out_root", default="./eval_results_fair_MRI")
     args = parser.parse_args()
 
     exp_name = os.path.basename(os.path.dirname(os.path.dirname(args.ckpt)))

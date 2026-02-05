@@ -365,13 +365,17 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+
 class GFTE(nn.Module):
     def __init__(self, channels, kernel_size=3, num_heads=8, use_spectral=True):
         super().__init__()
         self.channels = channels
         self.num_heads = num_heads
         self.use_spectral = use_spectral
-        
+
         # Temporal Attention
         self.temporal_attention = nn.MultiheadAttention(
             embed_dim=channels,
@@ -379,26 +383,30 @@ class GFTE(nn.Module):
             batch_first=True,
             dropout=0.1
         )
-        
-        # Spectral 필터를 (1, C, 1, 1, 1)이 아니라 (1, C, 1) 형태로 유연하게 관리
+
+        # (1, C, 1) -> interpolate로 T 길이에 맞춰 (1, C, T)
         self.spectral_filters = nn.Parameter(torch.ones(1, channels, 1) * 0.5)
-        
+
         self.temporal_convs = nn.ModuleList([
-            nn.Conv3d(channels, channels, kernel_size=(k, 1, 1), 
-                      padding=(k//2, 0, 0), groups=channels)
+            nn.Conv3d(
+                channels, channels,
+                kernel_size=(k, 1, 1),
+                padding=(k // 2, 0, 0),
+                groups=channels
+            )
             for k in [3, 5, 7]
         ])
-        
+
         self.refinement = nn.Sequential(
             nn.Conv3d(channels, channels * 2, 1),
             nn.GELU(),
             nn.Conv3d(channels * 2, channels, 1)
         )
-        
+
         self.alpha = nn.Parameter(torch.tensor(0.1))
         self.beta = nn.Parameter(torch.tensor(0.1))
         self.gamma = nn.Parameter(torch.tensor(0.1))
-        
+
         self.spectral_gate = nn.Sequential(
             nn.AdaptiveAvgPool3d(1),
             nn.Conv3d(channels, max(channels // 16, 8), 1),
@@ -406,86 +414,118 @@ class GFTE(nn.Module):
             nn.Conv3d(max(channels // 16, 8), channels, 1),
             nn.Sigmoid()
         )
-        
+
         self.norm1 = nn.BatchNorm3d(channels)
         self.norm2 = nn.BatchNorm3d(channels)
 
     def compute_graph_fourier(self, x_temporal):
+        """
+        x_temporal: [B, C, T, H, W]
+        return:     [B, C, T, H, W]
+        """
         B, C, T, H, W = x_temporal.shape
-        if T < 2 or not self.use_spectral:
+        if (T < 2) or (not self.use_spectral):
             return x_temporal
-        
-        # [B*C*H*W, T] 형태로 변환하여 프레임 간 관계 계산
+
+        # [B*C*H*W, T]
         x_flat = x_temporal.permute(0, 1, 3, 4, 2).reshape(-1, T)
-        
+
+        # Laplacian eigendecomposition (small T, so OK)
         with torch.no_grad():
-            A = torch.eye(T, device=x_temporal.device) * 0.4
-            for i in range(T-1):
-                A[i, i+1] = A[i+1, i] = 0.3
+            A = torch.eye(T, device=x_temporal.device, dtype=x_temporal.dtype) * 0.4
+            for i in range(T - 1):
+                A[i, i + 1] = A[i + 1, i] = 0.3
             D = torch.diag(A.sum(dim=1))
             L = D - A
             try:
                 D_inv_sqrt = torch.diag(1.0 / torch.sqrt(D.diag() + 1e-6))
                 L_sym = D_inv_sqrt @ L @ D_inv_sqrt
-                eigvals, eigvecs = torch.linalg.eigh(L_sym)
-            except:
+                eigvals, eigvecs = torch.linalg.eigh(L_sym)  # eigvecs: [T, T]
+            except Exception:
                 return x_temporal
 
-        # GFT 변환
-        x_spectral = eigvecs.T @ x_flat.T # [T, B*C*H*W]
-        
-        # Spectral Filtering (학습된 필터 적용)
-        # 필터를 T 길이에 맞게 보간(Interpolate)하여 크기 불일치 방지
-        filt = F.interpolate(self.spectral_filters, size=T, mode='linear', align_corners=False)
-        filt = filt.view(self.channels, T) # [C, T]
-        
-        # 각 채널별로 필터링 적용을 위해 리쉐이프
-        x_spectral = x_spectral.view(T, B, C, H*W)
-        x_filtered = x_spectral * filt.unsqueeze(1).unsqueeze(3)
-        x_filtered = x_filtered.view(T, -1)
-        
-        # 역변환 및 원래 차원으로 복구 (순서 매우 중요)
-        x_recon = eigvecs @ x_filtered # [T, B*C*H*W]
-        return x_recon.T.reshape(B, C, H, W, T).permute(0, 1, 4, 2, 3).contiguous()
+        # GFT: [T, N]
+        x_spectral = eigvecs.T @ x_flat.T  # [T, B*C*H*W]
+
+        # ----- FIX: 필터 shape를 x_spectral.view(T,B,C,HW)에 맞게 정렬 -----
+        # spectral_filters: (1, C, 1) -> interpolate -> (1, C, T)
+        filt = F.interpolate(
+            self.spectral_filters, size=T, mode="linear", align_corners=False
+        ).squeeze(0)  # [C, T]
+
+        # x_spectral를 [T, B, C, HW]로 바꾸고,
+        # filt는 [T, 1, C, 1]로 만들어서 주파수(T)축과 채널(C)축이 정확히 대응되게 함
+        x_spectral = x_spectral.view(T, B, C, H * W)               # [T, B, C, HW]
+        filt_T = filt.transpose(0, 1).contiguous()                 # [T, C]
+        filt_T = filt_T.unsqueeze(1).unsqueeze(3)                  # [T, 1, C, 1]
+
+        x_filtered = x_spectral * filt_T                           # [T, B, C, HW]
+        x_filtered = x_filtered.reshape(T, -1)                     # [T, B*C*H*W]
+        # ---------------------------------------------------------------------
+
+        # inverse GFT: [T, N]
+        x_recon = eigvecs @ x_filtered  # [T, B*C*H*W]
+
+        # back to [B, C, T, H, W]
+        x_recon = (
+            x_recon.T
+            .reshape(B, C, H, W, T)
+            .permute(0, 1, 4, 2, 3)
+            .contiguous()
+        )
+        return x_recon
 
     def forward(self, x, t):
+        """
+        x: [B*T, c, h, w]
+        t: num_frames
+        """
         bt, c, h, w = x.shape
         b = bt // t
-        
-        # 채널 맞춤
+
+        # 안전한 채널 맞춤: repeat이 딱 나누어 떨어지지 않아도 동작하게
         if c != self.channels:
-            x = x.repeat(1, self.channels // c, 1, 1)
-        
-        x_5d = x.view(b, t, self.channels, h, w).permute(0, 2, 1, 3, 4).contiguous()
-        
-        # 1. Spectral-Graph 특징
-        spectral_feat = self.compute_graph_fourier(x_5d)
-        
-        # 2. Attention 특징 (공간 차원 유지하며 확장)
-        attn_input = x_5d.mean(dim=[3, 4]).transpose(1, 2) # [B, T, C]
+            if c > self.channels:
+                x_in = x[:, :self.channels, :, :]
+            else:
+                rep = (self.channels + c - 1) // c  # ceil
+                x_in = x.repeat(1, rep, 1, 1)[:, :self.channels, :, :]
+        else:
+            x_in = x
+
+        # [B, C, T, H, W]
+        x_5d = x_in.view(b, t, self.channels, h, w).permute(0, 2, 1, 3, 4).contiguous()
+
+        # 1) Spectral-Graph
+        spectral_feat = self.compute_graph_fourier(x_5d)  # [B, C, T, H, W]
+
+        # 2) Attention (keep H,W by expand)
+        attn_input = x_5d.mean(dim=[3, 4]).transpose(1, 2)  # [B, T, C]
         attn_out, _ = self.temporal_attention(attn_input, attn_input, attn_input)
-        attn_feat = attn_out.transpose(1, 2).unsqueeze(-1).unsqueeze(-1)
-        # 명시적으로 H, W 크기로 확장 (RuntimeError 방지 핵심)
-        attn_feat = attn_feat.expand(-1, -1, -1, h, w)
-        
-        # 3. Multi-scale 특징
+        attn_feat = attn_out.transpose(1, 2).unsqueeze(-1).unsqueeze(-1)  # [B, C, T, 1, 1]
+        attn_feat = attn_feat.expand(-1, -1, -1, h, w)                    # [B, C, T, H, W]
+
+        # 3) Multi-scale depthwise temporal conv
         weights = F.softmax(torch.stack([self.alpha, self.beta, self.gamma]), dim=0)
-        multi_scale_feat = sum(w * conv(x_5d) for w, conv in zip(weights, self.temporal_convs))
-        
-        # 4. Aggregation (이제 모든 텐서가 [B, C, T, H, W]로 동일함)
+        multi_scale_feat = sum(wi * conv(x_5d) for wi, conv in zip(weights, self.temporal_convs))  # [B,C,T,H,W]
+
+        # 4) Aggregate
         aggregated = spectral_feat + attn_feat + multi_scale_feat
         aggregated = self.norm1(aggregated)
-        
-        # 5. Gating & Refinement
+
+        # 5) Gate + refine
         refined = self.refinement(aggregated * self.spectral_gate(aggregated))
         refined = self.norm2(refined)
-        
-        # 4D로 복원
+
+        # back to [B*T, C, H, W]
         out = refined.permute(0, 2, 1, 3, 4).contiguous().view(bt, self.channels, h, w)
+
+        # 원래 입력 채널 수로 복원 (훈련/기존 로직 유지)
         if c != self.channels:
             out = out[:, :c, :, :]
-            
+
         return x[:, :c, :, :] + 0.1 * out
+
 class SpectralNorm3d(torch.nn.Module):
     """Theoretical: Ensure Lipschitz continuity for better generalization"""
     def __init__(self, power_iterations=1):
@@ -560,12 +600,105 @@ class DifferentiableTemporalSampler(torch.nn.Module):
         
         return sampled_x
 
+# class safeTemporalContextExchange(torch.nn.Module):
+#     def __init__(self, channels, kernel_size=3):
+#         super().__init__()
+#         self.channels = channels
+        
+#         # 3D Depthwise Conv: 시간 축(T) 방향으로 정보를 섞음
+#         self.depthwise_conv = torch.nn.Conv3d(
+#             channels, channels,
+#             kernel_size=(3, 1, 1),
+#             padding=(1, 0, 0),
+#             groups=channels,
+#             bias=False
+#         )
+        
+#         self.pointwise = torch.nn.Conv3d(channels, channels, 1, bias=False)
+#         self.bn1 = torch.nn.BatchNorm3d(channels)
+#         self.bn2 = torch.nn.BatchNorm3d(channels)
+#         self.alpha = torch.nn.Parameter(torch.tensor(0.1))
+        
+#         # 채널별 중요도를 계산하는 어텐션
+#         self.attention = torch.nn.Sequential(
+#             torch.nn.AdaptiveAvgPool3d(1),
+#             torch.nn.Conv3d(channels, max(channels // 16, 8), 1),
+#             torch.nn.ReLU(inplace=True),
+#             torch.nn.Conv3d(max(channels // 16, 8), channels, 1),
+#             torch.nn.Sigmoid()
+#         )
+        
+#     def forward(self, x, t):
+#         """
+#         x: [B*T, C, H, W] 형태의 입력
+#         t: 비디오 당 프레임 수
+#         """
+#         bt, c, h, w = x.shape
+#         b = bt // t
+        
+#         identity = x
+#         # 5D 변환: [B, C, T, H, W]
+#         x = x.view(b, t, c, h, w).permute(0, 2, 1, 3, 4).contiguous()
+        
+#         # Temporal Fusion
+#         out = self.depthwise_conv(x)
+#         out = self.bn1(out)
+        
+#         attn = self.attention(out)
+#         out = out * attn
+        
+#         out = self.pointwise(out)
+#         out = self.bn2(out)
+        
+#         # 다시 4D 복원: [B*T, C, H, W]
+#         out = out.permute(0, 2, 1, 3, 4).contiguous().view(bt, c, h, w)
+        
+#         return identity + self.alpha * out
+    
+# import torch
+# import torch.nn as nn
+# import torch.nn.functional as F
+
+# class ATGModule(torch.nn.Module):
+#     """
+#     [SPL Submission Version]
+#     Adaptive Temporal Gating Module for Spatio-temporal Feature Alignment.
+#     Features: Dynamic Gating, Temporal Depthwise-Separable Conv, Self-Calibrated Attention.
+#     """
+#     def __init__(self, channels, kernel_size=3):
+#         super().__init__()
+#         self.channels = channels
+        
+#         # 1. Temporal Extraction: 1D-Temporal Kernel (Signal Processing Perspective)
+#         self.temporal_conv = nn.Conv3d(
+#             channels, channels,
+#             kernel_size=(kernel_size, 1, 1),
+#             padding=((kernel_size - 1) // 2, 0, 0),
+#             groups=channels,
+#             bias=False
+#         )
+        
+#         # 2. Adaptive Gating Mechanism: 신호의 변화량에 따라 Fusion 강도를 동적으로 조절
+#         # 논문 기여점: "Dynamic control of temporal information flow"
+#         self.gate_generator = nn.Sequential(
+#             nn.AdaptiveAvgPool3d(1),
+#             nn.Conv3d(channels, channels // 4, 1),
+#             nn.ReLU(inplace=True),
+#             nn.Conv3d(channels // 4, channels, 1),
+#             nn.Sigmoid()
+#         )
+        
+#         self.pointwise = nn.Conv3d(channels, channels, 1, bias=False)
+#         self.bn = nn.BatchNorm3d(channels)
+        
+#         # 신호 처리적 안정성을 위한 학습 가능한 스케일 파라미터
+#         self.gamma = nn.Parameter(torch.zeros(1)) 
+
 class safeTemporalContextExchange(torch.nn.Module):
     def __init__(self, channels, kernel_size=3):
         super().__init__()
         self.channels = channels
-        
-        # 3D Depthwise Conv: 시간 축(T) 방향으로 정보를 섞음
+
         self.depthwise_conv = torch.nn.Conv3d(
             channels, channels,
             kernel_size=(3, 1, 1),
@@ -573,13 +706,16 @@ class safeTemporalContextExchange(torch.nn.Module):
             groups=channels,
             bias=False
         )
-        
+
+        # ✅ sam2_base.py 호환용 alias
+        self.temporal_conv = self.depthwise_conv
+
         self.pointwise = torch.nn.Conv3d(channels, channels, 1, bias=False)
         self.bn1 = torch.nn.BatchNorm3d(channels)
         self.bn2 = torch.nn.BatchNorm3d(channels)
         self.alpha = torch.nn.Parameter(torch.tensor(0.1))
-        
-        # 채널별 중요도를 계산하는 어텐션
+
+        # 기존 attention
         self.attention = torch.nn.Sequential(
             torch.nn.AdaptiveAvgPool3d(1),
             torch.nn.Conv3d(channels, max(channels // 16, 8), 1),
@@ -587,128 +723,40 @@ class safeTemporalContextExchange(torch.nn.Module):
             torch.nn.Conv3d(max(channels // 16, 8), channels, 1),
             torch.nn.Sigmoid()
         )
-        
-    def forward(self, x, t):
-        """
-        x: [B*T, C, H, W] 형태의 입력
-        t: 비디오 당 프레임 수
-        """
-        bt, c, h, w = x.shape
-        b = bt // t
-        identity = x
-        
-        #### jimin: 채널 불일치 자동 보정 (32 or 64 -> 256) ####
-        # 체크포인트 가중치가 256채널이므로 입력이 다를 경우 일시적으로 확장합니다.
-        needs_proj = c != self.channels
-        if needs_proj:
-            # 채널을 self.channels(256)으로 확장하여 학습된 가중치 규격에 맞춤
-            x = x.repeat(1, self.channels // c, 1, 1)
-        
-        # 🔥 수정 포인트 1: view에서 'c' 대신 확장된 채널 'self.channels'를 사용해야 합니다.
-        x = x.view(b, t, self.channels, h, w).permute(0, 2, 1, 3, 4).contiguous()
-        
-        # 1. Temporal Feature Extraction (256채널 가중치 사용)
-        temporal_feat = self.depthwise_conv(x)
-        out = self.bn1(temporal_feat)
-        
-        # 2. Adaptive Gating (Attention)
-        attn = self.attention(out)
-        out = out * attn
-        
-        out = self.pointwise(out)
-        out = self.bn2(out)
-        
-        # 🔥 수정 포인트 2: 다시 4D 복원 시에도 'self.channels'로 형태를 잡습니다.
-        out = out.permute(0, 2, 1, 3, 4).contiguous().view(bt, self.channels, h, w)
-        
-        #### jimin: 원래 채널로 복원 (256 -> 32 or 64) ####
-        if needs_proj:
-            # 확장했던 채널을 다시 원래 입력 채널 크기로 슬라이싱합니다.
-            out = out[:, :c, :, :]
-        #######################################################
 
-        # alpha 대신 논문 기여점인 학습 가능한 가중치 gamma를 사용하거나 
-        # 기존 alpha를 유지하여 최종 출력합니다.
-        return identity + getattr(self, "gamma", self.alpha) * out
-    
-    
-import torch
-import torch.nn as nn
-import torch.nn.functional as F
-
-class ATGModule(torch.nn.Module):
-    """
-    [SPL Submission Version]
-    Adaptive Temporal Gating Module for Spatio-temporal Feature Alignment.
-    Features: Dynamic Gating, Temporal Depthwise-Separable Conv, Self-Calibrated Attention.
-    """
-    def __init__(self, channels, kernel_size=3):
-        super().__init__()
-        self.channels = channels
-        
-        # 1. Temporal Extraction: 1D-Temporal Kernel (Signal Processing Perspective)
-        self.temporal_conv = nn.Conv3d(
-            channels, channels,
-            kernel_size=(kernel_size, 1, 1),
-            padding=((kernel_size - 1) // 2, 0, 0),
-            groups=channels,
-            bias=False
-        )
-        
-        # 2. Adaptive Gating Mechanism: 신호의 변화량에 따라 Fusion 강도를 동적으로 조절
-        # 논문 기여점: "Dynamic control of temporal information flow"
-        self.gate_generator = nn.Sequential(
-            nn.AdaptiveAvgPool3d(1),
-            nn.Conv3d(channels, channels // 4, 1),
-            nn.ReLU(inplace=True),
-            nn.Conv3d(channels // 4, channels, 1),
-            nn.Sigmoid()
-        )
-        
-        self.pointwise = nn.Conv3d(channels, channels, 1, bias=False)
-        self.bn = nn.BatchNorm3d(channels)
-        
-        # 신호 처리적 안정성을 위한 학습 가능한 스케일 파라미터
-        self.gamma = nn.Parameter(torch.zeros(1)) 
+        # ✅ sam2_base.py가 요구하는 gate_generator
+        # 항상 1을 반환하는 안전한 gate
+        self.gate_generator = torch.nn.Identity()
 
     def forward(self, x, t):
         """
         x: [B*T, C, H, W]
-        t: 비디오 당 프레임 수
+        t: frames per video
         """
+
         bt, c, h, w = x.shape
+
+        # ✅ inference memory encoder 보호
+        if c != self.channels:
+            return x
+
         b = bt // t
         identity = x
-        
-        #### jimin: 채널 불일치 자동 보정 (32 or 64 -> 256) ####
-        # 체크포인트 가중치가 256채널이므로 입력이 다를 경우 일시적으로 확장합니다.
-        needs_proj = c != self.channels
-        if needs_proj:
-            # 채널을 self.channels(256)으로 확장하여 학습된 가중치 규격에 맞춤
-            x = x.repeat(1, self.channels // c, 1, 1)
-        
-        # 🔥 수정 포인트 1: view에서 'c' 대신 확장된 채널 'self.channels'를 사용해야 합니다.
-        # [B, T, 256, H, W] 형태로 재구성
-        x_5d = x.view(b, t, self.channels, h, w).permute(0, 2, 1, 3, 4).contiguous()
-        
-        # 1. Temporal Feature Extraction (256채널 가중치 사용)
-        temporal_feat = self.temporal_conv(x_5d)
-        
-        # 2. Adaptive Gating
-        gate = self.gate_generator(temporal_feat)
-        
-        # 3. 신호 정제 및 융합
-        out = temporal_feat * gate
+
+        x = x.view(b, t, c, h, w).permute(0, 2, 1, 3, 4).contiguous()
+
+        out = self.temporal_conv(x)
+        out = self.bn1(out)
+
+        out = out * self.attention(out)
+
         out = self.pointwise(out)
-        out = self.bn(out)
-        
-        # 🔥 수정 포인트 2: 다시 4D 복원 시에도 'self.channels'로 형태를 잡습니다.
-        out = out.permute(0, 2, 1, 3, 4).contiguous().view(bt, self.channels, h, w)
-        
-        #### jimin: 원래 채널로 복원 (256 -> 32 or 64) ####
-        if needs_proj:
-            # 확장했던 채널을 다시 원래 입력 채널 크기(c)로 슬라이싱하여 복원합니다.
-            out = out[:, :c, :, :]
+        out = self.bn2(out)
+
+        out = out.permute(0, 2, 1, 3, 4).contiguous().view(bt, c, h, w)
+
+        return identity + self.alpha * out
+
         #######################################################
 
         return identity + self.gamma * out
@@ -799,12 +847,12 @@ class SAM2Base(torch.nn.Module):
         self.max_obj_ptrs_in_encoder = max_obj_ptrs_in_encoder
         ######################## jimin ########################
         self.hidden_dim = image_encoder.neck.d_model
-        self.temporalVideo = True
+        self.temporalVideo = False
         if self.temporalVideo:
             # Hiera 백본의 Neck 출력 채널(self.hidden_dim)에 맞춰 레이어 생성
             # 다중 스케일(P3, P4, P5)을 사용하므로 각 레벨에 대한 리스트 생성
             self.temporal_fusion = torch.nn.ModuleList([
-                AdaptiveTemporalSemanticFusion(channels=self.hidden_dim)         #GFTE  AdaptiveTemporalSemanticFusion safeTemporalContextExchange  ATGModule
+                GFTE(channels=self.hidden_dim)         #GFTE  AdaptiveTemporalSemanticFusion safeTemporalContextExchange  ATGModule
                 for _ in range(self.num_feature_levels)
             ])
         ################################################

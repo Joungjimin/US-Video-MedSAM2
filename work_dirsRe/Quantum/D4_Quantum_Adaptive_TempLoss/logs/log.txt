@@ -1,0 +1,802 @@
+INFO 2026-01-12 01:07:48,559 train_utils.py: 108: MACHINE SEED: 9225
+INFO 2026-01-12 01:07:48,561 train_utils.py: 154: Logging ENV_VARIABLES
+INFO 2026-01-12 01:07:48,561 train_utils.py: 155: BROWSER=/home/zhengzhimin/.vscode-server/cli/servers/Stable-dc96b837cf6bb4af9cd736aa3af08cf8279f7685/server/bin/helpers/browser.sh
+COLORTERM=truecolor
+CONDA_DEFAULT_ENV=/media/sde/zhengzhimin/environment/medsam2
+CONDA_EXE=/media/sde/zhengzhimin/anaconda3/bin/conda
+CONDA_PREFIX=/media/sde/zhengzhimin/environment/medsam2
+CONDA_PREFIX_1=/media/sde/zhengzhimin/anaconda3
+CONDA_PROMPT_MODIFIER=(/media/sde/zhengzhimin/environment/medsam2) 
+CONDA_PYTHON_EXE=/media/sde/zhengzhimin/anaconda3/bin/python
+CONDA_SHLVL=2
+CUDA_MODULE_LOADING=LAZY
+CUDA_VISIBLE_DEVICES=1
+DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1024/bus
+GIT_ASKPASS=/home/zhengzhimin/.vscode-server/cli/servers/Stable-dc96b837cf6bb4af9cd736aa3af08cf8279f7685/server/extensions/git/dist/askpass.sh
+HOME=/home/zhengzhimin
+HYDRA_FULL_ERROR=1
+LANG=en_US.UTF-8
+LD_LIBRARY_PATH=/usr/local/cuda/lib64:/usr/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/local/cuda-11.1/lib64:/usr/local/cuda-11.1/lib64
+LESSCLOSE=/usr/bin/lesspipe %s %s
+LESSOPEN=| /usr/bin/lesspipe %s
+LOCAL_RANK=0
+LOGNAME=zhengzhimin
+LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:
+MAIL=/var/mail/zhengzhimin
+MASTER_ADDR=localhost
+MASTER_PORT=52771
+OLDPWD=/media/sde/zhengzhimin
+PATH=/home/zhengzhimin/bin:/home/zhengzhimin/.local/bin:/usr/local/cuda-11.1/bin:/usr/local/cuda-11.1/bin:/home/zhengzhimin/.vscode-server/cli/servers/Stable-dc96b837cf6bb4af9cd736aa3af08cf8279f7685/server/bin/remote-cli:/home/zhengzhimin/bin:/home/zhengzhimin/.local/bin:/home/zhengzhimin/.cargo/bin:/media/sde/zhengzhimin/environment/medsam2/bin:/media/sde/zhengzhimin/anaconda3/condabin:/usr/local/cuda-11.1/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+PWD=/media/sde/zhengzhimin/MedSAM2
+PYTHONPATH=:/media/sde/zhengzhimin/nnUNet:/media/sde/zhengzhimin/nnUNet:/media/sde/zhengzhimin/nnUNet
+RANK=0
+SHELL=/bin/bash
+SHLVL=5
+SSH_CLIENT=100.103.155.2 63830 22
+SSH_CONNECTION=100.103.155.2 57981 100.84.47.91 22
+SSL_CERT_DIR=/usr/lib/ssl/certs
+SSL_CERT_FILE=/usr/lib/ssl/certs/ca-certificates.crt
+S_COLORS=auto
+TERM=screen
+TERM_PROGRAM=vscode
+TERM_PROGRAM_VERSION=1.89.1
+TMUX=/tmp/tmux-1024/default,59926,5
+TMUX_PANE=%5
+TORCH_NCCL_ASYNC_ERROR_HANDLING=1
+USER=zhengzhimin
+VSCODE_GIT_ASKPASS_EXTRA_ARGS=
+VSCODE_GIT_ASKPASS_MAIN=/home/zhengzhimin/.vscode-server/cli/servers/Stable-dc96b837cf6bb4af9cd736aa3af08cf8279f7685/server/extensions/git/dist/askpass-main.js
+VSCODE_GIT_ASKPASS_NODE=/home/zhengzhimin/.vscode-server/cli/servers/Stable-dc96b837cf6bb4af9cd736aa3af08cf8279f7685/server/node
+VSCODE_GIT_IPC_HANDLE=/run/user/1024/vscode-git-bfe21229b0.sock
+VSCODE_IPC_HOOK_CLI=/run/user/1024/vscode-ipc-7e9a967f-a1bb-48a6-aac9-0ce1a40811e6.sock
+WORLD_SIZE=1
+XDG_DATA_DIRS=/usr/local/share:/usr/share:/var/lib/snapd/desktop
+XDG_RUNTIME_DIR=/run/user/1024
+XDG_SESSION_ID=8827
+_=/media/sde/zhengzhimin/environment/medsam2/bin/python
+_CE_CONDA=
+_CE_M=
+nnUNet_preprocessed=/media/sde/zhengzhimin/nnUNet/DATASET/nnUNet_preprocessed
+nnUNet_raw=/media/sde/zhengzhimin/nnUNet/DATASET/nnUNet_raw
+nnUNet_results=/media/sde/zhengzhimin/nnUNet/DATASET/nnUNet_trained_models
+
+INFO 2026-01-12 01:07:48,562 trainer.py: 982: Setting up components: Model, loss, optim, meters etc.
+INFO 2026-01-12 01:07:48,563 logger.py:  66: TensorBoard SummaryWriter instantiated. Files will be stored in: /media/sde/zhengzhimin/MedSAM2/work_dirsRe/Quantum/D4_Quantum_Adaptive_TempLoss/tensorboard
+INFO 2026-01-12 01:07:49,075 sam2.py:  81: Training with points (sampled from masks) as inputs with p=0.5
+INFO 2026-01-12 01:07:49,077 trainer.py:1052: ====================
+INFO 2026-01-12 01:07:49,078 trainer.py:1053: Summary for model <class 'training.model.sam2.SAM2Train'>
+INFO 2026-01-12 01:07:49,079 trainer.py:1054: Model is SAM2Train(
+  (image_encoder): ImageEncoder(
+    (trunk): Hiera(
+      (patch_embed): PatchEmbed(
+        (proj): Conv2d(3, 96, kernel_size=(7, 7), stride=(4, 4), padding=(3, 3))
+      )
+      (blocks): ModuleList(
+        (0): MultiScaleBlock(
+          (norm1): LayerNorm((96,), eps=1e-06, elementwise_affine=True)
+          (attn): MultiScaleAttention(
+            (qkv): Linear(in_features=96, out_features=288, bias=True)
+            (proj): Linear(in_features=96, out_features=96, bias=True)
+          )
+          (drop_path): Identity()
+          (norm2): LayerNorm((96,), eps=1e-06, elementwise_affine=True)
+          (mlp): MLP(
+            (layers): ModuleList(
+              (0): Linear(in_features=96, out_features=384, bias=True)
+              (1): Linear(in_features=384, out_features=96, bias=True)
+            )
+            (act): GELU(approximate='none')
+          )
+        )
+        (1): MultiScaleBlock(
+          (norm1): LayerNorm((96,), eps=1e-06, elementwise_affine=True)
+          (pool): MaxPool2d(kernel_size=(2, 2), stride=(2, 2), padding=0, dilation=1, ceil_mode=False)
+          (attn): MultiScaleAttention(
+            (q_pool): MaxPool2d(kernel_size=(2, 2), stride=(2, 2), padding=0, dilation=1, ceil_mode=False)
+            (qkv): Linear(in_features=96, out_features=576, bias=True)
+            (proj): Linear(in_features=192, out_features=192, bias=True)
+          )
+          (drop_path): Identity()
+          (norm2): LayerNorm((192,), eps=1e-06, elementwise_affine=True)
+          (mlp): MLP(
+            (layers): ModuleList(
+              (0): Linear(in_features=192, out_features=768, bias=True)
+              (1): Linear(in_features=768, out_features=192, bias=True)
+            )
+            (act): GELU(approximate='none')
+          )
+          (proj): Linear(in_features=96, out_features=192, bias=True)
+        )
+        (2): MultiScaleBlock(
+          (norm1): LayerNorm((192,), eps=1e-06, elementwise_affine=True)
+          (attn): MultiScaleAttention(
+            (qkv): Linear(in_features=192, out_features=576, bias=True)
+            (proj): Linear(in_features=192, out_features=192, bias=True)
+          )
+          (drop_path): Identity()
+          (norm2): LayerNorm((192,), eps=1e-06, elementwise_affine=True)
+          (mlp): MLP(
+            (layers): ModuleList(
+              (0): Linear(in_features=192, out_features=768, bias=True)
+              (1): Linear(in_features=768, out_features=192, bias=True)
+            )
+            (act): GELU(approximate='none')
+          )
+        )
+        (3): MultiScaleBlock(
+          (norm1): LayerNorm((192,), eps=1e-06, elementwise_affine=True)
+          (pool): MaxPool2d(kernel_size=(2, 2), stride=(2, 2), padding=0, dilation=1, ceil_mode=False)
+          (attn): MultiScaleAttention(
+            (q_pool): MaxPool2d(kernel_size=(2, 2), stride=(2, 2), padding=0, dilation=1, ceil_mode=False)
+            (qkv): Linear(in_features=192, out_features=1152, bias=True)
+            (proj): Linear(in_features=384, out_features=384, bias=True)
+          )
+          (drop_path): Identity()
+          (norm2): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+          (mlp): MLP(
+            (layers): ModuleList(
+              (0): Linear(in_features=384, out_features=1536, bias=True)
+              (1): Linear(in_features=1536, out_features=384, bias=True)
+            )
+            (act): GELU(approximate='none')
+          )
+          (proj): Linear(in_features=192, out_features=384, bias=True)
+        )
+        (4-9): 6 x MultiScaleBlock(
+          (norm1): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+          (attn): MultiScaleAttention(
+            (qkv): Linear(in_features=384, out_features=1152, bias=True)
+            (proj): Linear(in_features=384, out_features=384, bias=True)
+          )
+          (drop_path): Identity()
+          (norm2): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+          (mlp): MLP(
+            (layers): ModuleList(
+              (0): Linear(in_features=384, out_features=1536, bias=True)
+              (1): Linear(in_features=1536, out_features=384, bias=True)
+            )
+            (act): GELU(approximate='none')
+          )
+        )
+        (10): MultiScaleBlock(
+          (norm1): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+          (pool): MaxPool2d(kernel_size=(2, 2), stride=(2, 2), padding=0, dilation=1, ceil_mode=False)
+          (attn): MultiScaleAttention(
+            (q_pool): MaxPool2d(kernel_size=(2, 2), stride=(2, 2), padding=0, dilation=1, ceil_mode=False)
+            (qkv): Linear(in_features=384, out_features=2304, bias=True)
+            (proj): Linear(in_features=768, out_features=768, bias=True)
+          )
+          (drop_path): Identity()
+          (norm2): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+          (mlp): MLP(
+            (layers): ModuleList(
+              (0): Linear(in_features=768, out_features=3072, bias=True)
+              (1): Linear(in_features=3072, out_features=768, bias=True)
+            )
+            (act): GELU(approximate='none')
+          )
+          (proj): Linear(in_features=384, out_features=768, bias=True)
+        )
+        (11): MultiScaleBlock(
+          (norm1): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+          (attn): MultiScaleAttention(
+            (qkv): Linear(in_features=768, out_features=2304, bias=True)
+            (proj): Linear(in_features=768, out_features=768, bias=True)
+          )
+          (drop_path): Identity()
+          (norm2): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+          (mlp): MLP(
+            (layers): ModuleList(
+              (0): Linear(in_features=768, out_features=3072, bias=True)
+              (1): Linear(in_features=3072, out_features=768, bias=True)
+            )
+            (act): GELU(approximate='none')
+          )
+        )
+      )
+    )
+    (neck): FpnNeck(
+      (position_encoding): PositionEmbeddingSine()
+      (convs): ModuleList(
+        (0): Sequential(
+          (conv): Conv2d(768, 256, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (1): Sequential(
+          (conv): Conv2d(384, 256, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (2): Sequential(
+          (conv): Conv2d(192, 256, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (3): Sequential(
+          (conv): Conv2d(96, 256, kernel_size=(1, 1), stride=(1, 1))
+        )
+      )
+    )
+  )
+  (temporal_fusion): ModuleList(
+    (0): AdaptiveTemporalSemanticFusion(
+      (local_temp): Sequential(
+        (0): Conv3d(256, 256, kernel_size=(3, 1, 1), stride=(1, 1, 1), padding=(1, 0, 0), groups=256, bias=False)
+        (1): BatchNorm3d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): GELU(approximate='none')
+      )
+      (global_temp): Sequential(
+        (0): AdaptiveAvgPool3d(output_size=(None, 1, 1))
+        (1): Conv3d(256, 256, kernel_size=(1, 1, 1), stride=(1, 1, 1), bias=False)
+        (2): BatchNorm3d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (3): Sigmoid()
+      )
+      (cross_temp_attn): Sequential(
+        (0): Conv3d(256, 16, kernel_size=(1, 1, 1), stride=(1, 1, 1))
+        (1): GELU(approximate='none')
+        (2): Conv3d(16, 256, kernel_size=(1, 1, 1), stride=(1, 1, 1))
+        (3): Sigmoid()
+      )
+      (fusion_gate): Sequential(
+        (0): AdaptiveAvgPool3d(output_size=1)
+        (1): Conv3d(256, 32, kernel_size=(1, 1, 1), stride=(1, 1, 1))
+        (2): GELU(approximate='none')
+        (3): Conv3d(32, 2, kernel_size=(1, 1, 1), stride=(1, 1, 1))
+        (4): Softmax(dim=1)
+      )
+      (output_proj): Sequential(
+        (0): Conv3d(256, 256, kernel_size=(1, 1, 1), stride=(1, 1, 1), bias=False)
+        (1): BatchNorm3d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+  )
+  (mask_downsample): Conv2d(1, 1, kernel_size=(4, 4), stride=(4, 4))
+  (memory_attention): MemoryAttention(
+    (layers): ModuleList(
+      (0-3): 4 x MemoryAttentionLayer(
+        (self_attn): RoPEAttention(
+          (q_proj): Linear(in_features=256, out_features=256, bias=True)
+          (k_proj): Linear(in_features=256, out_features=256, bias=True)
+          (v_proj): Linear(in_features=256, out_features=256, bias=True)
+          (out_proj): Linear(in_features=256, out_features=256, bias=True)
+        )
+        (cross_attn_image): RoPEAttention(
+          (q_proj): Linear(in_features=256, out_features=256, bias=True)
+          (k_proj): Linear(in_features=64, out_features=256, bias=True)
+          (v_proj): Linear(in_features=64, out_features=256, bias=True)
+          (out_proj): Linear(in_features=256, out_features=256, bias=True)
+        )
+        (linear1): Linear(in_features=256, out_features=2048, bias=True)
+        (dropout): Dropout(p=0.1, inplace=False)
+        (linear2): Linear(in_features=2048, out_features=256, bias=True)
+        (norm1): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+        (norm2): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+        (norm3): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+        (dropout1): Dropout(p=0.1, inplace=False)
+        (dropout2): Dropout(p=0.1, inplace=False)
+        (dropout3): Dropout(p=0.1, inplace=False)
+      )
+    )
+    (norm): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+  )
+  (memory_encoder): MemoryEncoder(
+    (mask_downsampler): MaskDownSampler(
+      (encoder): Sequential(
+        (0): Conv2d(1, 4, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
+        (1): LayerNorm2d()
+        (2): GELU(approximate='none')
+        (3): Conv2d(4, 16, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
+        (4): LayerNorm2d()
+        (5): GELU(approximate='none')
+        (6): Conv2d(16, 64, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
+        (7): LayerNorm2d()
+        (8): GELU(approximate='none')
+        (9): Conv2d(64, 256, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
+        (10): LayerNorm2d()
+        (11): GELU(approximate='none')
+        (12): Conv2d(256, 256, kernel_size=(1, 1), stride=(1, 1))
+      )
+    )
+    (pix_feat_proj): Conv2d(256, 256, kernel_size=(1, 1), stride=(1, 1))
+    (fuser): Fuser(
+      (proj): Identity()
+      (layers): ModuleList(
+        (0-1): 2 x CXBlock(
+          (dwconv): Conv2d(256, 256, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3), groups=256)
+          (norm): LayerNorm2d()
+          (pwconv1): Linear(in_features=256, out_features=1024, bias=True)
+          (act): GELU(approximate='none')
+          (pwconv2): Linear(in_features=1024, out_features=256, bias=True)
+          (drop_path): Identity()
+        )
+      )
+    )
+    (position_encoding): PositionEmbeddingSine()
+    (out_proj): Conv2d(256, 64, kernel_size=(1, 1), stride=(1, 1))
+  )
+  (sam_prompt_encoder): PromptEncoder(
+    (pe_layer): PositionEmbeddingRandom()
+    (point_embeddings): ModuleList(
+      (0-3): 4 x Embedding(1, 256)
+    )
+    (not_a_point_embed): Embedding(1, 256)
+    (mask_downscaling): Sequential(
+      (0): Conv2d(1, 4, kernel_size=(2, 2), stride=(2, 2))
+      (1): LayerNorm2d()
+      (2): GELU(approximate='none')
+      (3): Conv2d(4, 16, kernel_size=(2, 2), stride=(2, 2))
+      (4): LayerNorm2d()
+      (5): GELU(approximate='none')
+      (6): Conv2d(16, 256, kernel_size=(1, 1), stride=(1, 1))
+    )
+    (no_mask_embed): Embedding(1, 256)
+  )
+  (sam_mask_decoder): MaskDecoder(
+    (transformer): TwoWayTransformer(
+      (layers): ModuleList(
+        (0-1): 2 x TwoWayAttentionBlock(
+          (self_attn): Attention(
+            (q_proj): Linear(in_features=256, out_features=256, bias=True)
+            (k_proj): Linear(in_features=256, out_features=256, bias=True)
+            (v_proj): Linear(in_features=256, out_features=256, bias=True)
+            (out_proj): Linear(in_features=256, out_features=256, bias=True)
+          )
+          (norm1): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+          (cross_attn_token_to_image): Attention(
+            (q_proj): Linear(in_features=256, out_features=128, bias=True)
+            (k_proj): Linear(in_features=256, out_features=128, bias=True)
+            (v_proj): Linear(in_features=256, out_features=128, bias=True)
+            (out_proj): Linear(in_features=128, out_features=256, bias=True)
+          )
+          (norm2): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+          (mlp): MLP(
+            (layers): ModuleList(
+              (0): Linear(in_features=256, out_features=2048, bias=True)
+              (1): Linear(in_features=2048, out_features=256, bias=True)
+            )
+            (act): ReLU()
+          )
+          (norm3): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+          (norm4): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+          (cross_attn_image_to_token): Attention(
+            (q_proj): Linear(in_features=256, out_features=128, bias=True)
+            (k_proj): Linear(in_features=256, out_features=128, bias=True)
+            (v_proj): Linear(in_features=256, out_features=128, bias=True)
+            (out_proj): Linear(in_features=128, out_features=256, bias=True)
+          )
+        )
+      )
+      (final_attn_token_to_image): Attention(
+        (q_proj): Linear(in_features=256, out_features=128, bias=True)
+        (k_proj): Linear(in_features=256, out_features=128, bias=True)
+        (v_proj): Linear(in_features=256, out_features=128, bias=True)
+        (out_proj): Linear(in_features=128, out_features=256, bias=True)
+      )
+      (norm_final_attn): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+    )
+    (iou_token): Embedding(1, 256)
+    (mask_tokens): Embedding(4, 256)
+    (obj_score_token): Embedding(1, 256)
+    (output_upscaling): Sequential(
+      (0): ConvTranspose2d(256, 64, kernel_size=(2, 2), stride=(2, 2))
+      (1): LayerNorm2d()
+      (2): GELU(approximate='none')
+      (3): ConvTranspose2d(64, 32, kernel_size=(2, 2), stride=(2, 2))
+      (4): GELU(approximate='none')
+    )
+    (output_hypernetworks_mlps): ModuleList(
+      (0-3): 4 x MLP(
+        (layers): ModuleList(
+          (0-1): 2 x Linear(in_features=256, out_features=256, bias=True)
+          (2): Linear(in_features=256, out_features=32, bias=True)
+        )
+        (act): ReLU()
+      )
+    )
+    (iou_prediction_head): MLP(
+      (layers): ModuleList(
+        (0-1): 2 x Linear(in_features=256, out_features=256, bias=True)
+        (2): Linear(in_features=256, out_features=4, bias=True)
+      )
+      (act): ReLU()
+    )
+    (pred_obj_score_head): MLP(
+      (layers): ModuleList(
+        (0-1): 2 x Linear(in_features=256, out_features=256, bias=True)
+        (2): Linear(in_features=256, out_features=1, bias=True)
+      )
+      (act): ReLU()
+    )
+  )
+  (obj_ptr_proj): MLP(
+    (layers): ModuleList(
+      (0-2): 3 x Linear(in_features=256, out_features=256, bias=True)
+    )
+    (act): ReLU()
+  )
+  (obj_ptr_tpos_proj): Linear(in_features=256, out_features=64, bias=True)
+)
+INFO 2026-01-12 01:07:49,080 trainer.py:1055: 	Total parameters 39.1 M
+INFO 2026-01-12 01:07:49,080 trainer.py:1056: 	Trainable parameters 39.1 M
+INFO 2026-01-12 01:07:49,080 trainer.py:1059: 	Non-Trainable parameters 0  
+INFO 2026-01-12 01:07:49,080 trainer.py:1062: ====================
+INFO 2026-01-12 01:07:49,086 trainer.py:1016: Finished setting up components: Model, loss, optim, meters etc.
+INFO 2026-01-12 01:07:49,086 trainer.py: 314: Moving components to device cuda:0 and local rank 0.
+INFO 2026-01-12 01:07:49,276 trainer.py: 320: Done moving components to device cuda:0 and local rank 0.
+INFO 2026-01-12 01:07:49,288 optimizer.py: 248: Matches for param_name [image_encoder.*]: {'image_encoder.trunk.blocks.4.mlp.layers.1.weight', 'image_encoder.trunk.blocks.0.attn.proj.bias', 'image_encoder.trunk.blocks.7.norm1.weight', 'image_encoder.trunk.blocks.4.mlp.layers.0.bias', 'image_encoder.trunk.blocks.9.mlp.layers.0.bias', 'image_encoder.trunk.blocks.11.attn.qkv.weight', 'image_encoder.trunk.blocks.0.attn.qkv.bias', 'image_encoder.trunk.blocks.1.mlp.layers.0.bias', 'image_encoder.trunk.blocks.8.norm2.bias', 'image_encoder.trunk.blocks.5.norm1.bias', 'image_encoder.trunk.blocks.4.mlp.layers.1.bias', 'image_encoder.trunk.blocks.9.attn.proj.bias', 'image_encoder.trunk.blocks.10.mlp.layers.1.weight', 'image_encoder.trunk.blocks.6.mlp.layers.0.weight', 'image_encoder.trunk.blocks.7.attn.proj.weight', 'image_encoder.trunk.blocks.6.norm2.bias', 'image_encoder.trunk.blocks.6.attn.qkv.bias', 'image_encoder.trunk.blocks.10.mlp.layers.0.weight', 'image_encoder.trunk.blocks.3.norm2.bias', 'image_encoder.trunk.blocks.3.attn.proj.weight', 'image_encoder.trunk.blocks.3.mlp.layers.1.weight', 'image_encoder.trunk.blocks.11.mlp.layers.1.weight', 'image_encoder.trunk.blocks.0.mlp.layers.0.weight', 'image_encoder.trunk.blocks.9.mlp.layers.1.weight', 'image_encoder.trunk.blocks.8.norm2.weight', 'image_encoder.trunk.blocks.6.mlp.layers.1.bias', 'image_encoder.trunk.blocks.5.mlp.layers.1.weight', 'image_encoder.trunk.pos_embed', 'image_encoder.trunk.blocks.6.norm2.weight', 'image_encoder.trunk.blocks.1.attn.qkv.weight', 'image_encoder.trunk.blocks.4.attn.proj.weight', 'image_encoder.trunk.patch_embed.proj.weight', 'image_encoder.trunk.blocks.0.norm1.weight', 'image_encoder.trunk.blocks.0.norm2.weight', 'image_encoder.trunk.blocks.1.attn.proj.weight', 'image_encoder.trunk.blocks.6.norm1.weight', 'image_encoder.trunk.blocks.10.norm2.weight', 'image_encoder.trunk.blocks.11.mlp.layers.1.bias', 'image_encoder.trunk.blocks.6.attn.qkv.weight', 'image_encoder.trunk.blocks.7.mlp.layers.0.bias', 'image_encoder.trunk.blocks.2.attn.proj.bias', 'image_encoder.trunk.blocks.10.proj.bias', 'image_encoder.trunk.blocks.3.mlp.layers.1.bias', 'image_encoder.trunk.blocks.0.mlp.layers.1.bias', 'image_encoder.neck.convs.0.conv.weight', 'image_encoder.trunk.blocks.5.mlp.layers.1.bias', 'image_encoder.trunk.blocks.5.attn.proj.weight', 'image_encoder.trunk.blocks.10.attn.proj.weight', 'image_encoder.trunk.blocks.11.attn.qkv.bias', 'image_encoder.neck.convs.2.conv.bias', 'image_encoder.trunk.blocks.5.norm2.bias', 'image_encoder.neck.convs.1.conv.bias', 'image_encoder.trunk.blocks.9.norm2.weight', 'image_encoder.trunk.blocks.11.mlp.layers.0.bias', 'image_encoder.neck.convs.3.conv.weight', 'image_encoder.trunk.blocks.9.norm1.weight', 'image_encoder.trunk.blocks.11.norm2.weight', 'image_encoder.trunk.blocks.3.attn.qkv.weight', 'image_encoder.trunk.blocks.1.attn.proj.bias', 'image_encoder.trunk.blocks.1.attn.qkv.bias', 'image_encoder.trunk.blocks.8.norm1.weight', 'image_encoder.trunk.blocks.2.attn.qkv.bias', 'image_encoder.trunk.blocks.7.norm1.bias', 'image_encoder.trunk.blocks.2.mlp.layers.1.bias', 'image_encoder.trunk.blocks.7.mlp.layers.1.weight', 'image_encoder.trunk.blocks.5.norm1.weight', 'image_encoder.trunk.blocks.9.attn.qkv.bias', 'image_encoder.neck.convs.2.conv.weight', 'image_encoder.trunk.blocks.10.attn.qkv.weight', 'image_encoder.trunk.blocks.3.mlp.layers.0.weight', 'image_encoder.trunk.blocks.4.norm1.weight', 'image_encoder.trunk.blocks.1.mlp.layers.1.weight', 'image_encoder.trunk.blocks.8.mlp.layers.1.weight', 'image_encoder.trunk.pos_embed_window', 'image_encoder.trunk.blocks.8.attn.qkv.bias', 'image_encoder.trunk.blocks.4.norm2.bias', 'image_encoder.trunk.blocks.0.attn.proj.weight', 'image_encoder.trunk.blocks.3.norm1.weight', 'image_encoder.trunk.blocks.10.proj.weight', 'image_encoder.trunk.blocks.4.attn.proj.bias', 'image_encoder.trunk.blocks.2.norm1.bias', 'image_encoder.trunk.blocks.8.attn.proj.weight', 'image_encoder.trunk.blocks.10.attn.proj.bias', 'image_encoder.trunk.blocks.9.mlp.layers.0.weight', 'image_encoder.trunk.blocks.11.norm1.bias', 'image_encoder.trunk.blocks.5.mlp.layers.0.weight', 'image_encoder.trunk.blocks.4.norm1.bias', 'image_encoder.trunk.blocks.3.attn.proj.bias', 'image_encoder.trunk.blocks.2.norm2.weight', 'image_encoder.trunk.blocks.8.mlp.layers.0.bias', 'image_encoder.trunk.blocks.3.proj.weight', 'image_encoder.trunk.blocks.1.norm1.weight', 'image_encoder.trunk.blocks.7.attn.qkv.weight', 'image_encoder.trunk.blocks.0.norm1.bias', 'image_encoder.trunk.blocks.7.mlp.layers.0.weight', 'image_encoder.trunk.blocks.8.norm1.bias', 'image_encoder.trunk.blocks.9.attn.qkv.weight', 'image_encoder.trunk.blocks.7.mlp.layers.1.bias', 'image_encoder.trunk.blocks.6.mlp.layers.0.bias', 'image_encoder.trunk.blocks.4.attn.qkv.bias', 'image_encoder.trunk.blocks.4.norm2.weight', 'image_encoder.trunk.blocks.3.norm1.bias', 'image_encoder.trunk.blocks.2.mlp.layers.0.bias', 'image_encoder.trunk.blocks.3.attn.qkv.bias', 'image_encoder.trunk.blocks.7.norm2.bias', 'image_encoder.trunk.blocks.2.norm2.bias', 'image_encoder.trunk.blocks.3.norm2.weight', 'image_encoder.trunk.patch_embed.proj.bias', 'image_encoder.trunk.blocks.11.norm2.bias', 'image_encoder.trunk.blocks.2.norm1.weight', 'image_encoder.trunk.blocks.10.mlp.layers.1.bias', 'image_encoder.trunk.blocks.9.attn.proj.weight', 'image_encoder.trunk.blocks.0.mlp.layers.1.weight', 'image_encoder.trunk.blocks.5.attn.qkv.weight', 'image_encoder.neck.convs.1.conv.weight', 'image_encoder.trunk.blocks.4.mlp.layers.0.weight', 'image_encoder.neck.convs.3.conv.bias', 'image_encoder.trunk.blocks.0.attn.qkv.weight', 'image_encoder.trunk.blocks.2.attn.qkv.weight', 'image_encoder.trunk.blocks.11.attn.proj.bias', 'image_encoder.trunk.blocks.10.attn.qkv.bias', 'image_encoder.trunk.blocks.10.norm1.bias', 'image_encoder.trunk.blocks.6.mlp.layers.1.weight', 'image_encoder.trunk.blocks.9.norm1.bias', 'image_encoder.trunk.blocks.0.mlp.layers.0.bias', 'image_encoder.trunk.blocks.8.mlp.layers.1.bias', 'image_encoder.neck.convs.0.conv.bias', 'image_encoder.trunk.blocks.7.attn.qkv.bias', 'image_encoder.trunk.blocks.6.attn.proj.weight', 'image_encoder.trunk.blocks.11.mlp.layers.0.weight', 'image_encoder.trunk.blocks.6.attn.proj.bias', 'image_encoder.trunk.blocks.11.norm1.weight', 'image_encoder.trunk.blocks.5.attn.proj.bias', 'image_encoder.trunk.blocks.2.mlp.layers.1.weight', 'image_encoder.trunk.blocks.3.proj.bias', 'image_encoder.trunk.blocks.6.norm1.bias', 'image_encoder.trunk.blocks.1.mlp.layers.0.weight', 'image_encoder.trunk.blocks.5.mlp.layers.0.bias', 'image_encoder.trunk.blocks.11.attn.proj.weight', 'image_encoder.trunk.blocks.7.attn.proj.bias', 'image_encoder.trunk.blocks.5.attn.qkv.bias', 'image_encoder.trunk.blocks.2.mlp.layers.0.weight', 'image_encoder.trunk.blocks.1.mlp.layers.1.bias', 'image_encoder.trunk.blocks.2.attn.proj.weight', 'image_encoder.trunk.blocks.8.attn.qkv.weight', 'image_encoder.trunk.blocks.1.norm2.weight', 'image_encoder.trunk.blocks.10.mlp.layers.0.bias', 'image_encoder.trunk.blocks.8.attn.proj.bias', 'image_encoder.trunk.blocks.4.attn.qkv.weight', 'image_encoder.trunk.blocks.5.norm2.weight', 'image_encoder.trunk.blocks.0.norm2.bias', 'image_encoder.trunk.blocks.10.norm2.bias', 'image_encoder.trunk.blocks.7.norm2.weight', 'image_encoder.trunk.blocks.10.norm1.weight', 'image_encoder.trunk.blocks.1.proj.weight', 'image_encoder.trunk.blocks.9.mlp.layers.1.bias', 'image_encoder.trunk.blocks.1.norm1.bias', 'image_encoder.trunk.blocks.9.norm2.bias', 'image_encoder.trunk.blocks.1.proj.bias', 'image_encoder.trunk.blocks.8.mlp.layers.0.weight', 'image_encoder.trunk.blocks.3.mlp.layers.0.bias', 'image_encoder.trunk.blocks.1.norm2.bias'}
+INFO 2026-01-12 01:07:49,289 optimizer.py: 248: Matches for param_name [*bias*]: {'image_encoder.trunk.blocks.0.attn.proj.bias', 'sam_mask_decoder.transformer.layers.1.cross_attn_token_to_image.v_proj.bias', 'memory_encoder.fuser.layers.1.dwconv.bias', 'memory_attention.layers.3.linear2.bias', 'image_encoder.trunk.blocks.4.mlp.layers.0.bias', 'image_encoder.trunk.blocks.9.mlp.layers.0.bias', 'image_encoder.trunk.blocks.0.attn.qkv.bias', 'sam_mask_decoder.iou_prediction_head.layers.2.bias', 'sam_mask_decoder.transformer.norm_final_attn.bias', 'image_encoder.trunk.blocks.1.mlp.layers.0.bias', 'memory_attention.layers.1.norm2.bias', 'image_encoder.trunk.blocks.8.norm2.bias', 'memory_attention.layers.1.cross_attn_image.k_proj.bias', 'memory_attention.layers.3.norm3.bias', 'image_encoder.trunk.blocks.5.norm1.bias', 'image_encoder.trunk.blocks.4.mlp.layers.1.bias', 'image_encoder.trunk.blocks.9.attn.proj.bias', 'sam_mask_decoder.transformer.layers.0.norm1.bias', 'sam_prompt_encoder.mask_downscaling.0.bias', 'temporal_fusion.0.global_temp.2.bias', 'memory_encoder.mask_downsampler.encoder.9.bias', 'memory_encoder.fuser.layers.0.norm.bias', 'memory_encoder.mask_downsampler.encoder.1.bias', 'sam_mask_decoder.output_hypernetworks_mlps.2.layers.0.bias', 'image_encoder.trunk.blocks.6.norm2.bias', 'memory_attention.layers.3.norm2.bias', 'image_encoder.trunk.blocks.6.attn.qkv.bias', 'memory_encoder.fuser.layers.1.pwconv1.bias', 'memory_attention.layers.1.self_attn.k_proj.bias', 'image_encoder.trunk.blocks.3.norm2.bias', 'memory_attention.layers.2.self_attn.k_proj.bias', 'memory_attention.layers.0.norm1.bias', 'temporal_fusion.0.cross_temp_attn.2.bias', 'image_encoder.trunk.blocks.6.mlp.layers.1.bias', 'sam_mask_decoder.transformer.layers.1.norm4.bias', 'sam_mask_decoder.transformer.layers.0.cross_attn_image_to_token.k_proj.bias', 'temporal_fusion.0.local_temp.1.bias', 'memory_attention.layers.0.linear2.bias', 'memory_attention.norm.bias', 'memory_encoder.fuser.layers.1.norm.bias', 'memory_attention.layers.3.self_attn.v_proj.bias', 'sam_mask_decoder.pred_obj_score_head.layers.1.bias', 'sam_mask_decoder.transformer.layers.0.cross_attn_image_to_token.q_proj.bias', 'obj_ptr_tpos_proj.bias', 'memory_attention.layers.3.linear1.bias', 'memory_attention.layers.3.cross_attn_image.v_proj.bias', 'sam_mask_decoder.transformer.layers.0.cross_attn_image_to_token.out_proj.bias', 'sam_mask_decoder.transformer.layers.1.cross_attn_image_to_token.out_proj.bias', 'obj_ptr_proj.layers.0.bias', 'memory_encoder.fuser.layers.0.pwconv2.bias', 'mask_downsample.bias', 'image_encoder.trunk.blocks.11.mlp.layers.1.bias', 'sam_mask_decoder.transformer.layers.0.norm2.bias', 'sam_mask_decoder.output_hypernetworks_mlps.3.layers.2.bias', 'sam_mask_decoder.output_hypernetworks_mlps.2.layers.2.bias', 'memory_attention.layers.2.cross_attn_image.k_proj.bias', 'image_encoder.trunk.blocks.7.mlp.layers.0.bias', 'image_encoder.trunk.blocks.2.attn.proj.bias', 'memory_attention.layers.1.linear2.bias', 'image_encoder.trunk.blocks.10.proj.bias', 'sam_mask_decoder.output_hypernetworks_mlps.1.layers.1.bias', 'memory_attention.layers.1.self_attn.out_proj.bias', 'memory_attention.layers.3.self_attn.k_proj.bias', 'image_encoder.trunk.blocks.3.mlp.layers.1.bias', 'image_encoder.trunk.blocks.0.mlp.layers.1.bias', 'image_encoder.trunk.blocks.5.mlp.layers.1.bias', 'obj_ptr_proj.layers.1.bias', 'memory_encoder.fuser.layers.1.pwconv2.bias', 'image_encoder.trunk.blocks.11.attn.qkv.bias', 'image_encoder.neck.convs.2.conv.bias', 'sam_mask_decoder.transformer.layers.0.norm4.bias', 'image_encoder.trunk.blocks.5.norm2.bias', 'memory_attention.layers.0.self_attn.v_proj.bias', 'memory_attention.layers.0.cross_attn_image.q_proj.bias', 'sam_mask_decoder.transformer.layers.0.mlp.layers.1.bias', 'image_encoder.neck.convs.1.conv.bias', 'sam_mask_decoder.transformer.layers.0.cross_attn_token_to_image.q_proj.bias', 'memory_attention.layers.3.cross_attn_image.out_proj.bias', 'memory_attention.layers.0.norm3.bias', 'obj_ptr_proj.layers.2.bias', 'image_encoder.trunk.blocks.11.mlp.layers.0.bias', 'memory_attention.layers.2.cross_attn_image.v_proj.bias', 'image_encoder.trunk.blocks.1.attn.proj.bias', 'sam_mask_decoder.transformer.layers.1.mlp.layers.1.bias', 'sam_mask_decoder.transformer.layers.0.self_attn.k_proj.bias', 'image_encoder.trunk.blocks.1.attn.qkv.bias', 'memory_attention.layers.0.self_attn.out_proj.bias', 'sam_mask_decoder.output_hypernetworks_mlps.2.layers.1.bias', 'memory_attention.layers.0.self_attn.k_proj.bias', 'image_encoder.trunk.blocks.2.attn.qkv.bias', 'image_encoder.trunk.blocks.7.norm1.bias', 'image_encoder.trunk.blocks.2.mlp.layers.1.bias', 'image_encoder.trunk.blocks.9.attn.qkv.bias', 'sam_mask_decoder.iou_prediction_head.layers.0.bias', 'sam_mask_decoder.transformer.layers.1.self_attn.v_proj.bias', 'memory_encoder.mask_downsampler.encoder.10.bias', 'memory_attention.layers.3.self_attn.q_proj.bias', 'sam_prompt_encoder.mask_downscaling.3.bias', 'sam_mask_decoder.transformer.layers.1.cross_attn_token_to_image.out_proj.bias', 'image_encoder.trunk.blocks.8.attn.qkv.bias', 'memory_encoder.mask_downsampler.encoder.7.bias', 'sam_mask_decoder.iou_prediction_head.layers.1.bias', 'memory_encoder.mask_downsampler.encoder.4.bias', 'sam_mask_decoder.transformer.layers.1.self_attn.q_proj.bias', 'memory_encoder.pix_feat_proj.bias', 'image_encoder.trunk.blocks.4.norm2.bias', 'sam_mask_decoder.output_hypernetworks_mlps.0.layers.0.bias', 'image_encoder.trunk.blocks.4.attn.proj.bias', 'sam_mask_decoder.output_hypernetworks_mlps.1.layers.0.bias', 'sam_mask_decoder.transformer.final_attn_token_to_image.out_proj.bias', 'memory_encoder.mask_downsampler.encoder.6.bias', 'memory_attention.layers.1.norm1.bias', 'sam_mask_decoder.transformer.layers.1.cross_attn_image_to_token.q_proj.bias', 'memory_attention.layers.1.cross_attn_image.q_proj.bias', 'image_encoder.trunk.blocks.2.norm1.bias', 'sam_mask_decoder.output_hypernetworks_mlps.0.layers.1.bias', 'memory_attention.layers.2.cross_attn_image.out_proj.bias', 'memory_attention.layers.2.linear1.bias', 'image_encoder.trunk.blocks.10.attn.proj.bias', 'memory_attention.layers.1.self_attn.q_proj.bias', 'memory_attention.layers.0.linear1.bias', 'temporal_fusion.0.cross_temp_attn.0.bias', 'image_encoder.trunk.blocks.11.norm1.bias', 'image_encoder.trunk.blocks.4.norm1.bias', 'memory_attention.layers.1.linear1.bias', 'sam_mask_decoder.output_upscaling.3.bias', 'image_encoder.trunk.blocks.3.attn.proj.bias', 'memory_attention.layers.0.cross_attn_image.out_proj.bias', 'sam_mask_decoder.output_upscaling.0.bias', 'image_encoder.trunk.blocks.8.mlp.layers.0.bias', 'sam_mask_decoder.transformer.layers.0.cross_attn_token_to_image.out_proj.bias', 'memory_encoder.mask_downsampler.encoder.0.bias', 'image_encoder.trunk.blocks.0.norm1.bias', 'sam_mask_decoder.transformer.layers.1.norm3.bias', 'memory_attention.layers.1.cross_attn_image.v_proj.bias', 'image_encoder.trunk.blocks.8.norm1.bias', 'image_encoder.trunk.blocks.7.mlp.layers.1.bias', 'memory_attention.layers.3.cross_attn_image.q_proj.bias', 'sam_prompt_encoder.mask_downscaling.6.bias', 'image_encoder.trunk.blocks.4.attn.qkv.bias', 'image_encoder.trunk.blocks.6.mlp.layers.0.bias', 'sam_mask_decoder.transformer.layers.0.cross_attn_token_to_image.v_proj.bias', 'temporal_fusion.0.fusion_gate.3.bias', 'memory_attention.layers.1.norm3.bias', 'memory_attention.layers.2.norm1.bias', 'image_encoder.trunk.blocks.3.norm1.bias', 'sam_mask_decoder.output_upscaling.1.bias', 'image_encoder.trunk.blocks.2.mlp.layers.0.bias', 'memory_attention.layers.0.cross_attn_image.k_proj.bias', 'image_encoder.trunk.blocks.3.attn.qkv.bias', 'image_encoder.trunk.blocks.7.norm2.bias', 'image_encoder.trunk.blocks.2.norm2.bias', 'image_encoder.trunk.patch_embed.proj.bias', 'sam_mask_decoder.transformer.layers.0.cross_attn_token_to_image.k_proj.bias', 'image_encoder.trunk.blocks.11.norm2.bias', 'sam_mask_decoder.transformer.final_attn_token_to_image.q_proj.bias', 'sam_mask_decoder.pred_obj_score_head.layers.2.bias', 'image_encoder.trunk.blocks.10.mlp.layers.1.bias', 'sam_mask_decoder.transformer.layers.0.norm3.bias', 'memory_attention.layers.1.self_attn.v_proj.bias', 'memory_encoder.mask_downsampler.encoder.3.bias', 'memory_attention.layers.1.cross_attn_image.out_proj.bias', 'image_encoder.neck.convs.3.conv.bias', 'sam_mask_decoder.transformer.layers.1.mlp.layers.0.bias', 'sam_mask_decoder.transformer.layers.0.mlp.layers.0.bias', 'sam_mask_decoder.transformer.layers.1.cross_attn_token_to_image.q_proj.bias', 'image_encoder.trunk.blocks.11.attn.proj.bias', 'image_encoder.trunk.blocks.10.attn.qkv.bias', 'memory_encoder.fuser.layers.0.pwconv1.bias', 'image_encoder.trunk.blocks.10.norm1.bias', 'image_encoder.trunk.blocks.9.norm1.bias', 'sam_mask_decoder.output_hypernetworks_mlps.0.layers.2.bias', 'memory_encoder.out_proj.bias', 'image_encoder.trunk.blocks.0.mlp.layers.0.bias', 'temporal_fusion.0.output_proj.1.bias', 'image_encoder.neck.convs.0.conv.bias', 'image_encoder.trunk.blocks.7.attn.qkv.bias', 'image_encoder.trunk.blocks.8.mlp.layers.1.bias', 'temporal_fusion.0.fusion_gate.1.bias', 'sam_mask_decoder.transformer.layers.1.self_attn.k_proj.bias', 'sam_mask_decoder.transformer.final_attn_token_to_image.v_proj.bias', 'memory_encoder.mask_downsampler.encoder.12.bias', 'image_encoder.trunk.blocks.6.attn.proj.bias', 'image_encoder.trunk.blocks.5.attn.proj.bias', 'image_encoder.trunk.blocks.3.proj.bias', 'image_encoder.trunk.blocks.6.norm1.bias', 'memory_attention.layers.2.norm3.bias', 'image_encoder.trunk.blocks.5.mlp.layers.0.bias', 'sam_mask_decoder.transformer.layers.0.cross_attn_image_to_token.v_proj.bias', 'memory_attention.layers.3.cross_attn_image.k_proj.bias', 'sam_mask_decoder.transformer.final_attn_token_to_image.k_proj.bias', 'memory_attention.layers.2.self_attn.q_proj.bias', 'image_encoder.trunk.blocks.7.attn.proj.bias', 'image_encoder.trunk.blocks.5.attn.qkv.bias', 'image_encoder.trunk.blocks.1.mlp.layers.1.bias', 'sam_mask_decoder.transformer.layers.1.norm1.bias', 'sam_mask_decoder.transformer.layers.0.self_attn.q_proj.bias', 'memory_attention.layers.2.cross_attn_image.q_proj.bias', 'sam_mask_decoder.transformer.layers.1.norm2.bias', 'memory_attention.layers.0.cross_attn_image.v_proj.bias', 'sam_mask_decoder.transformer.layers.1.cross_attn_image_to_token.k_proj.bias', 'memory_attention.layers.2.self_attn.out_proj.bias', 'sam_mask_decoder.output_hypernetworks_mlps.1.layers.2.bias', 'image_encoder.trunk.blocks.10.mlp.layers.0.bias', 'image_encoder.trunk.blocks.8.attn.proj.bias', 'sam_mask_decoder.output_hypernetworks_mlps.3.layers.0.bias', 'image_encoder.trunk.blocks.0.norm2.bias', 'memory_attention.layers.2.linear2.bias', 'image_encoder.trunk.blocks.10.norm2.bias', 'sam_mask_decoder.transformer.layers.0.self_attn.out_proj.bias', 'sam_mask_decoder.output_hypernetworks_mlps.3.layers.1.bias', 'sam_mask_decoder.transformer.layers.1.cross_attn_token_to_image.k_proj.bias', 'memory_attention.layers.3.self_attn.out_proj.bias', 'sam_prompt_encoder.mask_downscaling.4.bias', 'sam_mask_decoder.transformer.layers.1.cross_attn_image_to_token.v_proj.bias', 'memory_attention.layers.2.norm2.bias', 'memory_attention.layers.0.self_attn.q_proj.bias', 'memory_attention.layers.2.self_attn.v_proj.bias', 'image_encoder.trunk.blocks.9.mlp.layers.1.bias', 'sam_prompt_encoder.mask_downscaling.1.bias', 'image_encoder.trunk.blocks.1.norm1.bias', 'image_encoder.trunk.blocks.9.norm2.bias', 'image_encoder.trunk.blocks.1.proj.bias', 'memory_attention.layers.3.norm1.bias', 'sam_mask_decoder.pred_obj_score_head.layers.0.bias', 'image_encoder.trunk.blocks.3.mlp.layers.0.bias', 'memory_attention.layers.0.norm2.bias', 'sam_mask_decoder.transformer.layers.1.self_attn.out_proj.bias', 'image_encoder.trunk.blocks.1.norm2.bias', 'sam_mask_decoder.transformer.layers.0.self_attn.v_proj.bias', 'memory_encoder.fuser.layers.0.dwconv.bias'}
+INFO 2026-01-12 01:07:49,289 optimizer.py: 220: Matches for module_cls_name [torch.nn.LayerNorm]: {'image_encoder.trunk.blocks.7.norm1.weight', 'sam_mask_decoder.transformer.norm_final_attn.bias', 'image_encoder.trunk.blocks.8.norm2.bias', 'memory_attention.layers.1.norm2.bias', 'memory_attention.layers.3.norm3.bias', 'image_encoder.trunk.blocks.5.norm1.bias', 'sam_mask_decoder.transformer.layers.1.norm4.weight', 'memory_attention.layers.0.norm2.weight', 'sam_mask_decoder.transformer.layers.0.norm1.bias', 'memory_attention.layers.1.norm3.weight', 'memory_attention.layers.2.norm2.weight', 'image_encoder.trunk.blocks.6.norm2.bias', 'memory_attention.layers.3.norm2.bias', 'image_encoder.trunk.blocks.3.norm2.bias', 'sam_mask_decoder.transformer.layers.0.norm1.weight', 'memory_attention.layers.0.norm1.bias', 'image_encoder.trunk.blocks.8.norm2.weight', 'sam_mask_decoder.transformer.layers.1.norm4.bias', 'memory_attention.layers.1.norm2.weight', 'image_encoder.trunk.blocks.6.norm2.weight', 'memory_attention.norm.bias', 'image_encoder.trunk.blocks.0.norm1.weight', 'image_encoder.trunk.blocks.0.norm2.weight', 'image_encoder.trunk.blocks.6.norm1.weight', 'image_encoder.trunk.blocks.10.norm2.weight', 'memory_attention.norm.weight', 'memory_attention.layers.3.norm1.weight', 'sam_mask_decoder.transformer.layers.0.norm4.bias', 'image_encoder.trunk.blocks.5.norm2.bias', 'image_encoder.trunk.blocks.9.norm2.weight', 'memory_attention.layers.0.norm3.bias', 'image_encoder.trunk.blocks.9.norm1.weight', 'image_encoder.trunk.blocks.11.norm2.weight', 'sam_mask_decoder.transformer.layers.1.norm3.weight', 'sam_mask_decoder.transformer.layers.1.norm2.weight', 'sam_mask_decoder.transformer.layers.0.norm4.weight', 'image_encoder.trunk.blocks.8.norm1.weight', 'image_encoder.trunk.blocks.7.norm1.bias', 'image_encoder.trunk.blocks.5.norm1.weight', 'image_encoder.trunk.blocks.4.norm1.weight', 'memory_attention.layers.3.norm3.weight', 'image_encoder.trunk.blocks.4.norm2.bias', 'image_encoder.trunk.blocks.3.norm1.weight', 'image_encoder.trunk.blocks.2.norm1.bias', 'memory_attention.layers.1.norm1.bias', 'memory_attention.layers.2.norm3.weight', 'image_encoder.trunk.blocks.11.norm1.bias', 'image_encoder.trunk.blocks.4.norm1.bias', 'sam_mask_decoder.transformer.layers.1.norm1.weight', 'memory_attention.layers.2.norm1.weight', 'image_encoder.trunk.blocks.2.norm2.weight', 'sam_mask_decoder.transformer.norm_final_attn.weight', 'image_encoder.trunk.blocks.1.norm1.weight', 'image_encoder.trunk.blocks.0.norm1.bias', 'sam_mask_decoder.transformer.layers.1.norm3.bias', 'image_encoder.trunk.blocks.8.norm1.bias', 'image_encoder.trunk.blocks.4.norm2.weight', 'memory_attention.layers.1.norm3.bias', 'image_encoder.trunk.blocks.3.norm1.bias', 'memory_attention.layers.2.norm1.bias', 'image_encoder.trunk.blocks.7.norm2.bias', 'image_encoder.trunk.blocks.2.norm2.bias', 'image_encoder.trunk.blocks.3.norm2.weight', 'image_encoder.trunk.blocks.2.norm1.weight', 'image_encoder.trunk.blocks.11.norm2.bias', 'memory_attention.layers.0.norm1.weight', 'sam_mask_decoder.transformer.layers.0.norm3.bias', 'image_encoder.trunk.blocks.10.norm1.bias', 'image_encoder.trunk.blocks.9.norm1.bias', 'memory_attention.layers.3.norm2.weight', 'memory_attention.layers.0.norm3.weight', 'image_encoder.trunk.blocks.11.norm1.weight', 'sam_mask_decoder.transformer.layers.0.norm2.weight', 'image_encoder.trunk.blocks.6.norm1.bias', 'memory_attention.layers.2.norm3.bias', 'sam_mask_decoder.transformer.layers.0.norm3.weight', 'sam_mask_decoder.transformer.layers.1.norm1.bias', 'sam_mask_decoder.transformer.layers.1.norm2.bias', 'image_encoder.trunk.blocks.1.norm2.weight', 'image_encoder.trunk.blocks.0.norm2.bias', 'image_encoder.trunk.blocks.5.norm2.weight', 'image_encoder.trunk.blocks.7.norm2.weight', 'image_encoder.trunk.blocks.10.norm1.weight', 'image_encoder.trunk.blocks.10.norm2.bias', 'memory_attention.layers.2.norm2.bias', 'image_encoder.trunk.blocks.1.norm1.bias', 'image_encoder.trunk.blocks.1.norm2.bias', 'image_encoder.trunk.blocks.9.norm2.bias', 'memory_attention.layers.3.norm1.bias', 'sam_mask_decoder.transformer.layers.0.norm2.bias', 'memory_attention.layers.0.norm2.bias', 'memory_attention.layers.1.norm1.weight'} 
+INFO 2026-01-12 01:08:08,330 vos_raw_dataset.py: 782: ⚛️ [QuantumNPZRawDataset] Init | Stage=dense | Videos=11
+INFO 2026-01-12 01:08:08,335 sam2_datasets.py:  75: Dataset mixing probabilities: [1.0]
+INFO 2026-01-12 01:08:08,502 trainer.py: 417: Loading pretrained checkpoint from {'_partial_': True, '_target_': 'training.utils.checkpoint_utils.load_state_dict_into_model', 'strict': False, 'ignore_unexpected_keys': ['sam_mask_decoder.conv_s0.weight', 'sam_mask_decoder.conv_s0.bias', 'sam_mask_decoder.conv_s1.weight', 'sam_mask_decoder.conv_s1.bias'], 'ignore_missing_keys': None, 'state_dict': {'_target_': 'training.utils.checkpoint_utils.load_checkpoint_and_apply_kernels', 'checkpoint_path': 'checkpoints/sam2.1_hiera_tiny.pt', 'ckpt_state_dict_keys': ['model']}}
+WARNING 2026-01-12 01:08:08,547 checkpoint_utils.py: 325: State key mismatch. Missing keys: ['temporal_fusion.0.scale_selector', 'temporal_fusion.0.residual_weight', 'temporal_fusion.0.local_temp.0.weight', 'temporal_fusion.0.local_temp.1.weight', 'temporal_fusion.0.local_temp.1.bias', 'temporal_fusion.0.local_temp.1.running_mean', 'temporal_fusion.0.local_temp.1.running_var', 'temporal_fusion.0.global_temp.1.weight', 'temporal_fusion.0.global_temp.2.weight', 'temporal_fusion.0.global_temp.2.bias', 'temporal_fusion.0.global_temp.2.running_mean', 'temporal_fusion.0.global_temp.2.running_var', 'temporal_fusion.0.cross_temp_attn.0.weight', 'temporal_fusion.0.cross_temp_attn.0.bias', 'temporal_fusion.0.cross_temp_attn.2.weight', 'temporal_fusion.0.cross_temp_attn.2.bias', 'temporal_fusion.0.fusion_gate.1.weight', 'temporal_fusion.0.fusion_gate.1.bias', 'temporal_fusion.0.fusion_gate.3.weight', 'temporal_fusion.0.fusion_gate.3.bias', 'temporal_fusion.0.output_proj.0.weight', 'temporal_fusion.0.output_proj.1.weight', 'temporal_fusion.0.output_proj.1.bias', 'temporal_fusion.0.output_proj.1.running_mean', 'temporal_fusion.0.output_proj.1.running_var'].
+INFO 2026-01-12 01:08:08,723 trainer.py: 716: 🚀 [Epoch 0] Current Curriculum Stage: UNKNOWN
+INFO 2026-01-12 01:08:12,046 train_utils.py: 271: Train Epoch: [0][ 0/11] | Batch Time: 3.32 (3.32) | Data Time: 1.80 (1.80) | Mem (GB): 2.00 (2.00/2.00) | Time Elapsed: 00d 00h 00m | Losses/train_all_loss: 8.12e-01 (8.12e-01)
+INFO 2026-01-12 01:08:45,974 train_utils.py: 271: Train Epoch: [0][10/11] | Batch Time: 6.94 (3.39) | Data Time: 6.28 (2.77) | Mem (GB): 2.00 (2.55/3.00) | Time Elapsed: 00d 00h 00m | Losses/train_all_loss: 6.10e+00 (3.69e+00)
+INFO 2026-01-12 01:08:45,975 trainer.py: 883: Synchronizing meters
+INFO 2026-01-12 01:08:45,975 trainer.py: 821: ✅ Epoch 0 Fin. | Stage: UNKNOWN | Loss: 3.6937
+INFO 2026-01-12 01:08:46,793 trainer.py: 716: 🚀 [Epoch 1] Current Curriculum Stage: UNKNOWN
+INFO 2026-01-12 01:08:50,250 train_utils.py: 271: Train Epoch: [1][ 0/11] | Batch Time: 3.46 (3.46) | Data Time: 2.62 (2.62) | Mem (GB): 3.00 (3.00/3.00) | Time Elapsed: 00d 00h 01m | Losses/train_all_loss: 4.70e+00 (4.70e+00)
+INFO 2026-01-12 01:09:49,160 train_utils.py: 271: Train Epoch: [1][10/11] | Batch Time: 4.22 (5.67) | Data Time: 3.25 (5.16) | Mem (GB): 2.00 (2.64/3.00) | Time Elapsed: 00d 00h 02m | Losses/train_all_loss: 9.09e+00 (5.53e+00)
+INFO 2026-01-12 01:09:49,161 trainer.py: 883: Synchronizing meters
+INFO 2026-01-12 01:09:49,161 trainer.py: 821: ✅ Epoch 1 Fin. | Stage: UNKNOWN | Loss: 5.5265
+INFO 2026-01-12 01:09:50,125 trainer.py: 716: 🚀 [Epoch 2] Current Curriculum Stage: UNKNOWN
+INFO 2026-01-12 01:09:54,360 train_utils.py: 271: Train Epoch: [2][ 0/11] | Batch Time: 4.23 (4.23) | Data Time: 3.74 (3.74) | Mem (GB): 3.00 (3.00/3.00) | Time Elapsed: 00d 00h 02m | Losses/train_all_loss: 2.19e+00 (2.19e+00)
+INFO 2026-01-12 01:10:45,519 train_utils.py: 271: Train Epoch: [2][10/11] | Batch Time: 2.39 (5.04) | Data Time: 1.48 (4.42) | Mem (GB): 3.00 (2.64/3.00) | Time Elapsed: 00d 00h 02m | Losses/train_all_loss: 6.39e+00 (4.73e+00)
+INFO 2026-01-12 01:10:45,532 trainer.py: 883: Synchronizing meters
+INFO 2026-01-12 01:10:45,532 trainer.py: 821: ✅ Epoch 2 Fin. | Stage: UNKNOWN | Loss: 4.7318
+INFO 2026-01-12 01:10:46,500 trainer.py: 716: 🚀 [Epoch 3] Current Curriculum Stage: UNKNOWN
+INFO 2026-01-12 01:10:48,658 train_utils.py: 271: Train Epoch: [3][ 0/11] | Batch Time: 2.15 (2.15) | Data Time: 1.57 (1.57) | Mem (GB): 3.00 (3.00/3.00) | Time Elapsed: 00d 00h 03m | Losses/train_all_loss: 2.04e+00 (2.04e+00)
+INFO 2026-01-12 01:11:25,212 train_utils.py: 271: Train Epoch: [3][10/11] | Batch Time: 2.25 (3.52) | Data Time: 1.93 (3.00) | Mem (GB): 2.00 (2.64/3.00) | Time Elapsed: 00d 00h 03m | Losses/train_all_loss: 1.84e-01 (3.50e+00)
+INFO 2026-01-12 01:11:25,212 trainer.py: 883: Synchronizing meters
+INFO 2026-01-12 01:11:25,213 trainer.py: 821: ✅ Epoch 3 Fin. | Stage: UNKNOWN | Loss: 3.5030
+INFO 2026-01-12 01:11:26,098 trainer.py: 716: 🚀 [Epoch 4] Current Curriculum Stage: UNKNOWN
+INFO 2026-01-12 01:11:33,292 train_utils.py: 271: Train Epoch: [4][ 0/11] | Batch Time: 7.19 (7.19) | Data Time: 6.63 (6.63) | Mem (GB): 3.00 (3.00/3.00) | Time Elapsed: 00d 00h 03m | Losses/train_all_loss: 3.97e-01 (3.97e-01)
+INFO 2026-01-12 01:12:37,778 train_utils.py: 271: Train Epoch: [4][10/11] | Batch Time: 1.68 (6.52) | Data Time: 1.42 (5.90) | Mem (GB): 2.00 (2.73/3.00) | Time Elapsed: 00d 00h 04m | Losses/train_all_loss: 1.87e-01 (4.13e+00)
+INFO 2026-01-12 01:12:37,796 trainer.py: 883: Synchronizing meters
+INFO 2026-01-12 01:12:37,797 trainer.py: 821: ✅ Epoch 4 Fin. | Stage: UNKNOWN | Loss: 4.1251
+INFO 2026-01-12 01:12:38,970 trainer.py: 716: 🚀 [Epoch 5] Current Curriculum Stage: UNKNOWN
+INFO 2026-01-12 01:12:41,073 train_utils.py: 271: Train Epoch: [5][ 0/11] | Batch Time: 2.10 (2.10) | Data Time: 1.50 (1.50) | Mem (GB): 3.00 (3.00/3.00) | Time Elapsed: 00d 00h 04m | Losses/train_all_loss: 6.98e-01 (6.98e-01)
+INFO 2026-01-12 01:13:18,623 train_utils.py: 271: Train Epoch: [5][10/11] | Batch Time: 3.26 (3.60) | Data Time: 2.40 (3.02) | Mem (GB): 3.00 (2.73/3.00) | Time Elapsed: 00d 00h 05m | Losses/train_all_loss: 9.79e+00 (3.87e+00)
+INFO 2026-01-12 01:13:18,624 trainer.py: 883: Synchronizing meters
+INFO 2026-01-12 01:13:18,624 trainer.py: 821: ✅ Epoch 5 Fin. | Stage: UNKNOWN | Loss: 3.8737
+INFO 2026-01-12 01:13:19,492 trainer.py: 716: 🚀 [Epoch 6] Current Curriculum Stage: UNKNOWN
+INFO 2026-01-12 01:13:36,198 train_utils.py: 271: Train Epoch: [6][ 0/11] | Batch Time: 16.70 (16.70) | Data Time: 16.21 (16.21) | Mem (GB): 2.00 (2.00/2.00) | Time Elapsed: 00d 00h 05m | Losses/train_all_loss: 6.45e-01 (6.45e-01)
+INFO 2026-01-12 01:14:39,797 train_utils.py: 271: Train Epoch: [6][10/11] | Batch Time: 2.14 (7.30) | Data Time: 1.86 (6.76) | Mem (GB): 3.00 (2.64/3.00) | Time Elapsed: 00d 00h 06m | Losses/train_all_loss: 3.64e-01 (3.18e+00)
+INFO 2026-01-12 01:14:39,797 trainer.py: 883: Synchronizing meters
+INFO 2026-01-12 01:14:39,798 trainer.py: 821: ✅ Epoch 6 Fin. | Stage: UNKNOWN | Loss: 3.1794
+INFO 2026-01-12 01:14:40,685 trainer.py: 716: 🚀 [Epoch 7] Current Curriculum Stage: UNKNOWN
+INFO 2026-01-12 01:14:44,911 train_utils.py: 271: Train Epoch: [7][ 0/11] | Batch Time: 4.22 (4.22) | Data Time: 3.67 (3.67) | Mem (GB): 3.00 (3.00/3.00) | Time Elapsed: 00d 00h 06m | Losses/train_all_loss: 3.05e-01 (3.05e-01)
+INFO 2026-01-12 01:16:33,338 train_utils.py: 271: Train Epoch: [7][10/11] | Batch Time: 42.16 (10.24) | Data Time: 41.79 (9.71) | Mem (GB): 3.00 (2.73/3.00) | Time Elapsed: 00d 00h 08m | Losses/train_all_loss: 2.93e+00 (2.77e+00)
+INFO 2026-01-12 01:16:33,352 trainer.py: 883: Synchronizing meters
+INFO 2026-01-12 01:16:33,352 trainer.py: 821: ✅ Epoch 7 Fin. | Stage: UNKNOWN | Loss: 2.7674
+INFO 2026-01-12 01:16:34,272 trainer.py: 716: 🚀 [Epoch 8] Current Curriculum Stage: UNKNOWN
+INFO 2026-01-12 01:16:37,406 train_utils.py: 271: Train Epoch: [8][ 0/11] | Batch Time: 3.13 (3.13) | Data Time: 1.90 (1.90) | Mem (GB): 3.00 (3.00/3.00) | Time Elapsed: 00d 00h 08m | Losses/train_all_loss: 6.83e+00 (6.83e+00)
+INFO 2026-01-12 01:18:19,205 train_utils.py: 271: Train Epoch: [8][10/11] | Batch Time: 13.43 (9.54) | Data Time: 13.12 (8.95) | Mem (GB): 2.00 (2.55/3.00) | Time Elapsed: 00d 00h 10m | Losses/train_all_loss: 3.70e-01 (2.53e+00)
+INFO 2026-01-12 01:18:19,221 trainer.py: 883: Synchronizing meters
+INFO 2026-01-12 01:18:19,221 trainer.py: 821: ✅ Epoch 8 Fin. | Stage: UNKNOWN | Loss: 2.5323
+INFO 2026-01-12 01:18:20,146 trainer.py: 716: 🚀 [Epoch 9] Current Curriculum Stage: UNKNOWN
+INFO 2026-01-12 01:18:40,152 train_utils.py: 271: Train Epoch: [9][ 0/11] | Batch Time: 20.00 (20.00) | Data Time: 19.31 (19.31) | Mem (GB): 3.00 (3.00/3.00) | Time Elapsed: 00d 00h 10m | Losses/train_all_loss: 8.55e+00 (8.55e+00)
+INFO 2026-01-12 01:20:16,772 train_utils.py: 271: Train Epoch: [9][10/11] | Batch Time: 27.45 (10.60) | Data Time: 26.24 (9.87) | Mem (GB): 3.00 (2.73/3.00) | Time Elapsed: 00d 00h 12m | Losses/train_all_loss: 9.09e+00 (5.35e+00)
+INFO 2026-01-12 01:20:16,787 trainer.py: 883: Synchronizing meters
+INFO 2026-01-12 01:20:16,787 trainer.py: 821: ✅ Epoch 9 Fin. | Stage: UNKNOWN | Loss: 5.3542
+INFO 2026-01-12 01:20:18,308 trainer.py: 716: 🚀 [Epoch 10] Current Curriculum Stage: UNKNOWN
+INFO 2026-01-12 01:20:21,955 train_utils.py: 271: Train Epoch: [10][ 0/11] | Batch Time: 3.64 (3.64) | Data Time: 2.49 (2.49) | Mem (GB): 3.00 (3.00/3.00) | Time Elapsed: 00d 00h 12m | Losses/train_all_loss: 1.06e+01 (1.06e+01)
+INFO 2026-01-12 01:22:02,663 train_utils.py: 271: Train Epoch: [10][10/11] | Batch Time: 3.31 (9.49) | Data Time: 2.66 (8.90) | Mem (GB): 2.00 (2.64/3.00) | Time Elapsed: 00d 00h 14m | Losses/train_all_loss: 1.27e+01 (4.37e+00)
+INFO 2026-01-12 01:22:02,714 trainer.py: 883: Synchronizing meters
+INFO 2026-01-12 01:22:02,715 trainer.py: 821: ✅ Epoch 10 Fin. | Stage: UNKNOWN | Loss: 4.3745
+INFO 2026-01-12 01:22:03,582 trainer.py: 716: 🚀 [Epoch 11] Current Curriculum Stage: UNKNOWN
+INFO 2026-01-12 01:22:17,969 train_utils.py: 271: Train Epoch: [11][ 0/11] | Batch Time: 14.38 (14.38) | Data Time: 13.16 (13.16) | Mem (GB): 2.00 (2.00/2.00) | Time Elapsed: 00d 00h 14m | Losses/train_all_loss: 7.29e+00 (7.29e+00)
+INFO 2026-01-12 01:23:29,631 train_utils.py: 271: Train Epoch: [11][10/11] | Batch Time: 4.45 (7.82) | Data Time: 3.44 (7.14) | Mem (GB): 3.00 (2.64/3.00) | Time Elapsed: 00d 00h 15m | Losses/train_all_loss: 9.04e+00 (4.16e+00)
+INFO 2026-01-12 01:23:29,638 trainer.py: 883: Synchronizing meters
+INFO 2026-01-12 01:23:29,639 trainer.py: 821: ✅ Epoch 11 Fin. | Stage: UNKNOWN | Loss: 4.1649
+INFO 2026-01-12 01:23:30,522 trainer.py: 716: 🚀 [Epoch 12] Current Curriculum Stage: UNKNOWN
+INFO 2026-01-12 01:23:40,205 train_utils.py: 271: Train Epoch: [12][ 0/11] | Batch Time: 9.68 (9.68) | Data Time: 9.09 (9.09) | Mem (GB): 3.00 (3.00/3.00) | Time Elapsed: 00d 00h 15m | Losses/train_all_loss: 3.34e-01 (3.34e-01)
+INFO 2026-01-12 01:25:08,650 train_utils.py: 271: Train Epoch: [12][10/11] | Batch Time: 3.98 (8.92) | Data Time: 3.66 (8.23) | Mem (GB): 3.00 (2.64/3.00) | Time Elapsed: 00d 00h 17m | Losses/train_all_loss: 4.02e-01 (3.49e+00)
+INFO 2026-01-12 01:25:08,667 trainer.py: 883: Synchronizing meters
+INFO 2026-01-12 01:25:08,668 trainer.py: 821: ✅ Epoch 12 Fin. | Stage: UNKNOWN | Loss: 3.4904
+INFO 2026-01-12 01:25:09,542 trainer.py: 716: 🚀 [Epoch 13] Current Curriculum Stage: UNKNOWN
+INFO 2026-01-12 01:25:17,158 train_utils.py: 271: Train Epoch: [13][ 0/11] | Batch Time: 7.61 (7.61) | Data Time: 6.44 (6.44) | Mem (GB): 3.00 (3.00/3.00) | Time Elapsed: 00d 00h 17m | Losses/train_all_loss: 7.59e+00 (7.59e+00)
+INFO 2026-01-12 01:27:45,130 train_utils.py: 271: Train Epoch: [13][10/11] | Batch Time: 4.07 (14.14) | Data Time: 3.05 (13.52) | Mem (GB): 3.00 (2.64/3.00) | Time Elapsed: 00d 00h 19m | Losses/train_all_loss: 7.69e+00 (3.93e+00)
+INFO 2026-01-12 01:27:45,146 trainer.py: 883: Synchronizing meters
+INFO 2026-01-12 01:27:45,147 trainer.py: 821: ✅ Epoch 13 Fin. | Stage: UNKNOWN | Loss: 3.9342
+INFO 2026-01-12 01:27:46,106 trainer.py: 716: 🚀 [Epoch 14] Current Curriculum Stage: UNKNOWN
+INFO 2026-01-12 01:27:49,627 train_utils.py: 271: Train Epoch: [14][ 0/11] | Batch Time: 3.52 (3.52) | Data Time: 2.90 (2.90) | Mem (GB): 3.00 (3.00/3.00) | Time Elapsed: 00d 00h 20m | Losses/train_all_loss: 9.02e-01 (9.02e-01)
+INFO 2026-01-12 01:29:21,618 train_utils.py: 271: Train Epoch: [14][10/11] | Batch Time: 4.17 (8.68) | Data Time: 3.82 (8.09) | Mem (GB): 3.00 (2.73/3.00) | Time Elapsed: 00d 00h 21m | Losses/train_all_loss: 1.86e+00 (2.58e+00)
+INFO 2026-01-12 01:29:21,647 trainer.py: 883: Synchronizing meters
+INFO 2026-01-12 01:29:21,647 trainer.py: 821: ✅ Epoch 14 Fin. | Stage: UNKNOWN | Loss: 2.5812
+INFO 2026-01-12 01:29:22,635 trainer.py: 716: 🚀 [Epoch 15] Current Curriculum Stage: UNKNOWN
+INFO 2026-01-12 01:29:25,397 train_utils.py: 271: Train Epoch: [15][ 0/11] | Batch Time: 2.76 (2.76) | Data Time: 2.13 (2.13) | Mem (GB): 3.00 (3.00/3.00) | Time Elapsed: 00d 00h 21m | Losses/train_all_loss: 9.13e-01 (9.13e-01)
+INFO 2026-01-12 01:31:58,746 train_utils.py: 271: Train Epoch: [15][10/11] | Batch Time: 2.03 (14.19) | Data Time: 1.71 (13.48) | Mem (GB): 3.00 (2.55/3.00) | Time Elapsed: 00d 00h 24m | Losses/train_all_loss: 3.38e-01 (3.64e+00)
+INFO 2026-01-12 01:31:58,759 trainer.py: 883: Synchronizing meters
+INFO 2026-01-12 01:31:58,760 trainer.py: 821: ✅ Epoch 15 Fin. | Stage: UNKNOWN | Loss: 3.6433
+INFO 2026-01-12 01:31:59,645 trainer.py: 716: 🚀 [Epoch 16] Current Curriculum Stage: UNKNOWN
+INFO 2026-01-12 01:32:01,914 train_utils.py: 271: Train Epoch: [16][ 0/11] | Batch Time: 2.27 (2.27) | Data Time: 1.66 (1.66) | Mem (GB): 3.00 (3.00/3.00) | Time Elapsed: 00d 00h 24m | Losses/train_all_loss: 9.44e-01 (9.44e-01)
+INFO 2026-01-12 01:33:22,870 train_utils.py: 271: Train Epoch: [16][10/11] | Batch Time: 2.80 (7.57) | Data Time: 2.07 (7.09) | Mem (GB): 3.00 (2.91/3.00) | Time Elapsed: 00d 00h 25m | Losses/train_all_loss: 5.54e+00 (2.59e+00)
+INFO 2026-01-12 01:33:22,883 trainer.py: 883: Synchronizing meters
+INFO 2026-01-12 01:33:22,884 trainer.py: 821: ✅ Epoch 16 Fin. | Stage: UNKNOWN | Loss: 2.5855
+INFO 2026-01-12 01:33:23,823 trainer.py: 716: 🚀 [Epoch 17] Current Curriculum Stage: UNKNOWN
+INFO 2026-01-12 01:33:28,277 train_utils.py: 271: Train Epoch: [17][ 0/11] | Batch Time: 4.45 (4.45) | Data Time: 3.86 (3.86) | Mem (GB): 3.00 (3.00/3.00) | Time Elapsed: 00d 00h 25m | Losses/train_all_loss: 4.22e-01 (4.22e-01)
+INFO 2026-01-12 01:34:52,800 train_utils.py: 271: Train Epoch: [17][10/11] | Batch Time: 4.22 (8.09) | Data Time: 3.22 (7.32) | Mem (GB): 3.00 (2.64/3.00) | Time Elapsed: 00d 00h 27m | Losses/train_all_loss: 6.16e+00 (4.54e+00)
+INFO 2026-01-12 01:34:52,801 trainer.py: 883: Synchronizing meters
+INFO 2026-01-12 01:34:52,801 trainer.py: 821: ✅ Epoch 17 Fin. | Stage: UNKNOWN | Loss: 4.5390
+INFO 2026-01-12 01:34:53,631 trainer.py: 716: 🚀 [Epoch 18] Current Curriculum Stage: UNKNOWN
+INFO 2026-01-12 01:35:55,867 train_utils.py: 271: Train Epoch: [18][ 0/11] | Batch Time: 62.23 (62.23) | Data Time: 60.69 (60.69) | Mem (GB): 2.00 (2.00/2.00) | Time Elapsed: 00d 00h 28m | Losses/train_all_loss: 4.92e+00 (4.92e+00)
+INFO 2026-01-12 01:36:35,271 train_utils.py: 271: Train Epoch: [18][10/11] | Batch Time: 4.66 (9.24) | Data Time: 3.72 (8.54) | Mem (GB): 2.00 (2.64/3.00) | Time Elapsed: 00d 00h 28m | Losses/train_all_loss: 7.49e+00 (3.61e+00)
+INFO 2026-01-12 01:36:35,272 trainer.py: 883: Synchronizing meters
+INFO 2026-01-12 01:36:35,272 trainer.py: 821: ✅ Epoch 18 Fin. | Stage: UNKNOWN | Loss: 3.6139
+INFO 2026-01-12 01:36:36,299 trainer.py: 716: 🚀 [Epoch 19] Current Curriculum Stage: UNKNOWN
+INFO 2026-01-12 01:37:16,798 train_utils.py: 271: Train Epoch: [19][ 0/11] | Batch Time: 40.49 (40.49) | Data Time: 39.90 (39.90) | Mem (GB): 2.00 (2.00/2.00) | Time Elapsed: 00d 00h 29m | Losses/train_all_loss: 2.78e-01 (2.78e-01)
+INFO 2026-01-12 01:37:59,677 train_utils.py: 271: Train Epoch: [19][10/11] | Batch Time: 2.30 (7.58) | Data Time: 1.97 (7.02) | Mem (GB): 3.00 (2.64/3.00) | Time Elapsed: 00d 00h 30m | Losses/train_all_loss: 1.10e+00 (2.93e+00)
+INFO 2026-01-12 01:37:59,678 trainer.py: 883: Synchronizing meters
+INFO 2026-01-12 01:37:59,678 trainer.py: 821: ✅ Epoch 19 Fin. | Stage: UNKNOWN | Loss: 2.9283
+INFO 2026-01-12 01:38:01,303 trainer.py: 716: 🚀 [Epoch 20] Current Curriculum Stage: UNKNOWN
+INFO 2026-01-12 01:38:24,389 train_utils.py: 271: Train Epoch: [20][ 0/11] | Batch Time: 23.08 (23.08) | Data Time: 22.48 (22.48) | Mem (GB): 3.00 (3.00/3.00) | Time Elapsed: 00d 00h 30m | Losses/train_all_loss: 6.25e-01 (6.25e-01)
+INFO 2026-01-12 01:40:46,470 train_utils.py: 271: Train Epoch: [20][10/11] | Batch Time: 3.69 (15.02) | Data Time: 3.35 (14.43) | Mem (GB): 2.00 (2.64/3.00) | Time Elapsed: 00d 00h 32m | Losses/train_all_loss: 2.61e-01 (3.44e+00)
+INFO 2026-01-12 01:40:46,479 trainer.py: 883: Synchronizing meters
+INFO 2026-01-12 01:40:46,480 trainer.py: 821: ✅ Epoch 20 Fin. | Stage: UNKNOWN | Loss: 3.4410
+INFO 2026-01-12 01:40:47,409 trainer.py: 716: 🚀 [Epoch 21] Current Curriculum Stage: UNKNOWN
+INFO 2026-01-12 01:40:49,545 train_utils.py: 271: Train Epoch: [21][ 0/11] | Batch Time: 2.13 (2.13) | Data Time: 1.62 (1.62) | Mem (GB): 2.00 (2.00/2.00) | Time Elapsed: 00d 00h 33m | Losses/train_all_loss: 2.72e-01 (2.72e-01)
+INFO 2026-01-12 01:42:25,365 train_utils.py: 271: Train Epoch: [21][10/11] | Batch Time: 2.24 (8.90) | Data Time: 1.91 (8.30) | Mem (GB): 3.00 (2.55/3.00) | Time Elapsed: 00d 00h 34m | Losses/train_all_loss: 9.95e-01 (3.43e+00)
+INFO 2026-01-12 01:42:25,365 trainer.py: 883: Synchronizing meters
+INFO 2026-01-12 01:42:25,366 trainer.py: 821: ✅ Epoch 21 Fin. | Stage: UNKNOWN | Loss: 3.4327
+INFO 2026-01-12 01:42:26,272 trainer.py: 716: 🚀 [Epoch 22] Current Curriculum Stage: UNKNOWN
+INFO 2026-01-12 01:43:06,370 train_utils.py: 271: Train Epoch: [22][ 0/11] | Batch Time: 40.09 (40.09) | Data Time: 39.42 (39.42) | Mem (GB): 2.00 (2.00/2.00) | Time Elapsed: 00d 00h 35m | Losses/train_all_loss: 4.10e-01 (4.10e-01)
+INFO 2026-01-12 01:45:17,120 train_utils.py: 271: Train Epoch: [22][10/11] | Batch Time: 80.58 (15.53) | Data Time: 79.68 (14.76) | Mem (GB): 3.00 (2.55/3.00) | Time Elapsed: 00d 00h 37m | Losses/train_all_loss: 5.09e+00 (4.95e+00)
+INFO 2026-01-12 01:45:17,134 trainer.py: 883: Synchronizing meters
+INFO 2026-01-12 01:45:17,134 trainer.py: 821: ✅ Epoch 22 Fin. | Stage: UNKNOWN | Loss: 4.9491
+INFO 2026-01-12 01:45:17,966 trainer.py: 716: 🚀 [Epoch 23] Current Curriculum Stage: UNKNOWN
+INFO 2026-01-12 01:45:29,242 train_utils.py: 271: Train Epoch: [23][ 0/11] | Batch Time: 11.27 (11.27) | Data Time: 10.44 (10.44) | Mem (GB): 3.00 (3.00/3.00) | Time Elapsed: 00d 00h 37m | Losses/train_all_loss: 3.92e+00 (3.92e+00)
+INFO 2026-01-12 01:46:30,587 train_utils.py: 271: Train Epoch: [23][10/11] | Batch Time: 1.82 (6.60) | Data Time: 1.54 (6.10) | Mem (GB): 3.00 (3.00/3.00) | Time Elapsed: 00d 00h 38m | Losses/train_all_loss: 4.71e-01 (2.67e+00)
+INFO 2026-01-12 01:46:30,604 trainer.py: 883: Synchronizing meters
+INFO 2026-01-12 01:46:30,604 trainer.py: 821: ✅ Epoch 23 Fin. | Stage: UNKNOWN | Loss: 2.6717
+INFO 2026-01-12 01:46:31,460 trainer.py: 716: 🚀 [Epoch 24] Current Curriculum Stage: UNKNOWN
+INFO 2026-01-12 01:46:34,037 train_utils.py: 271: Train Epoch: [24][ 0/11] | Batch Time: 2.58 (2.58) | Data Time: 1.86 (1.86) | Mem (GB): 3.00 (3.00/3.00) | Time Elapsed: 00d 00h 38m | Losses/train_all_loss: 4.62e-01 (4.62e-01)
+INFO 2026-01-12 01:47:54,249 train_utils.py: 271: Train Epoch: [24][10/11] | Batch Time: 21.35 (7.53) | Data Time: 20.43 (6.96) | Mem (GB): 3.00 (2.55/3.00) | Time Elapsed: 00d 00h 40m | Losses/train_all_loss: 5.24e+00 (1.98e+00)
+INFO 2026-01-12 01:47:54,270 trainer.py: 883: Synchronizing meters
+INFO 2026-01-12 01:47:54,270 trainer.py: 821: ✅ Epoch 24 Fin. | Stage: UNKNOWN | Loss: 1.9821
+INFO 2026-01-12 01:47:55,200 trainer.py: 716: 🚀 [Epoch 25] Current Curriculum Stage: UNKNOWN
+INFO 2026-01-12 01:48:00,296 train_utils.py: 271: Train Epoch: [25][ 0/11] | Batch Time: 5.09 (5.09) | Data Time: 3.95 (3.95) | Mem (GB): 2.00 (2.00/2.00) | Time Elapsed: 00d 00h 40m | Losses/train_all_loss: 1.28e+00 (1.28e+00)
+INFO 2026-01-12 01:50:13,711 train_utils.py: 271: Train Epoch: [25][10/11] | Batch Time: 26.44 (12.59) | Data Time: 25.78 (11.97) | Mem (GB): 2.00 (2.55/3.00) | Time Elapsed: 00d 00h 42m | Losses/train_all_loss: 2.78e+00 (2.37e+00)
+INFO 2026-01-12 01:50:13,728 trainer.py: 883: Synchronizing meters
+INFO 2026-01-12 01:50:13,728 trainer.py: 821: ✅ Epoch 25 Fin. | Stage: UNKNOWN | Loss: 2.3662
+INFO 2026-01-12 01:50:14,480 trainer.py: 716: 🚀 [Epoch 26] Current Curriculum Stage: UNKNOWN
+INFO 2026-01-12 01:50:55,318 train_utils.py: 271: Train Epoch: [26][ 0/11] | Batch Time: 40.84 (40.84) | Data Time: 39.89 (39.89) | Mem (GB): 2.00 (2.00/2.00) | Time Elapsed: 00d 00h 43m | Losses/train_all_loss: 1.66e+00 (1.66e+00)
+INFO 2026-01-12 01:53:50,419 train_utils.py: 271: Train Epoch: [26][10/11] | Batch Time: 3.08 (19.63) | Data Time: 2.76 (18.75) | Mem (GB): 3.00 (2.73/3.00) | Time Elapsed: 00d 00h 46m | Losses/train_all_loss: 5.74e-01 (4.05e+00)
+INFO 2026-01-12 01:53:50,440 trainer.py: 883: Synchronizing meters
+INFO 2026-01-12 01:53:50,440 trainer.py: 821: ✅ Epoch 26 Fin. | Stage: UNKNOWN | Loss: 4.0488
+INFO 2026-01-12 01:53:51,359 trainer.py: 716: 🚀 [Epoch 27] Current Curriculum Stage: UNKNOWN
+INFO 2026-01-12 01:53:55,609 train_utils.py: 271: Train Epoch: [27][ 0/11] | Batch Time: 4.25 (4.25) | Data Time: 3.70 (3.70) | Mem (GB): 2.00 (2.00/2.00) | Time Elapsed: 00d 00h 46m | Losses/train_all_loss: 2.33e-01 (2.33e-01)
+INFO 2026-01-12 01:55:18,516 train_utils.py: 271: Train Epoch: [27][10/11] | Batch Time: 9.32 (7.92) | Data Time: 8.05 (7.25) | Mem (GB): 2.00 (2.64/3.00) | Time Elapsed: 00d 00h 47m | Losses/train_all_loss: 3.70e+00 (2.56e+00)
+INFO 2026-01-12 01:55:18,516 trainer.py: 883: Synchronizing meters
+INFO 2026-01-12 01:55:18,517 trainer.py: 821: ✅ Epoch 27 Fin. | Stage: UNKNOWN | Loss: 2.5588
+INFO 2026-01-12 01:55:19,404 trainer.py: 716: 🚀 [Epoch 28] Current Curriculum Stage: UNKNOWN
+INFO 2026-01-12 01:55:28,028 train_utils.py: 271: Train Epoch: [28][ 0/11] | Batch Time: 8.62 (8.62) | Data Time: 8.08 (8.08) | Mem (GB): 2.00 (2.00/2.00) | Time Elapsed: 00d 00h 47m | Losses/train_all_loss: 1.32e-01 (1.32e-01)
+INFO 2026-01-12 01:56:39,639 train_utils.py: 271: Train Epoch: [28][10/11] | Batch Time: 7.85 (7.29) | Data Time: 7.47 (6.77) | Mem (GB): 2.00 (2.73/3.00) | Time Elapsed: 00d 00h 48m | Losses/train_all_loss: 5.88e-01 (2.80e+00)
+INFO 2026-01-12 01:56:39,656 trainer.py: 883: Synchronizing meters
+INFO 2026-01-12 01:56:39,656 trainer.py: 821: ✅ Epoch 28 Fin. | Stage: UNKNOWN | Loss: 2.8017
+INFO 2026-01-12 01:56:40,554 trainer.py: 716: 🚀 [Epoch 29] Current Curriculum Stage: UNKNOWN
+INFO 2026-01-12 01:56:44,175 train_utils.py: 271: Train Epoch: [29][ 0/11] | Batch Time: 3.62 (3.62) | Data Time: 3.03 (3.03) | Mem (GB): 3.00 (3.00/3.00) | Time Elapsed: 00d 00h 48m | Losses/train_all_loss: 4.72e-01 (4.72e-01)
+INFO 2026-01-12 01:57:57,067 train_utils.py: 271: Train Epoch: [29][10/11] | Batch Time: 2.26 (6.96) | Data Time: 1.89 (6.55) | Mem (GB): 3.00 (2.82/3.00) | Time Elapsed: 00d 00h 50m | Losses/train_all_loss: 4.84e-01 (1.52e+00)
+INFO 2026-01-12 01:57:57,068 trainer.py: 883: Synchronizing meters
+INFO 2026-01-12 01:57:57,069 trainer.py: 821: ✅ Epoch 29 Fin. | Stage: UNKNOWN | Loss: 1.5239
+INFO 2026-01-12 01:57:58,730 trainer.py: 716: 🚀 [Epoch 30] Current Curriculum Stage: UNKNOWN
+INFO 2026-01-12 01:58:14,040 train_utils.py: 271: Train Epoch: [30][ 0/11] | Batch Time: 15.31 (15.31) | Data Time: 14.71 (14.71) | Mem (GB): 2.00 (2.00/2.00) | Time Elapsed: 00d 00h 50m | Losses/train_all_loss: 2.08e+01 (2.08e+01)
+INFO 2026-01-12 02:00:10,737 train_utils.py: 271: Train Epoch: [30][10/11] | Batch Time: 2.20 (12.00) | Data Time: 1.88 (11.42) | Mem (GB): 2.00 (2.45/3.00) | Time Elapsed: 00d 00h 52m | Losses/train_all_loss: 1.58e-01 (4.43e+00)
+INFO 2026-01-12 02:00:10,759 trainer.py: 883: Synchronizing meters
+INFO 2026-01-12 02:00:10,759 trainer.py: 821: ✅ Epoch 30 Fin. | Stage: UNKNOWN | Loss: 4.4310
+INFO 2026-01-12 02:00:11,736 trainer.py: 716: 🚀 [Epoch 31] Current Curriculum Stage: UNKNOWN
+INFO 2026-01-12 02:00:16,005 train_utils.py: 271: Train Epoch: [31][ 0/11] | Batch Time: 4.27 (4.27) | Data Time: 3.04 (3.04) | Mem (GB): 2.00 (2.00/2.00) | Time Elapsed: 00d 00h 52m | Losses/train_all_loss: 7.35e+00 (7.35e+00)
+INFO 2026-01-12 02:02:03,188 train_utils.py: 271: Train Epoch: [31][10/11] | Batch Time: 13.01 (10.13) | Data Time: 12.14 (9.41) | Mem (GB): 2.00 (2.36/3.00) | Time Elapsed: 00d 00h 54m | Losses/train_all_loss: 5.03e+00 (3.47e+00)
+INFO 2026-01-12 02:02:03,188 trainer.py: 883: Synchronizing meters
+INFO 2026-01-12 02:02:03,188 trainer.py: 821: ✅ Epoch 31 Fin. | Stage: UNKNOWN | Loss: 3.4746
+INFO 2026-01-12 02:02:04,256 trainer.py: 716: 🚀 [Epoch 32] Current Curriculum Stage: UNKNOWN
+INFO 2026-01-12 02:02:07,128 train_utils.py: 271: Train Epoch: [32][ 0/11] | Batch Time: 2.87 (2.87) | Data Time: 1.55 (1.55) | Mem (GB): 2.00 (2.00/2.00) | Time Elapsed: 00d 00h 54m | Losses/train_all_loss: 2.95e+00 (2.95e+00)
+INFO 2026-01-12 02:03:27,377 train_utils.py: 271: Train Epoch: [32][10/11] | Batch Time: 4.55 (7.56) | Data Time: 3.56 (6.98) | Mem (GB): 3.00 (2.64/3.00) | Time Elapsed: 00d 00h 55m | Losses/train_all_loss: 3.99e+00 (1.59e+00)
+INFO 2026-01-12 02:03:27,392 trainer.py: 883: Synchronizing meters
+INFO 2026-01-12 02:03:27,392 trainer.py: 821: ✅ Epoch 32 Fin. | Stage: UNKNOWN | Loss: 1.5939
+INFO 2026-01-12 02:03:28,241 trainer.py: 716: 🚀 [Epoch 33] Current Curriculum Stage: UNKNOWN
+INFO 2026-01-12 02:03:30,458 train_utils.py: 271: Train Epoch: [33][ 0/11] | Batch Time: 2.21 (2.21) | Data Time: 1.57 (1.57) | Mem (GB): 3.00 (3.00/3.00) | Time Elapsed: 00d 00h 55m | Losses/train_all_loss: 4.43e-01 (4.43e-01)
+INFO 2026-01-12 02:04:40,862 train_utils.py: 271: Train Epoch: [33][10/11] | Batch Time: 4.19 (6.60) | Data Time: 3.91 (6.04) | Mem (GB): 3.00 (2.73/3.00) | Time Elapsed: 00d 00h 56m | Losses/train_all_loss: 6.65e-01 (2.25e+00)
+INFO 2026-01-12 02:04:40,862 trainer.py: 883: Synchronizing meters
+INFO 2026-01-12 02:04:40,862 trainer.py: 821: ✅ Epoch 33 Fin. | Stage: UNKNOWN | Loss: 2.2502
+INFO 2026-01-12 02:04:41,706 trainer.py: 716: 🚀 [Epoch 34] Current Curriculum Stage: UNKNOWN
+INFO 2026-01-12 02:04:46,727 train_utils.py: 271: Train Epoch: [34][ 0/11] | Batch Time: 5.02 (5.02) | Data Time: 3.77 (3.77) | Mem (GB): 3.00 (3.00/3.00) | Time Elapsed: 00d 00h 56m | Losses/train_all_loss: 6.77e+00 (6.77e+00)
+INFO 2026-01-12 02:07:34,240 train_utils.py: 271: Train Epoch: [34][10/11] | Batch Time: 4.91 (15.68) | Data Time: 4.00 (15.11) | Mem (GB): 2.00 (2.64/3.00) | Time Elapsed: 00d 00h 59m | Losses/train_all_loss: 6.28e+00 (2.72e+00)
+INFO 2026-01-12 02:07:34,260 trainer.py: 883: Synchronizing meters
+INFO 2026-01-12 02:07:34,260 trainer.py: 821: ✅ Epoch 34 Fin. | Stage: UNKNOWN | Loss: 2.7172
+INFO 2026-01-12 02:07:35,227 trainer.py: 716: 🚀 [Epoch 35] Current Curriculum Stage: UNKNOWN
+INFO 2026-01-12 02:07:40,406 train_utils.py: 271: Train Epoch: [35][ 0/11] | Batch Time: 5.18 (5.18) | Data Time: 4.64 (4.64) | Mem (GB): 2.00 (2.00/2.00) | Time Elapsed: 00d 00h 59m | Losses/train_all_loss: 1.99e-01 (1.99e-01)
+INFO 2026-01-12 02:08:49,164 train_utils.py: 271: Train Epoch: [35][10/11] | Batch Time: 25.62 (6.72) | Data Time: 25.29 (6.16) | Mem (GB): 3.00 (2.45/3.00) | Time Elapsed: 00d 01h 01m | Losses/train_all_loss: 6.77e-01 (2.27e+00)
+INFO 2026-01-12 02:08:49,187 trainer.py: 883: Synchronizing meters
+INFO 2026-01-12 02:08:49,188 trainer.py: 821: ✅ Epoch 35 Fin. | Stage: UNKNOWN | Loss: 2.2688
+INFO 2026-01-12 02:08:50,121 trainer.py: 716: 🚀 [Epoch 36] Current Curriculum Stage: UNKNOWN
+INFO 2026-01-12 02:08:53,959 train_utils.py: 271: Train Epoch: [36][ 0/11] | Batch Time: 3.84 (3.84) | Data Time: 3.32 (3.32) | Mem (GB): 2.00 (2.00/2.00) | Time Elapsed: 00d 01h 01m | Losses/train_all_loss: 1.10e-01 (1.10e-01)
+INFO 2026-01-12 02:10:22,727 train_utils.py: 271: Train Epoch: [36][10/11] | Batch Time: 2.37 (8.42) | Data Time: 1.51 (7.73) | Mem (GB): 2.00 (2.45/3.00) | Time Elapsed: 00d 01h 02m | Losses/train_all_loss: 1.49e+00 (2.69e+00)
+INFO 2026-01-12 02:10:22,727 trainer.py: 883: Synchronizing meters
+INFO 2026-01-12 02:10:22,728 trainer.py: 821: ✅ Epoch 36 Fin. | Stage: UNKNOWN | Loss: 2.6933
+INFO 2026-01-12 02:10:23,629 trainer.py: 716: 🚀 [Epoch 37] Current Curriculum Stage: UNKNOWN
+INFO 2026-01-12 02:10:26,352 train_utils.py: 271: Train Epoch: [37][ 0/11] | Batch Time: 2.72 (2.72) | Data Time: 2.09 (2.09) | Mem (GB): 3.00 (3.00/3.00) | Time Elapsed: 00d 01h 02m | Losses/train_all_loss: 5.34e-01 (5.34e-01)
+INFO 2026-01-12 02:11:23,413 train_utils.py: 271: Train Epoch: [37][10/11] | Batch Time: 2.86 (5.43) | Data Time: 2.15 (4.84) | Mem (GB): 3.00 (2.82/3.00) | Time Elapsed: 00d 01h 03m | Losses/train_all_loss: 4.80e+00 (2.13e+00)
+INFO 2026-01-12 02:11:23,433 trainer.py: 883: Synchronizing meters
+INFO 2026-01-12 02:11:23,433 trainer.py: 821: ✅ Epoch 37 Fin. | Stage: UNKNOWN | Loss: 2.1335
+INFO 2026-01-12 02:11:24,393 trainer.py: 716: 🚀 [Epoch 38] Current Curriculum Stage: UNKNOWN
+INFO 2026-01-12 02:11:28,672 train_utils.py: 271: Train Epoch: [38][ 0/11] | Batch Time: 4.28 (4.28) | Data Time: 3.75 (3.75) | Mem (GB): 2.00 (2.00/2.00) | Time Elapsed: 00d 01h 03m | Losses/train_all_loss: 3.88e-01 (3.88e-01)
+INFO 2026-01-12 02:12:11,912 train_utils.py: 271: Train Epoch: [38][10/11] | Batch Time: 3.64 (4.32) | Data Time: 3.38 (3.87) | Mem (GB): 2.00 (2.64/3.00) | Time Elapsed: 00d 01h 04m | Losses/train_all_loss: 1.69e-01 (1.18e+00)
+INFO 2026-01-12 02:12:11,912 trainer.py: 883: Synchronizing meters
+INFO 2026-01-12 02:12:11,912 trainer.py: 821: ✅ Epoch 38 Fin. | Stage: UNKNOWN | Loss: 1.1808
+INFO 2026-01-12 02:12:12,776 trainer.py: 716: 🚀 [Epoch 39] Current Curriculum Stage: UNKNOWN
+INFO 2026-01-12 02:12:40,425 train_utils.py: 271: Train Epoch: [39][ 0/11] | Batch Time: 27.65 (27.65) | Data Time: 27.10 (27.10) | Mem (GB): 3.00 (3.00/3.00) | Time Elapsed: 00d 01h 04m | Losses/train_all_loss: 3.95e-01 (3.95e-01)
+INFO 2026-01-12 02:13:54,720 train_utils.py: 271: Train Epoch: [39][10/11] | Batch Time: 2.56 (9.27) | Data Time: 1.96 (8.47) | Mem (GB): 3.00 (2.55/3.00) | Time Elapsed: 00d 01h 06m | Losses/train_all_loss: 4.01e+00 (2.41e+01)
+INFO 2026-01-12 02:13:54,720 trainer.py: 883: Synchronizing meters
+INFO 2026-01-12 02:13:54,720 trainer.py: 821: ✅ Epoch 39 Fin. | Stage: UNKNOWN | Loss: 24.1377
+INFO 2026-01-12 02:13:56,243 trainer.py: 716: 🚀 [Epoch 40] Current Curriculum Stage: UNKNOWN
+INFO 2026-01-12 02:13:58,987 train_utils.py: 271: Train Epoch: [40][ 0/11] | Batch Time: 2.74 (2.74) | Data Time: 1.61 (1.61) | Mem (GB): 3.00 (3.00/3.00) | Time Elapsed: 00d 01h 06m | Losses/train_all_loss: 6.33e+00 (6.33e+00)
+INFO 2026-01-12 02:16:46,258 train_utils.py: 271: Train Epoch: [40][10/11] | Batch Time: 38.30 (15.46) | Data Time: 37.36 (14.64) | Mem (GB): 3.00 (2.91/3.00) | Time Elapsed: 00d 01h 08m | Losses/train_all_loss: 5.22e+00 (4.15e+00)
+INFO 2026-01-12 02:16:46,259 trainer.py: 883: Synchronizing meters
+INFO 2026-01-12 02:16:46,259 trainer.py: 821: ✅ Epoch 40 Fin. | Stage: UNKNOWN | Loss: 4.1503
+INFO 2026-01-12 02:16:47,120 trainer.py: 716: 🚀 [Epoch 41] Current Curriculum Stage: UNKNOWN
+INFO 2026-01-12 02:17:26,813 train_utils.py: 271: Train Epoch: [41][ 0/11] | Batch Time: 39.69 (39.69) | Data Time: 39.09 (39.09) | Mem (GB): 3.00 (3.00/3.00) | Time Elapsed: 00d 01h 09m | Losses/train_all_loss: 2.98e-01 (2.98e-01)
+INFO 2026-01-12 02:18:57,902 train_utils.py: 271: Train Epoch: [41][10/11] | Batch Time: 1.75 (11.89) | Data Time: 1.48 (11.39) | Mem (GB): 2.00 (2.64/3.00) | Time Elapsed: 00d 01h 11m | Losses/train_all_loss: 2.39e-01 (1.30e+00)
+INFO 2026-01-12 02:18:57,903 trainer.py: 883: Synchronizing meters
+INFO 2026-01-12 02:18:57,903 trainer.py: 821: ✅ Epoch 41 Fin. | Stage: UNKNOWN | Loss: 1.2998
+INFO 2026-01-12 02:18:58,760 trainer.py: 716: 🚀 [Epoch 42] Current Curriculum Stage: UNKNOWN
+INFO 2026-01-12 02:20:02,933 train_utils.py: 271: Train Epoch: [42][ 0/11] | Batch Time: 64.17 (64.17) | Data Time: 62.89 (62.89) | Mem (GB): 2.00 (2.00/2.00) | Time Elapsed: 00d 01h 12m | Losses/train_all_loss: 5.84e+00 (5.84e+00)
+INFO 2026-01-12 02:21:34,094 train_utils.py: 271: Train Epoch: [42][10/11] | Batch Time: 3.47 (14.12) | Data Time: 2.55 (13.33) | Mem (GB): 3.00 (2.55/3.00) | Time Elapsed: 00d 01h 13m | Losses/train_all_loss: 8.10e+00 (3.68e+00)
+INFO 2026-01-12 02:21:34,094 trainer.py: 883: Synchronizing meters
+INFO 2026-01-12 02:21:34,095 trainer.py: 821: ✅ Epoch 42 Fin. | Stage: UNKNOWN | Loss: 3.6844
+INFO 2026-01-12 02:21:34,879 trainer.py: 716: 🚀 [Epoch 43] Current Curriculum Stage: UNKNOWN
+INFO 2026-01-12 02:21:38,825 train_utils.py: 271: Train Epoch: [43][ 0/11] | Batch Time: 3.94 (3.94) | Data Time: 3.42 (3.42) | Mem (GB): 3.00 (3.00/3.00) | Time Elapsed: 00d 01h 13m | Losses/train_all_loss: 4.28e-01 (4.28e-01)
+INFO 2026-01-12 02:23:08,351 train_utils.py: 271: Train Epoch: [43][10/11] | Batch Time: 4.14 (8.50) | Data Time: 3.13 (7.92) | Mem (GB): 3.00 (2.82/3.00) | Time Elapsed: 00d 01h 15m | Losses/train_all_loss: 5.98e+00 (2.23e+00)
+INFO 2026-01-12 02:23:08,373 trainer.py: 883: Synchronizing meters
+INFO 2026-01-12 02:23:08,373 trainer.py: 821: ✅ Epoch 43 Fin. | Stage: UNKNOWN | Loss: 2.2256
+INFO 2026-01-12 02:23:09,233 trainer.py: 716: 🚀 [Epoch 44] Current Curriculum Stage: UNKNOWN
+INFO 2026-01-12 02:23:13,452 train_utils.py: 271: Train Epoch: [44][ 0/11] | Batch Time: 4.22 (4.22) | Data Time: 3.02 (3.02) | Mem (GB): 2.00 (2.00/2.00) | Time Elapsed: 00d 01h 15m | Losses/train_all_loss: 3.39e+00 (3.39e+00)
+INFO 2026-01-12 02:25:40,313 train_utils.py: 271: Train Epoch: [44][10/11] | Batch Time: 6.11 (13.73) | Data Time: 5.82 (13.06) | Mem (GB): 3.00 (2.64/3.00) | Time Elapsed: 00d 01h 17m | Losses/train_all_loss: 4.71e-01 (2.36e+00)
+INFO 2026-01-12 02:25:40,327 trainer.py: 883: Synchronizing meters
+INFO 2026-01-12 02:25:40,327 trainer.py: 821: ✅ Epoch 44 Fin. | Stage: UNKNOWN | Loss: 2.3560
+INFO 2026-01-12 02:25:41,156 trainer.py: 716: 🚀 [Epoch 45] Current Curriculum Stage: UNKNOWN
+INFO 2026-01-12 02:25:44,126 train_utils.py: 271: Train Epoch: [45][ 0/11] | Batch Time: 2.97 (2.97) | Data Time: 2.39 (2.39) | Mem (GB): 3.00 (3.00/3.00) | Time Elapsed: 00d 01h 17m | Losses/train_all_loss: 3.30e-01 (3.30e-01)
+INFO 2026-01-12 02:26:42,461 train_utils.py: 271: Train Epoch: [45][10/11] | Batch Time: 23.39 (5.57) | Data Time: 23.12 (5.06) | Mem (GB): 2.00 (2.64/3.00) | Time Elapsed: 00d 01h 18m | Losses/train_all_loss: 2.28e-01 (1.91e+00)
+INFO 2026-01-12 02:26:42,484 trainer.py: 883: Synchronizing meters
+INFO 2026-01-12 02:26:42,484 trainer.py: 821: ✅ Epoch 45 Fin. | Stage: UNKNOWN | Loss: 1.9082
+INFO 2026-01-12 02:26:43,419 trainer.py: 716: 🚀 [Epoch 46] Current Curriculum Stage: UNKNOWN
+INFO 2026-01-12 02:27:10,479 train_utils.py: 271: Train Epoch: [46][ 0/11] | Batch Time: 27.06 (27.06) | Data Time: 25.83 (25.83) | Mem (GB): 3.00 (3.00/3.00) | Time Elapsed: 00d 01h 19m | Losses/train_all_loss: 5.39e+00 (5.39e+00)
+INFO 2026-01-12 02:28:27,923 train_utils.py: 271: Train Epoch: [46][10/11] | Batch Time: 2.84 (9.50) | Data Time: 2.49 (8.89) | Mem (GB): 3.00 (2.64/3.00) | Time Elapsed: 00d 01h 20m | Losses/train_all_loss: 3.20e-01 (1.90e+00)
+INFO 2026-01-12 02:28:27,923 trainer.py: 883: Synchronizing meters
+INFO 2026-01-12 02:28:27,923 trainer.py: 821: ✅ Epoch 46 Fin. | Stage: UNKNOWN | Loss: 1.9036
+INFO 2026-01-12 02:28:28,821 trainer.py: 716: 🚀 [Epoch 47] Current Curriculum Stage: UNKNOWN
+INFO 2026-01-12 02:30:20,197 train_utils.py: 271: Train Epoch: [47][ 0/11] | Batch Time: 111.37 (111.37) | Data Time: 110.20 (110.20) | Mem (GB): 2.00 (2.00/2.00) | Time Elapsed: 00d 01h 22m | Losses/train_all_loss: 6.23e+00 (6.23e+00)
+INFO 2026-01-12 02:30:58,776 train_utils.py: 271: Train Epoch: [47][10/11] | Batch Time: 3.90 (13.63) | Data Time: 2.83 (13.05) | Mem (GB): 3.00 (2.55/3.00) | Time Elapsed: 00d 01h 23m | Losses/train_all_loss: 4.87e+00 (2.57e+00)
+INFO 2026-01-12 02:30:58,777 trainer.py: 883: Synchronizing meters
+INFO 2026-01-12 02:30:58,777 trainer.py: 821: ✅ Epoch 47 Fin. | Stage: UNKNOWN | Loss: 2.5725
+INFO 2026-01-12 02:30:59,704 trainer.py: 716: 🚀 [Epoch 48] Current Curriculum Stage: UNKNOWN
+INFO 2026-01-12 02:31:55,948 train_utils.py: 271: Train Epoch: [48][ 0/11] | Batch Time: 56.24 (56.24) | Data Time: 54.96 (54.96) | Mem (GB): 2.00 (2.00/2.00) | Time Elapsed: 00d 01h 24m | Losses/train_all_loss: 5.54e+00 (5.54e+00)
+INFO 2026-01-12 02:33:53,023 train_utils.py: 271: Train Epoch: [48][10/11] | Batch Time: 4.56 (15.76) | Data Time: 3.56 (14.96) | Mem (GB): 3.00 (2.73/3.00) | Time Elapsed: 00d 01h 26m | Losses/train_all_loss: 6.79e+00 (3.44e+00)
+INFO 2026-01-12 02:33:53,023 trainer.py: 883: Synchronizing meters
+INFO 2026-01-12 02:33:53,023 trainer.py: 821: ✅ Epoch 48 Fin. | Stage: UNKNOWN | Loss: 3.4371
+INFO 2026-01-12 02:33:53,874 trainer.py: 716: 🚀 [Epoch 49] Current Curriculum Stage: UNKNOWN
+INFO 2026-01-12 02:34:59,257 train_utils.py: 271: Train Epoch: [49][ 0/11] | Batch Time: 65.38 (65.38) | Data Time: 64.00 (64.00) | Mem (GB): 2.00 (2.00/2.00) | Time Elapsed: 00d 01h 27m | Losses/train_all_loss: 4.54e+00 (4.54e+00)
+INFO 2026-01-12 02:36:38,173 train_utils.py: 271: Train Epoch: [49][10/11] | Batch Time: 1.80 (14.94) | Data Time: 1.54 (14.29) | Mem (GB): 2.00 (2.64/3.00) | Time Elapsed: 00d 01h 28m | Losses/train_all_loss: 3.10e-01 (2.80e+00)
+INFO 2026-01-12 02:36:38,188 trainer.py: 883: Synchronizing meters
+INFO 2026-01-12 02:36:38,189 trainer.py: 821: ✅ Epoch 49 Fin. | Stage: UNKNOWN | Loss: 2.7979
+INFO 2026-01-12 02:36:39,682 trainer.py: 716: 🚀 [Epoch 50] Current Curriculum Stage: UNKNOWN
+INFO 2026-01-12 02:36:44,081 train_utils.py: 271: Train Epoch: [50][ 0/11] | Batch Time: 4.40 (4.40) | Data Time: 3.87 (3.87) | Mem (GB): 2.00 (2.00/2.00) | Time Elapsed: 00d 01h 28m | Losses/train_all_loss: 1.59e-01 (1.59e-01)
+INFO 2026-01-12 02:38:31,120 train_utils.py: 271: Train Epoch: [50][10/11] | Batch Time: 52.22 (10.13) | Data Time: 51.23 (9.57) | Mem (GB): 2.00 (2.36/3.00) | Time Elapsed: 00d 01h 30m | Losses/train_all_loss: 4.83e+00 (1.52e+00)
+INFO 2026-01-12 02:38:31,138 trainer.py: 883: Synchronizing meters
+INFO 2026-01-12 02:38:31,138 trainer.py: 821: ✅ Epoch 50 Fin. | Stage: UNKNOWN | Loss: 1.5231
+INFO 2026-01-12 02:38:32,223 trainer.py: 716: 🚀 [Epoch 51] Current Curriculum Stage: UNKNOWN
+INFO 2026-01-12 02:38:37,190 train_utils.py: 271: Train Epoch: [51][ 0/11] | Batch Time: 4.96 (4.96) | Data Time: 3.74 (3.74) | Mem (GB): 3.00 (3.00/3.00) | Time Elapsed: 00d 01h 30m | Losses/train_all_loss: 4.28e+00 (4.28e+00)
+INFO 2026-01-12 02:40:34,145 train_utils.py: 271: Train Epoch: [51][10/11] | Batch Time: 26.19 (11.08) | Data Time: 24.98 (10.30) | Mem (GB): 3.00 (2.73/3.00) | Time Elapsed: 00d 01h 32m | Losses/train_all_loss: 7.65e+00 (3.93e+00)
+INFO 2026-01-12 02:40:34,151 trainer.py: 883: Synchronizing meters
+INFO 2026-01-12 02:40:34,151 trainer.py: 821: ✅ Epoch 51 Fin. | Stage: UNKNOWN | Loss: 3.9289
+INFO 2026-01-12 02:40:34,961 trainer.py: 716: 🚀 [Epoch 52] Current Curriculum Stage: UNKNOWN
+INFO 2026-01-12 02:40:39,359 train_utils.py: 271: Train Epoch: [52][ 0/11] | Batch Time: 4.39 (4.39) | Data Time: 3.77 (3.77) | Mem (GB): 2.00 (2.00/2.00) | Time Elapsed: 00d 01h 32m | Losses/train_all_loss: 4.36e-01 (4.36e-01)
+INFO 2026-01-12 02:42:35,339 train_utils.py: 271: Train Epoch: [52][10/11] | Batch Time: 2.57 (10.94) | Data Time: 1.96 (10.14) | Mem (GB): 2.00 (2.64/3.00) | Time Elapsed: 00d 01h 34m | Losses/train_all_loss: 1.86e+00 (3.50e+00)
+INFO 2026-01-12 02:42:35,355 trainer.py: 883: Synchronizing meters
+INFO 2026-01-12 02:42:35,355 trainer.py: 821: ✅ Epoch 52 Fin. | Stage: UNKNOWN | Loss: 3.5029
+INFO 2026-01-12 02:42:36,224 trainer.py: 716: 🚀 [Epoch 53] Current Curriculum Stage: UNKNOWN
+INFO 2026-01-12 02:42:41,195 train_utils.py: 271: Train Epoch: [53][ 0/11] | Batch Time: 4.97 (4.97) | Data Time: 3.81 (3.81) | Mem (GB): 3.00 (3.00/3.00) | Time Elapsed: 00d 01h 34m | Losses/train_all_loss: 4.65e+00 (4.65e+00)
+INFO 2026-01-12 02:44:28,745 train_utils.py: 271: Train Epoch: [53][10/11] | Batch Time: 4.08 (10.23) | Data Time: 3.74 (9.45) | Mem (GB): 2.00 (2.64/3.00) | Time Elapsed: 00d 01h 36m | Losses/train_all_loss: 4.01e-01 (2.91e+00)
+INFO 2026-01-12 02:44:28,762 trainer.py: 883: Synchronizing meters
+INFO 2026-01-12 02:44:28,762 trainer.py: 821: ✅ Epoch 53 Fin. | Stage: UNKNOWN | Loss: 2.9073
+INFO 2026-01-12 02:44:29,689 trainer.py: 716: 🚀 [Epoch 54] Current Curriculum Stage: UNKNOWN
+INFO 2026-01-12 02:45:07,350 train_utils.py: 271: Train Epoch: [54][ 0/11] | Batch Time: 37.66 (37.66) | Data Time: 37.06 (37.06) | Mem (GB): 2.00 (2.00/2.00) | Time Elapsed: 00d 01h 37m | Losses/train_all_loss: 6.20e-01 (6.20e-01)
+INFO 2026-01-12 02:45:48,059 train_utils.py: 271: Train Epoch: [54][10/11] | Batch Time: 1.81 (7.12) | Data Time: 1.54 (6.48) | Mem (GB): 3.00 (2.55/3.00) | Time Elapsed: 00d 01h 37m | Losses/train_all_loss: 5.78e-01 (2.23e+00)
+INFO 2026-01-12 02:45:48,059 trainer.py: 883: Synchronizing meters
+INFO 2026-01-12 02:45:48,059 trainer.py: 821: ✅ Epoch 54 Fin. | Stage: UNKNOWN | Loss: 2.2259
+INFO 2026-01-12 02:45:49,232 trainer.py: 716: 🚀 [Epoch 55] Current Curriculum Stage: UNKNOWN
+INFO 2026-01-12 02:45:54,369 train_utils.py: 271: Train Epoch: [55][ 0/11] | Batch Time: 5.14 (5.14) | Data Time: 4.00 (4.00) | Mem (GB): 3.00 (3.00/3.00) | Time Elapsed: 00d 01h 38m | Losses/train_all_loss: 4.30e+00 (4.30e+00)
+INFO 2026-01-12 02:46:27,996 train_utils.py: 271: Train Epoch: [55][10/11] | Batch Time: 1.75 (3.52) | Data Time: 1.43 (3.04) | Mem (GB): 2.00 (2.55/3.00) | Time Elapsed: 00d 01h 38m | Losses/train_all_loss: 1.47e-01 (2.04e+00)
+INFO 2026-01-12 02:46:27,997 trainer.py: 883: Synchronizing meters
+INFO 2026-01-12 02:46:27,997 trainer.py: 821: ✅ Epoch 55 Fin. | Stage: UNKNOWN | Loss: 2.0419
+INFO 2026-01-12 02:46:28,899 trainer.py: 716: 🚀 [Epoch 56] Current Curriculum Stage: UNKNOWN
+INFO 2026-01-12 02:46:32,870 train_utils.py: 271: Train Epoch: [56][ 0/11] | Batch Time: 3.97 (3.97) | Data Time: 3.40 (3.40) | Mem (GB): 2.00 (2.00/2.00) | Time Elapsed: 00d 01h 38m | Losses/train_all_loss: 8.49e-01 (8.49e-01)
+INFO 2026-01-12 02:47:17,311 train_utils.py: 271: Train Epoch: [56][10/11] | Batch Time: 15.70 (4.40) | Data Time: 15.39 (3.83) | Mem (GB): 3.00 (2.73/3.00) | Time Elapsed: 00d 01h 39m | Losses/train_all_loss: 2.98e-01 (2.32e+00)
+INFO 2026-01-12 02:47:17,336 trainer.py: 883: Synchronizing meters
+INFO 2026-01-12 02:47:17,336 trainer.py: 821: ✅ Epoch 56 Fin. | Stage: UNKNOWN | Loss: 2.3163
+INFO 2026-01-12 02:47:18,334 trainer.py: 716: 🚀 [Epoch 57] Current Curriculum Stage: UNKNOWN
+INFO 2026-01-12 02:47:21,814 train_utils.py: 271: Train Epoch: [57][ 0/11] | Batch Time: 3.48 (3.48) | Data Time: 2.92 (2.92) | Mem (GB): 2.00 (2.00/2.00) | Time Elapsed: 00d 01h 39m | Losses/train_all_loss: 2.30e+00 (2.30e+00)
+INFO 2026-01-12 02:48:15,763 train_utils.py: 271: Train Epoch: [57][10/11] | Batch Time: 3.22 (5.22) | Data Time: 2.92 (4.52) | Mem (GB): 3.00 (2.55/3.00) | Time Elapsed: 00d 01h 40m | Losses/train_all_loss: 6.48e-01 (2.99e+00)
+INFO 2026-01-12 02:48:15,764 trainer.py: 883: Synchronizing meters
+INFO 2026-01-12 02:48:15,764 trainer.py: 821: ✅ Epoch 57 Fin. | Stage: UNKNOWN | Loss: 2.9899
+INFO 2026-01-12 02:48:16,592 trainer.py: 716: 🚀 [Epoch 58] Current Curriculum Stage: UNKNOWN
+INFO 2026-01-12 02:48:18,707 train_utils.py: 271: Train Epoch: [58][ 0/11] | Batch Time: 2.11 (2.11) | Data Time: 1.57 (1.57) | Mem (GB): 3.00 (3.00/3.00) | Time Elapsed: 00d 01h 40m | Losses/train_all_loss: 2.54e-01 (2.54e-01)
+INFO 2026-01-12 02:48:58,152 train_utils.py: 271: Train Epoch: [58][10/11] | Batch Time: 4.06 (3.78) | Data Time: 3.77 (3.04) | Mem (GB): 3.00 (2.55/3.00) | Time Elapsed: 00d 01h 41m | Losses/train_all_loss: 2.69e-01 (3.39e+00)
+INFO 2026-01-12 02:48:58,153 trainer.py: 883: Synchronizing meters
+INFO 2026-01-12 02:48:58,153 trainer.py: 821: ✅ Epoch 58 Fin. | Stage: UNKNOWN | Loss: 3.3885
+INFO 2026-01-12 02:48:58,969 trainer.py: 716: 🚀 [Epoch 59] Current Curriculum Stage: UNKNOWN
+INFO 2026-01-12 02:49:04,026 train_utils.py: 271: Train Epoch: [59][ 0/11] | Batch Time: 5.06 (5.06) | Data Time: 3.98 (3.98) | Mem (GB): 2.00 (2.00/2.00) | Time Elapsed: 00d 01h 41m | Losses/train_all_loss: 3.18e+00 (3.18e+00)
+INFO 2026-01-12 02:49:39,860 train_utils.py: 271: Train Epoch: [59][10/11] | Batch Time: 3.72 (3.72) | Data Time: 2.83 (3.11) | Mem (GB): 2.00 (2.45/3.00) | Time Elapsed: 00d 01h 41m | Losses/train_all_loss: 3.43e+00 (2.11e+00)
+INFO 2026-01-12 02:49:39,861 trainer.py: 883: Synchronizing meters
+INFO 2026-01-12 02:49:39,861 trainer.py: 821: ✅ Epoch 59 Fin. | Stage: UNKNOWN | Loss: 2.1104
+INFO 2026-01-12 02:49:41,413 trainer.py: 716: 🚀 [Epoch 60] Current Curriculum Stage: UNKNOWN
+INFO 2026-01-12 02:50:33,661 train_utils.py: 271: Train Epoch: [60][ 0/11] | Batch Time: 52.25 (52.25) | Data Time: 51.61 (51.61) | Mem (GB): 3.00 (3.00/3.00) | Time Elapsed: 00d 01h 42m | Losses/train_all_loss: 5.90e-01 (5.90e-01)
+INFO 2026-01-12 02:51:11,947 train_utils.py: 271: Train Epoch: [60][10/11] | Batch Time: 6.88 (8.23) | Data Time: 6.58 (7.68) | Mem (GB): 2.00 (2.45/3.00) | Time Elapsed: 00d 01h 43m | Losses/train_all_loss: 1.61e-01 (2.04e+00)
+INFO 2026-01-12 02:51:11,948 trainer.py: 883: Synchronizing meters
+INFO 2026-01-12 02:51:11,948 trainer.py: 821: ✅ Epoch 60 Fin. | Stage: UNKNOWN | Loss: 2.0406
+INFO 2026-01-12 02:51:12,806 trainer.py: 716: 🚀 [Epoch 61] Current Curriculum Stage: UNKNOWN
+INFO 2026-01-12 02:51:16,183 train_utils.py: 271: Train Epoch: [61][ 0/11] | Batch Time: 3.37 (3.37) | Data Time: 2.89 (2.89) | Mem (GB): 2.00 (2.00/2.00) | Time Elapsed: 00d 01h 43m | Losses/train_all_loss: 2.32e+00 (2.32e+00)
+INFO 2026-01-12 02:51:50,801 train_utils.py: 271: Train Epoch: [61][10/11] | Batch Time: 2.44 (3.45) | Data Time: 1.50 (2.89) | Mem (GB): 3.00 (2.73/3.00) | Time Elapsed: 00d 01h 44m | Losses/train_all_loss: 4.52e+00 (2.15e+00)
+INFO 2026-01-12 02:51:50,802 trainer.py: 883: Synchronizing meters
+INFO 2026-01-12 02:51:50,802 trainer.py: 821: ✅ Epoch 61 Fin. | Stage: UNKNOWN | Loss: 2.1524
+INFO 2026-01-12 02:51:51,616 trainer.py: 716: 🚀 [Epoch 62] Current Curriculum Stage: UNKNOWN
+INFO 2026-01-12 02:51:54,338 train_utils.py: 271: Train Epoch: [62][ 0/11] | Batch Time: 2.72 (2.72) | Data Time: 2.20 (2.20) | Mem (GB): 3.00 (3.00/3.00) | Time Elapsed: 00d 01h 44m | Losses/train_all_loss: 2.04e+00 (2.04e+00)
+INFO 2026-01-12 02:52:33,761 train_utils.py: 271: Train Epoch: [62][10/11] | Batch Time: 2.44 (3.83) | Data Time: 1.68 (3.25) | Mem (GB): 3.00 (2.82/3.00) | Time Elapsed: 00d 01h 44m | Losses/train_all_loss: 2.91e+00 (3.35e+00)
+INFO 2026-01-12 02:52:33,762 trainer.py: 883: Synchronizing meters
+INFO 2026-01-12 02:52:33,762 trainer.py: 821: ✅ Epoch 62 Fin. | Stage: UNKNOWN | Loss: 3.3459
+INFO 2026-01-12 02:52:34,579 trainer.py: 716: 🚀 [Epoch 63] Current Curriculum Stage: UNKNOWN
+INFO 2026-01-12 02:52:36,977 train_utils.py: 271: Train Epoch: [63][ 0/11] | Batch Time: 2.40 (2.40) | Data Time: 1.80 (1.80) | Mem (GB): 3.00 (3.00/3.00) | Time Elapsed: 00d 01h 44m | Losses/train_all_loss: 3.98e-01 (3.98e-01)
+INFO 2026-01-12 02:53:11,398 train_utils.py: 271: Train Epoch: [63][10/11] | Batch Time: 2.31 (3.35) | Data Time: 1.41 (2.81) | Mem (GB): 2.00 (2.82/3.00) | Time Elapsed: 00d 01h 45m | Losses/train_all_loss: 2.26e+00 (2.46e+00)
+INFO 2026-01-12 02:53:11,399 trainer.py: 883: Synchronizing meters
+INFO 2026-01-12 02:53:11,399 trainer.py: 821: ✅ Epoch 63 Fin. | Stage: UNKNOWN | Loss: 2.4578
+INFO 2026-01-12 02:53:12,337 trainer.py: 716: 🚀 [Epoch 64] Current Curriculum Stage: UNKNOWN
+INFO 2026-01-12 02:53:16,094 train_utils.py: 271: Train Epoch: [64][ 0/11] | Batch Time: 3.76 (3.76) | Data Time: 3.23 (3.23) | Mem (GB): 3.00 (3.00/3.00) | Time Elapsed: 00d 01h 45m | Losses/train_all_loss: 1.11e+00 (1.11e+00)
+INFO 2026-01-12 02:53:48,925 train_utils.py: 271: Train Epoch: [64][10/11] | Batch Time: 3.03 (3.33) | Data Time: 2.11 (2.79) | Mem (GB): 3.00 (2.73/3.00) | Time Elapsed: 00d 01h 46m | Losses/train_all_loss: 5.55e+00 (2.15e+00)
+INFO 2026-01-12 02:53:48,926 trainer.py: 883: Synchronizing meters
+INFO 2026-01-12 02:53:48,927 trainer.py: 821: ✅ Epoch 64 Fin. | Stage: UNKNOWN | Loss: 2.1535
+INFO 2026-01-12 02:53:49,794 trainer.py: 716: 🚀 [Epoch 65] Current Curriculum Stage: UNKNOWN
+INFO 2026-01-12 02:53:52,998 train_utils.py: 271: Train Epoch: [65][ 0/11] | Batch Time: 3.20 (3.20) | Data Time: 2.11 (2.11) | Mem (GB): 2.00 (2.00/2.00) | Time Elapsed: 00d 01h 46m | Losses/train_all_loss: 6.30e+00 (6.30e+00)
+INFO 2026-01-12 02:54:28,543 train_utils.py: 271: Train Epoch: [65][10/11] | Batch Time: 3.40 (3.52) | Data Time: 2.76 (2.93) | Mem (GB): 2.00 (2.73/3.00) | Time Elapsed: 00d 01h 46m | Losses/train_all_loss: 4.17e+00 (2.83e+00)
+INFO 2026-01-12 02:54:28,544 trainer.py: 883: Synchronizing meters
+INFO 2026-01-12 02:54:28,544 trainer.py: 821: ✅ Epoch 65 Fin. | Stage: UNKNOWN | Loss: 2.8272
+INFO 2026-01-12 02:54:29,360 trainer.py: 716: 🚀 [Epoch 66] Current Curriculum Stage: UNKNOWN
+INFO 2026-01-12 02:54:32,523 train_utils.py: 271: Train Epoch: [66][ 0/11] | Batch Time: 3.16 (3.16) | Data Time: 2.63 (2.63) | Mem (GB): 2.00 (2.00/2.00) | Time Elapsed: 00d 01h 46m | Losses/train_all_loss: 2.21e-01 (2.21e-01)
+INFO 2026-01-12 02:55:06,227 train_utils.py: 271: Train Epoch: [66][10/11] | Batch Time: 3.00 (3.35) | Data Time: 1.89 (2.71) | Mem (GB): 3.00 (2.55/3.00) | Time Elapsed: 00d 01h 47m | Losses/train_all_loss: 4.26e+00 (2.36e+00)
+INFO 2026-01-12 02:55:06,228 trainer.py: 883: Synchronizing meters
+INFO 2026-01-12 02:55:06,228 trainer.py: 821: ✅ Epoch 66 Fin. | Stage: UNKNOWN | Loss: 2.3644
+INFO 2026-01-12 02:55:07,067 trainer.py: 716: 🚀 [Epoch 67] Current Curriculum Stage: UNKNOWN
+INFO 2026-01-12 02:55:10,300 train_utils.py: 271: Train Epoch: [67][ 0/11] | Batch Time: 3.23 (3.23) | Data Time: 2.63 (2.63) | Mem (GB): 3.00 (3.00/3.00) | Time Elapsed: 00d 01h 47m | Losses/train_all_loss: 5.22e-01 (5.22e-01)
+INFO 2026-01-12 02:55:44,894 train_utils.py: 271: Train Epoch: [67][10/11] | Batch Time: 2.67 (3.44) | Data Time: 1.88 (2.84) | Mem (GB): 3.00 (2.64/3.00) | Time Elapsed: 00d 01h 47m | Losses/train_all_loss: 3.61e+00 (2.50e+00)
+INFO 2026-01-12 02:55:44,894 trainer.py: 883: Synchronizing meters
+INFO 2026-01-12 02:55:44,894 trainer.py: 821: ✅ Epoch 67 Fin. | Stage: UNKNOWN | Loss: 2.4990
+INFO 2026-01-12 02:55:45,883 trainer.py: 716: 🚀 [Epoch 68] Current Curriculum Stage: UNKNOWN
+INFO 2026-01-12 02:55:48,262 train_utils.py: 271: Train Epoch: [68][ 0/11] | Batch Time: 2.38 (2.38) | Data Time: 1.85 (1.85) | Mem (GB): 3.00 (3.00/3.00) | Time Elapsed: 00d 01h 47m | Losses/train_all_loss: 4.51e-01 (4.51e-01)
+INFO 2026-01-12 02:56:23,095 train_utils.py: 271: Train Epoch: [68][10/11] | Batch Time: 3.27 (3.38) | Data Time: 2.93 (2.96) | Mem (GB): 3.00 (2.73/3.00) | Time Elapsed: 00d 01h 48m | Losses/train_all_loss: 5.87e-01 (1.14e+00)
+INFO 2026-01-12 02:56:23,096 trainer.py: 883: Synchronizing meters
+INFO 2026-01-12 02:56:23,096 trainer.py: 821: ✅ Epoch 68 Fin. | Stage: UNKNOWN | Loss: 1.1394
+INFO 2026-01-12 02:56:24,053 trainer.py: 716: 🚀 [Epoch 69] Current Curriculum Stage: UNKNOWN
+INFO 2026-01-12 02:56:26,095 train_utils.py: 271: Train Epoch: [69][ 0/11] | Batch Time: 2.04 (2.04) | Data Time: 1.41 (1.41) | Mem (GB): 2.00 (2.00/2.00) | Time Elapsed: 00d 01h 48m | Losses/train_all_loss: 1.89e-01 (1.89e-01)
+INFO 2026-01-12 02:57:03,084 train_utils.py: 271: Train Epoch: [69][10/11] | Batch Time: 2.00 (3.55) | Data Time: 1.74 (3.00) | Mem (GB): 3.00 (2.64/3.00) | Time Elapsed: 00d 01h 49m | Losses/train_all_loss: 2.65e-01 (1.92e+00)
+INFO 2026-01-12 02:57:03,085 trainer.py: 883: Synchronizing meters
+INFO 2026-01-12 02:57:03,085 trainer.py: 821: ✅ Epoch 69 Fin. | Stage: UNKNOWN | Loss: 1.9186
+INFO 2026-01-12 02:57:04,590 trainer.py: 716: 🚀 [Epoch 70] Current Curriculum Stage: UNKNOWN
+INFO 2026-01-12 02:57:08,349 train_utils.py: 271: Train Epoch: [70][ 0/11] | Batch Time: 3.76 (3.76) | Data Time: 2.56 (2.56) | Mem (GB): 3.00 (3.00/3.00) | Time Elapsed: 00d 01h 49m | Losses/train_all_loss: 4.08e+00 (4.08e+00)
+INFO 2026-01-12 02:57:43,479 train_utils.py: 271: Train Epoch: [70][10/11] | Batch Time: 3.68 (3.54) | Data Time: 2.77 (2.99) | Mem (GB): 3.00 (2.73/3.00) | Time Elapsed: 00d 01h 49m | Losses/train_all_loss: 5.13e+00 (2.26e+00)
+INFO 2026-01-12 02:57:43,479 trainer.py: 883: Synchronizing meters
+INFO 2026-01-12 02:57:43,523 trainer.py: 821: ✅ Epoch 70 Fin. | Stage: UNKNOWN | Loss: 2.2616
+INFO 2026-01-12 02:57:44,353 trainer.py: 716: 🚀 [Epoch 71] Current Curriculum Stage: UNKNOWN
+INFO 2026-01-12 02:57:47,418 train_utils.py: 271: Train Epoch: [71][ 0/11] | Batch Time: 3.06 (3.06) | Data Time: 1.86 (1.86) | Mem (GB): 3.00 (3.00/3.00) | Time Elapsed: 00d 01h 49m | Losses/train_all_loss: 3.05e+00 (3.05e+00)
+INFO 2026-01-12 02:58:21,781 train_utils.py: 271: Train Epoch: [71][10/11] | Batch Time: 3.76 (3.40) | Data Time: 3.46 (2.81) | Mem (GB): 2.00 (2.55/3.00) | Time Elapsed: 00d 01h 50m | Losses/train_all_loss: 8.56e+00 (3.22e+00)
+INFO 2026-01-12 02:58:21,781 trainer.py: 883: Synchronizing meters
+INFO 2026-01-12 02:58:21,781 trainer.py: 821: ✅ Epoch 71 Fin. | Stage: UNKNOWN | Loss: 3.2163
+INFO 2026-01-12 02:58:22,586 trainer.py: 716: 🚀 [Epoch 72] Current Curriculum Stage: UNKNOWN
+INFO 2026-01-12 02:58:25,724 train_utils.py: 271: Train Epoch: [72][ 0/11] | Batch Time: 3.14 (3.14) | Data Time: 2.59 (2.59) | Mem (GB): 3.00 (3.00/3.00) | Time Elapsed: 00d 01h 50m | Losses/train_all_loss: 3.47e-01 (3.47e-01)
+INFO 2026-01-12 02:58:57,951 train_utils.py: 271: Train Epoch: [72][10/11] | Batch Time: 3.49 (3.21) | Data Time: 3.20 (2.71) | Mem (GB): 2.00 (2.73/3.00) | Time Elapsed: 00d 01h 51m | Losses/train_all_loss: 2.81e-01 (2.36e+00)
+INFO 2026-01-12 02:58:57,952 trainer.py: 883: Synchronizing meters
+INFO 2026-01-12 02:58:57,952 trainer.py: 821: ✅ Epoch 72 Fin. | Stage: UNKNOWN | Loss: 2.3559
+INFO 2026-01-12 02:58:59,378 trainer.py: 716: 🚀 [Epoch 73] Current Curriculum Stage: UNKNOWN
+INFO 2026-01-12 02:59:03,106 train_utils.py: 271: Train Epoch: [73][ 0/11] | Batch Time: 3.73 (3.73) | Data Time: 3.20 (3.20) | Mem (GB): 3.00 (3.00/3.00) | Time Elapsed: 00d 01h 51m | Losses/train_all_loss: 4.73e-01 (4.73e-01)
+INFO 2026-01-12 02:59:37,169 train_utils.py: 271: Train Epoch: [73][10/11] | Batch Time: 2.75 (3.44) | Data Time: 2.16 (2.72) | Mem (GB): 3.00 (2.64/3.00) | Time Elapsed: 00d 01h 51m | Losses/train_all_loss: 3.25e+00 (2.97e+00)
+INFO 2026-01-12 02:59:37,170 trainer.py: 883: Synchronizing meters
+INFO 2026-01-12 02:59:37,170 trainer.py: 821: ✅ Epoch 73 Fin. | Stage: UNKNOWN | Loss: 2.9654
+INFO 2026-01-12 02:59:37,997 trainer.py: 716: 🚀 [Epoch 74] Current Curriculum Stage: UNKNOWN
+INFO 2026-01-12 02:59:40,313 train_utils.py: 271: Train Epoch: [74][ 0/11] | Batch Time: 2.31 (2.31) | Data Time: 1.80 (1.80) | Mem (GB): 3.00 (3.00/3.00) | Time Elapsed: 00d 01h 51m | Losses/train_all_loss: 6.26e-01 (6.26e-01)
+INFO 2026-01-12 03:00:14,512 train_utils.py: 271: Train Epoch: [74][10/11] | Batch Time: 3.51 (3.32) | Data Time: 3.22 (2.80) | Mem (GB): 3.00 (2.82/3.00) | Time Elapsed: 00d 01h 52m | Losses/train_all_loss: 5.23e-01 (2.23e+00)
+INFO 2026-01-12 03:00:14,512 trainer.py: 883: Synchronizing meters
+INFO 2026-01-12 03:00:14,512 trainer.py: 821: ✅ Epoch 74 Fin. | Stage: UNKNOWN | Loss: 2.2332

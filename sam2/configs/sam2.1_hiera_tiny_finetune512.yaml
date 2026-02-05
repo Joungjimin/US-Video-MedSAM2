@@ -1,4 +1,4 @@
-dataset_path: /media/sde/zhengzhimin/MedSAM2/data/MedSAM2_Data/preprocessed1/train
+dataset_path: /media/sde/zhengzhimin/MedSAM2/data/MedSAM2_Data/preprocesse3/train
 
 scratch:
   resolution: 512
@@ -13,7 +13,7 @@ scratch:
 
 dataset:
   # PATHS to Dataset
-  folder:  "/media/sde/zhengzhimin/MedSAM2/data/MedSAM2_Data/preprocessed1/train"
+  folder:  "/media/sde/zhengzhimin/MedSAM2/data/MedSAM2_Data/preprocessed4_half_even/train"
   multiplier: 1
 
 # Video transforms
@@ -219,7 +219,7 @@ trainer:
                 training: true
                 video_dataset:
                   _target_: training.dataset.vos_raw_dataset.QuantumNPZRawDataset     ### jimin 1 
-                  folder: /media/sde/zhengzhimin/MedSAM2/data/MedSAM2_Data/preprocessed1/train/uterine_niche
+                  folder: /media/sde/zhengzhimin/MedSAM2/data/MedSAM2_Data/preprocessed4_half_even/train/uterine_niche
                   ###################3 jimin #######3
                   milestones:
                     dense: 0
@@ -338,7 +338,7 @@ trainer:
 launcher:
   num_nodes: 1
   gpus_per_node: 1
-  experiment_log_dir: "/media/sde/zhengzhimin/MedSAM2/work_dirsRe/Quantum/Quantum_Adapt_SpectralLoss"  ### jimin
+  experiment_log_dir: "/media/sde/zhengzhimin/MedSAM2/work_dirsRe/Quantum_half/add_addQuantum_d4"  ### jimin
 # SLURM args if running on a cluster
 submitit:
   partition: gpu_bwanggroup
